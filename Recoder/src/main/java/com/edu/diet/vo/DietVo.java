@@ -5,19 +5,19 @@ public class DietVo {
 	private int dietNo;
 	private int dietCal;
 	private String dietName;
-	private String diteType;
+	private String dietType;
 	
 	
 	public DietVo() {
 		super();
 	}
 
-	public DietVo(int dietNo, int dietCal, String dietName, String diteType) {
+	public DietVo(int dietNo, int dietCal, String dietName, String dietType) {
 		super();
 		this.dietNo = dietNo;
 		this.dietCal = dietCal;
 		this.dietName = dietName;
-		this.diteType = diteType;
+		this.dietType = dietType;
 	}
 
 	
@@ -45,12 +45,12 @@ public class DietVo {
 		this.dietName = dietName;
 	}
 
-	public String getDiteType() {
-		return diteType;
+	public String getDietType() {
+		return dietType;
 	}
 
-	public void setDiteType(String diteType) {
-		this.diteType = diteType;
+	public void setDietType(String dietType) {
+		this.dietType = dietType;
 	}
 	
 	

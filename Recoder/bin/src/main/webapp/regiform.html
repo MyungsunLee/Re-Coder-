@@ -52,13 +52,36 @@
 </head>
 <body>
   <div class="regi-form">
-    <form>
-      <input type="text" name="email" class="text-field" placeholder="이메일"><br>
-      <input type="text" name="name" class="text-field" placeholder="이름"><br>
-      <input type="password" name="password" class="text-field" placeholder="비밀번호"><br>
-      <input type="password" name="passwordConfirm" class="text-field" placeholder="비밀번호"><br>
-      <input type="submit" value="회원가입" class="submit-btn">
-    </form>
+    <form action="./addCtr.do" method="post">
+	<table>
+		<tr>
+			<td>이름</td>
+			<td><input type="text" name='name'></td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td><input type="text" name="email"></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="password" name='password1' id="fstPwd"></td>
+		</tr>
+		<tr>
+			<td>비밀번호 확인</td>
+			<td><input type="password" name='password2' id="sndPwd"></td>
+		</tr>
+		
+		<tr>
+		
+			
+			<td></td>
+			<td>
+				<input type="submit" value="추가">
+				<input type="reset" value="취소">
+			</td>
+		</tr>
+	</table>
+	</form>
 
     </div>
   </div>

@@ -109,21 +109,17 @@ public class MemberController {
 	}
 
 	// 회원가입
-	@RequestMapping(value = "/member/addCtr.do", method = RequestMethod.POST)
-	public String memberAdd(@RequestParam(value = "password1") String password1,
-							@RequestParam(value = "password2") String password2,
-							MemberVo memberVo,
+	@RequestMapping(value = "/member/add.do", method = RequestMethod.POST)
+	public String memberAdd(String memberPasswordConfirm, MemberVo memberVo,
 							Model model) {
 		log.trace("Welcome MemberController memberAdd 신규등록 처리! " + memberVo);
 		
-		if (password1.equals(password2)) {
+		if (memberVo.getMemberPassword().equals(memberPasswordConfirm)) {
 			memberService.memberInsertOne(memberVo);
 		}else {
 			//회원가입 실패시 처리할 페이지 추가하기
-			return "/common/legiFail";
+			return "/member/regifail";
 		}
-		
-		
 		
 		return "/common/index";
 	}

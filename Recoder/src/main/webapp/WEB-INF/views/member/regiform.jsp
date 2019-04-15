@@ -13,7 +13,7 @@
 <jsp:include page="../common/header.jsp"></jsp:include>
 
   <div class="regi-form">
-    <form>
+    <form action="../member/add.do" method="post">
       <input type="text" name="memberEmail" class="text-field" placeholder="이메일"><br>
       <input type="text" name="memberName" class="text-field" placeholder="이름"><br>
       <input type="password" name="memberPassword" class="text-field" placeholder="비밀번호"><br>

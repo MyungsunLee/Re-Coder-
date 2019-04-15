@@ -9,8 +9,16 @@ public class MemberVo {
 	private String memberEmail;
 	private String memberName;
 	private Date memberCreDate;
+	private String memberPassword;
 	
-	
+	public String getMemberPassword() {
+		return memberPassword;
+	}
+
+	public void setMemberPassword(String memberPassword) {
+		this.memberPassword = memberPassword;
+	}
+
 	public MemberVo() {
 		super();
 	}

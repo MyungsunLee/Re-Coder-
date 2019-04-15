@@ -27,28 +27,28 @@ public class MemberController {
 	private MemberService memberService;
 
 	// 조회
-	@RequestMapping(value = "/member/list.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String memberList(Model model) {
-
-		List<MemberVo> memberList = memberService.memberList();
-
-		model.addAttribute("memberList", memberList);
-
-		return "member/memberListView";
-	}
+//	@RequestMapping(value = "/member/list.do", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String memberList(Model model) {
+//
+//		List<MemberVo> memberList = memberService.memberList();
+//
+//		model.addAttribute("memberList", memberList);
+//
+//		return "member/memberListView";
+//	}
 
 	// 1명 조회
-	@RequestMapping(value = "/member/listOne.do")
-	public String memberListOne(int no, Model model) {
-		log.debug("Welcome memberListOne enter! - {}", no);
-
-		Map<String, Object> map = memberService.memberSelectOne(no);
-		MemberVo memberVo = (MemberVo) map.get("memberVo");
-
-		model.addAttribute("memberVo", memberVo);
-
-		return "member/memberListOneView";
-	}
+//	@RequestMapping(value = "/member/listOne.do")
+//	public String memberListOne(int no, Model model) {
+//		log.debug("Welcome memberListOne enter! - {}", no);
+//
+//		Map<String, Object> map = memberService.memberSelectOne(no);
+//		MemberVo memberVo = (MemberVo) map.get("memberVo");
+//
+//		model.addAttribute("memberVo", memberVo);
+//
+//		return "member/memberListOneView";
+//	}
 
 	// 로그인페이지로 이동
 	@RequestMapping(value = "/auth/login.do", method = RequestMethod.GET)
@@ -160,21 +160,21 @@ public class MemberController {
 	}
 
 	
-	@RequestMapping(value = "/member/deleteCtr.do", method = RequestMethod.GET)
-	public String memberDelete(int no, Model model) {
-		log.debug("Welcome MemberController memberDelete" + " 회원삭제 처리! - {}", no);
-
-		try {
-			memberService.memberDelete(no);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			//실패시 처리 페이지로 이동
-		}
-		
-		//메인페이지
-		return "../Recoder/";
-	}
+//	@RequestMapping(value = "/member/deleteCtr.do", method = RequestMethod.GET)
+//	public String memberDelete(int no, Model model) {
+//		log.debug("Welcome MemberController memberDelete" + " 회원삭제 처리! - {}", no);
+//
+//		try {
+//			memberService.memberDelete(no);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			//실패시 처리 페이지로 이동
+//		}
+//		
+//		//메인페이지
+//		return "../Recoder/";
+//	}
 	
 	
 	

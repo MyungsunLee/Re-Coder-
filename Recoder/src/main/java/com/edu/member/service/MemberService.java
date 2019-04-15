@@ -12,11 +12,9 @@ public interface MemberService {
 	
 	
 	
-	public List<MemberVo> memberList();
 	public MemberVo memberExist(Map<String, Object> paramMap);
 	public void memberInsertOne(MemberVo memberVo);
 	public Map<String, Object> memberSelectOne(int no);
 	public int memberUpdateOne(MemberVo memberVo);
-	public int memberDelete(int no);
 	
 }

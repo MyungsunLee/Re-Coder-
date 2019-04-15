@@ -20,11 +20,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	public MemberDao memberDao;
 
-	@Override
-	public List<MemberVo> memberList() {
-		// TODO Auto-generated method stub
-		return memberDao.memberList();
-	}
+
 
 	@Override
 	public MemberVo memberExist(Map<String, Object> paramMap) {
@@ -61,11 +57,6 @@ public class MemberServiceImpl implements MemberService {
 		return resultNum;
 	}
 
-	@Override
-	public int memberDelete(int no) {
-		// TODO Auto-generated method stub
 
-		return memberDao.memberDelete(no);
-	}
 
 }

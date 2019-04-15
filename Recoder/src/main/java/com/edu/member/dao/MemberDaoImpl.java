@@ -18,14 +18,6 @@ public class MemberDaoImpl implements MemberDao {
 
 	String namespace = "com.edu.member.";
 
-	@Override
-	public List<MemberVo> memberList() {
-		// TODO Auto-generated method stub
-
-		Map<String, Object> map = new HashMap<>();
-
-		return sqlSession.selectList(namespace + "memberSelectList", map);
-	}
 
 	@Override
 	public MemberVo memberExist(Map<String, Object> paramMap) {
@@ -52,10 +44,5 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.update(namespace + "memberUpdateOne", memberVo);
 	}
 
-	@Override
-	public int memberDelete(int no) {
-		// TODO Auto-generated method stub
-		return sqlSession.delete(namespace + "memberDelete", no);
-	}
 
 }

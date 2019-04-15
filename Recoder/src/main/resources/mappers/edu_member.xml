@@ -2,8 +2,52 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.edu_member">
 
+	<resultMap type="com.edu.member.vo.MemberVo"
+		id="memberResultMap">
+		<id column="MEMBER_NO" property="memberNo" />
+		<result column="MEMBER_AUTH" property="memberAuth" />
+		<result column="MEMBER_NAME" property="memberName" />
+		<result column="MEMBER_EMAIL" property="memberEmail" />
+		<result column="MEMBER_PASSWORD" property="memberPassword" />
+		<result column="CRE_DATE" property="memberCreDate"
+			javaType="java.util.Date" />
+	</resultMap>
 
+	<select id="memberExist" parameterType="map"
+		resultMap="memberResultMap">
+		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_EMAIL
+		FROM MEMBERS
+		WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_PASSWORD = #{memberPassword}
+	</select>
 
+	
+	
+	<insert id="memberInsertOne" 
+		parameterType="com.edu.member.vo.MemberVo">
+		
+		INSERT INTO MEMBERS
+			(MEMBER_NO, MEMBER_AUTH, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_NAME, CRE_DATE)
+		VALUES(MEMBER_NO_SEQ.NEXTVAL, 'U', #{memberEmail}, #{memberPassword},
+				#{memberName}, SYSDATE)
+	</insert>
+	
+	
+	<update id="memberUpdateOne" parameterType="memberVo">
+		UPDATE 	MEMBERS
+		<set>
+			<if test="memberName != ''">MEMBER_NAME = #{memberName},</if>
+			<if test="memberEmail != ''">MEMBER_EMAIL = #{memberEmail},</if>
+			<if test="memberPassword != ''">MEMBER_PASSWORD = #{memberPassword},</if>
+		</set>
+		WHERE 	MEMBER_NO = #{memberNo}
+	</update>
+	
+	<select id="memberSelectOne" parameterType="int"
+		resultMap="memberResultMap">
+		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_EMAIL, CRE_DATE
+		FROM MEMBERS
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
 
 
 </mapper>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.edu.member.service.MemberService;
 import com.edu.member.vo.MemberVo;
@@ -109,18 +110,22 @@ public class MemberController {
 
 	// 회원가입
 	@RequestMapping(value = "/member/addCtr.do", method = RequestMethod.POST)
-	public String memberAdd(MemberVo memberVo, Model model) {
+	public String memberAdd(@RequestParam(value = "password1") String password1,
+							@RequestParam(value = "pqssword2") String password2,
+							MemberVo memberVo,
+							Model model) {
 		log.trace("Welcome MemberController memberAdd 신규등록 처리! " + memberVo);
-
-		try {
+		
+		if (password1.equals(password2)) {
 			memberService.memberInsertOne(memberVo);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.out.println("아 오류 처리;");
-			e.printStackTrace();
+		}else {
+			//회원가입 실패시 처리할 페이지 추가하기
+			return "/common/legiFail";
 		}
-
-		return "redirect:/member/list.do";
+		
+		
+		
+		return "/common/index";
 	}
 
 	// 회원정보 수정 페이지

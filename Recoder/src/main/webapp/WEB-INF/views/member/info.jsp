@@ -13,7 +13,8 @@
 <jsp:include page="../common/header.jsp"></jsp:include>
 
   <div class="regi-form">
-    <form action="../member/update.do?memberNo=${sessionScope.login_memberVo.memberNo }" method="get">
+    <form action="../member/update.do" method="post">
+    	<input type="hidden" name="memberNo" value=" ${sessionScope.login_memberVo.memberNo }">
     	<p class="text-field">회원 이메일 : ${sessionScope.login_memberVo.memberEmail }</p>
         <p class="text-field">회원 이름 : ${sessionScope.login_memberVo.memberName }</p>
         <input type="submit" value="수정하기" class="submit-btn">

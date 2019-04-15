@@ -47,15 +47,13 @@ public class MemberController {
 //
 //		return "member/memberListOneView";
 //	}
-	
+
 	@RequestMapping(value = "/common/index.do", method = RequestMethod.GET)
 	public String index(Model model) {
 		log.debug("Welcome IndexController 페이지 이동! ");
 
 		return "/common/index";
 	}
-	
-	
 
 	// 로그인페이지로 이동
 	@RequestMapping(value = "/auth/login.do", method = RequestMethod.GET)
@@ -71,12 +69,11 @@ public class MemberController {
 
 //		log.debug("Welcome MemberController loginCtr! " + memberVo1.getMemberEmail() + ", " + memberVo1.getMemberPassword());
 
-
 		MemberVo memberVo = memberService.memberExist(memberVo1);
 
 		String viewUrl = "";
 		if (memberVo != null) {
-			
+
 			// 회원이 존재한다면 세션에 담고
 			// 회원 전체 조회 페이지로 이동
 			session.setAttribute("login_memberVo", memberVo);
@@ -110,20 +107,19 @@ public class MemberController {
 
 	// 회원가입
 	@RequestMapping(value = "/member/add.do", method = RequestMethod.POST)
-	public String memberAdd(String memberPasswordConfirm, MemberVo memberVo,
-							Model model) {
+	public String memberAdd(String memberPasswordConfirm, MemberVo memberVo, Model model) {
 		log.trace("Welcome MemberController memberAdd 신규등록 처리! " + memberVo);
-		
+
 		if (memberVo.getMemberPassword().equals(memberPasswordConfirm)) {
 			memberService.memberInsertOne(memberVo);
-		}else {
-			//회원가입 실패시 처리할 페이지 추가하기
+		} else {
+			// 회원가입 실패시 처리할 페이지 추가하기
 			return "/member/regifail";
 		}
-		
+
 		return "/common/index";
 	}
-	
+
 	// 마이페이지
 	@RequestMapping(value = "/member/info.do", method = RequestMethod.GET)
 	public String memberUpdate(Model model) {
@@ -133,7 +129,7 @@ public class MemberController {
 	}
 
 	// 회원정보 수정 페이지
-	@RequestMapping(value = "/member/update.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/update.do", method = RequestMethod.POST)
 	public String memberUpdate(@RequestParam(value = "memberNo") int no, Model model) {
 		log.debug("Welcome memberUpdate enter! - {}", no);
 
@@ -146,33 +142,43 @@ public class MemberController {
 		return "member/infoupdate";
 	}
 
-	@RequestMapping(value = "/member/updateCtr.do", method = RequestMethod.POST)
-	public String memberUpdateCtr(HttpSession session, MemberVo memberVo, Model model) {
-		log.debug("Welcome MemberController memberUpdateCtr {} :: {}", memberVo);
+//	@RequestMapping(value = "/member/updateCtr.do", method = RequestMethod.POST)
+//	public String memberUpdateCtr(HttpSession session, MemberVo memberVo, Model model) {
+//		log.debug("Welcome MemberController memberUpdateCtr {} :: {}", memberVo);
 
-		MemberVo sessionMemberVo = (MemberVo) session.getAttribute("login_memberVo");
+//		int resultNum = 0;
 
-		if (sessionMemberVo != null) {
-			if (sessionMemberVo.getMemberNo() == memberVo.getMemberNo()) {
-				MemberVo newMemberVo = new MemberVo();
+//		try {
+////			resultNum = memberService.memberUpdateOne(memberVo);
+//			memberService.memberUpdateOne(memberVo);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
-				newMemberVo.setMemberNo(memberVo.getMemberNo());
-				newMemberVo.setMemberEmail(memberVo.getMemberEmail());
-				newMemberVo.setMemberName(memberVo.getMemberName());
+		/*
+		 * // 데이터베이스에서 회원정보가 수정이 됬는지 여부 if (resultNum > 0) {
+		 * 
+		 * MemberVo sessionMemberVo = (MemberVo) session.getAttribute("login_memberVo");
+		 * 
+		 * // 세션에 객체가 존재하는지 여부 if (sessionMemberVo != null) { if
+		 * (sessionMemberVo.getMemberNo() == memberVo.getMemberNo()) { MemberVo
+		 * newMemberVo = new MemberVo();
+		 * 
+		 * newMemberVo.setMemberNo(memberVo.getMemberNo());
+		 * newMemberVo.setMemberEmail(memberVo.getMemberEmail());
+		 * newMemberVo.setMemberName(memberVo.getMemberName());
+		 * 
+		 * session.removeAttribute("login_memberVo");
+		 * 
+		 * session.setAttribute("login_memberVo", newMemberVo); } } else { // 실패시 처리
+		 * 페이지로 이동 return "123"; }
+		 * 
+		 * // 페이지 미구현 return "common/header"; }
+		 */
+//		return "common/index";
+//	}
 
-				session.removeAttribute("login_memberVo");
-
-				session.setAttribute("login_memberVo", newMemberVo);
-			}
-		}else {
-			//실패시 처리 페이지로 이동
-		}
-		
-		//페이지 미구현
-		return "common/successPage";
-	}
-
-	
 //	@RequestMapping(value = "/member/deleteCtr.do", method = RequestMethod.GET)
 //	public String memberDelete(int no, Model model) {
 //		log.debug("Welcome MemberController memberDelete" + " 회원삭제 처리! - {}", no);
@@ -188,9 +194,6 @@ public class MemberController {
 //		//메인페이지
 //		return "../Recoder/";
 //	}
-	
-	
-	
-	
+
 	
 }

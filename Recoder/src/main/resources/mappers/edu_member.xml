@@ -46,7 +46,7 @@
 	
 	<select id="memberSelectOne" parameterType="int"
 		resultMap="memberResultMap">
-		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_EMAIL, CRE_DATE
+		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_EMAIL, MEMBER_DATE
 		FROM MEMBERS
 		WHERE MEMBER_NO = #{memberNo}
 	</select>

@@ -1,6 +1,5 @@
 package com.edu.member.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -47,10 +46,19 @@ public class MemberController {
 //
 //		return "member/memberListOneView";
 //	}
+	
+	@RequestMapping(value = "/common/index.do", method = RequestMethod.GET)
+	public String index(Model model) {
+		log.debug("Welcome IndexController 페이지 이동! ");
+
+		return "/common/index";
+	}
+	
+	
 
 	// 로그인페이지로 이동
 	@RequestMapping(value = "/auth/login.do", method = RequestMethod.GET)
-	public String login(HttpSession session, Model model) {
+	public String login(Model model) {
 		log.debug("Welcome MemberController login 페이지 이동! ");
 
 		return "/auth/loginform";
@@ -67,11 +75,12 @@ public class MemberController {
 
 		String viewUrl = "";
 		if (memberVo != null) {
+			
 			// 회원이 존재한다면 세션에 담고
 			// 회원 전체 조회 페이지로 이동
 			session.setAttribute("login_memberVo", memberVo);
 
-			viewUrl = "redirect:/index";
+			viewUrl = "/common/index";
 		} else {
 			viewUrl = "/auth/loginFail";
 		}

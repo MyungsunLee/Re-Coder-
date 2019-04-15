@@ -123,10 +123,18 @@ public class MemberController {
 		
 		return "/common/index";
 	}
+	
+	// 마이페이지
+	@RequestMapping(value = "/member/info.do", method = RequestMethod.GET)
+	public String memberUpdate(Model model) {
+		log.debug("Welcome infoPage enter!");
+
+		return "member/info";
+	}
 
 	// 회원정보 수정 페이지
-	@RequestMapping(value = "/member/update.do")
-	public String memberUpdate(int no, Model model) {
+	@RequestMapping(value = "/member/update.do", method = RequestMethod.GET)
+	public String memberUpdate(@RequestParam(value = "memberNo") int no, Model model) {
 		log.debug("Welcome memberUpdate enter! - {}", no);
 
 		Map<String, Object> map = memberService.memberSelectOne(no);
@@ -135,7 +143,7 @@ public class MemberController {
 
 		model.addAttribute("memberVo", memberVo);
 
-		return "member/memberUpdateForm";
+		return "member/infoupdate";
 	}
 
 	@RequestMapping(value = "/member/updateCtr.do", method = RequestMethod.POST)

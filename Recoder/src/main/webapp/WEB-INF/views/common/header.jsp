@@ -15,7 +15,7 @@
 
 <c:if test="${sessionScope.login_memberVo != null }">
 	<div id="login">
-		<a href="#"><span>${login_memberVo.memberName }</span></a>
+		<a href="../member/info.do"><span>${login_memberVo.memberName }</span></a>
 		<a href="../auth/logout.do"><span>로그아웃</span></a>
 	</div>
 </c:if>

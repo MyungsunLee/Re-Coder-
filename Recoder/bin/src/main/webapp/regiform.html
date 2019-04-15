@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>로그인</title>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+  <style type="text/css">
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+   
+  }
+
+  .regi-form {
+    width: 300px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+   
+
+    background-color: #EEEFF1;
+    border-radius: 5px;
+    border: 0;
+  }
+
+  .text-field {
+    width: 260px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 14px;
+    color: #198556;
+
+    border-radius: 5px;
+    border: 0;
+  }
+
+  .submit-btn {
+    width: 260px;
+    margin-bottom: 30px;
+    padding: 10px;
+    background-color: #59d393;
+    font-size: 14px;
+    color: #FFFFFF;
+
+    border-radius: 5px;
+    border: 0;
+  }
+
+  </style>
+</head>
+<body>
+  <div class="regi-form">
+    <form action="./addCtr.do" method="post">
+	<table>
+		<tr>
+			<td>이름</td>
+			<td><input type="text" name='name'></td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td><input type="text" name="email"></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="password" name='password1' id="fstPwd"></td>
+		</tr>
+		<tr>
+			<td>비밀번호 확인</td>
+			<td><input type="password" name='password2' id="sndPwd"></td>
+		</tr>
+		
+		<tr>
+		
+			
+			<td></td>
+			<td>
+				<input type="submit" value="추가">
+				<input type="reset" value="취소">
+			</td>
+		</tr>
+	</table>
+	</form>
+
+    </div>
+  </div>
+</body>
+</html>

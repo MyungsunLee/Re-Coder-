@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.edu.member.service.MemberService;
 import com.edu.member.vo.MemberVo;
@@ -104,28 +105,36 @@ public class MemberController {
 	public String memberAdd(Model model) {
 		log.debug("Welcome MemberController memberAdd 페이지 이동! ");
 
-		return "member/memberForm";
+		return "member/regiform";
 	}
 
 	// 회원가입
-	@RequestMapping(value = "/member/addCtr.do", method = RequestMethod.POST)
-	public String memberAdd(MemberVo memberVo, Model model) {
+	@RequestMapping(value = "/member/add.do", method = RequestMethod.POST)
+	public String memberAdd(String memberPasswordConfirm, MemberVo memberVo,
+							Model model) {
 		log.trace("Welcome MemberController memberAdd 신규등록 처리! " + memberVo);
-
-		try {
+		
+		if (memberVo.getMemberPassword().equals(memberPasswordConfirm)) {
 			memberService.memberInsertOne(memberVo);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.out.println("아 오류 처리;");
-			e.printStackTrace();
+		}else {
+			//회원가입 실패시 처리할 페이지 추가하기
+			return "/member/regifail";
 		}
+		
+		return "/common/index";
+	}
+	
+	// 마이페이지
+	@RequestMapping(value = "/member/info.do", method = RequestMethod.GET)
+	public String memberUpdate(Model model) {
+		log.debug("Welcome infoPage enter!");
 
-		return "redirect:/member/list.do";
+		return "member/info";
 	}
 
 	// 회원정보 수정 페이지
-	@RequestMapping(value = "/member/update.do")
-	public String memberUpdate(int no, Model model) {
+	@RequestMapping(value = "/member/update.do", method = RequestMethod.GET)
+	public String memberUpdate(@RequestParam(value = "memberNo") int no, Model model) {
 		log.debug("Welcome memberUpdate enter! - {}", no);
 
 		Map<String, Object> map = memberService.memberSelectOne(no);
@@ -134,7 +143,7 @@ public class MemberController {
 
 		model.addAttribute("memberVo", memberVo);
 
-		return "member/memberUpdateForm";
+		return "member/infoupdate";
 	}
 
 	@RequestMapping(value = "/member/updateCtr.do", method = RequestMethod.POST)

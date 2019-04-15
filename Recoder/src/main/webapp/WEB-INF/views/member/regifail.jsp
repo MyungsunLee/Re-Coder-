@@ -5,7 +5,7 @@
 <html>
 <head>
 <title>로그인 실패</title>
-<meta charset="UTF-8" http-equiv="refresh" content="3; URL=login.do">
+<meta charset="UTF-8" http-equiv="refresh" content="3; URL=add.do">
 <link rel="stylesheet" type="text/css" href="/Recoder//resources/css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
@@ -16,7 +16,7 @@
   <div class="login-form">
 
     <div class="links">
-      <a href="#">이메일, 비밀번호가 일치하지 않습니다.</a>
+      <a href="#">회원 가입 정보를 다시 입력해주세요.</a>
     </div>
   </div>
 </body>

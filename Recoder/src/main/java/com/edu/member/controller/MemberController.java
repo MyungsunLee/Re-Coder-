@@ -111,7 +111,7 @@ public class MemberController {
 	// 회원가입
 	@RequestMapping(value = "/member/addCtr.do", method = RequestMethod.POST)
 	public String memberAdd(@RequestParam(value = "password1") String password1,
-							@RequestParam(value = "pqssword2") String password2,
+							@RequestParam(value = "password2") String password2,
 							MemberVo memberVo,
 							Model model) {
 		log.trace("Welcome MemberController memberAdd 신규등록 처리! " + memberVo);

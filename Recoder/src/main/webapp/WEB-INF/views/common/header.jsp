@@ -3,12 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 	<div id="logo">
-		<a href="index.jsp"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Diet_Coke_logo.svg/200px-Diet_Coke_logo.svg.png"></a>
+		<a href="../common/index.do"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Diet_Coke_logo.svg/200px-Diet_Coke_logo.svg.png"></a>
 	</div>
 
 <c:if test="${sessionScope.login_memberVo == null }">
 	<div id="login">
-		<a href="#"><span>회원가입</span></a>
+		<a href="../member/add.do"><span>회원가입</span></a>
 		<a href="../auth/login.do"><span>로그인</span></a>
 	</div>
 </c:if>

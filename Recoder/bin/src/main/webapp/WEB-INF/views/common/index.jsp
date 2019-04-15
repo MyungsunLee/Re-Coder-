@@ -18,7 +18,6 @@
 		<img src="http://img.phinf.pholar.net/20170510_58/1494396627388NNM5o_JPEG/p">
 	</div>
 
-	<jsp:include page="../common/tail.jsp"></jsp:include>
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.edu_member">
+<mapper namespace="mappers.edu.member">
 
 	<resultMap type="com.edu.member.vo.MemberVo"
 		id="memberResultMap">
@@ -37,7 +37,7 @@
 		<set>
 			<if test="memberName != ''">MEMBER_NAME = #{memberName},</if>
 			<if test="memberEmail != ''">MEMBER_EMAIL = #{memberEmail},</if>
-			<if test="memberPassword != ''">MEMBER_PASSWORD = #{memberPassword},</if>
+			<if test="memberPassword != ''">MEMBER_PASSWORD = #{memberPassword}</if>
 		</set>
 		WHERE 	MEMBER_NO = #{memberNo}
 	</update>

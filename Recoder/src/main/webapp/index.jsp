@@ -3,10 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <title>인덱스</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="resources/css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 </head>
 <body>
-	<!-- 기성씨 작성한 파일 복붙해주세요 -->
+
+	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
+
+	<div id="contents">
+		<img src="http://img.phinf.pholar.net/20170510_58/1494396627388NNM5o_JPEG/p">
+	</div>
+
+
 </body>
 </html>

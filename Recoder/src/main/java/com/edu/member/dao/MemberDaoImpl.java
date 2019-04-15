@@ -1,9 +1,5 @@
 package com.edu.member.dao;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,10 +16,10 @@ public class MemberDaoImpl implements MemberDao {
 
 
 	@Override
-	public MemberVo memberExist(Map<String, Object> paramMap) {
+	public MemberVo memberExist(MemberVo memberVo) {
 		// TODO Auto-generated method stub
 
-		return sqlSession.selectOne(namespace + "memberExist", paramMap);
+		return sqlSession.selectOne(namespace + "memberExist", memberVo);
 	}
 
 	@Override

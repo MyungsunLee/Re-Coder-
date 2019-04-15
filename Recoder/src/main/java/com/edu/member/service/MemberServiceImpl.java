@@ -1,7 +1,6 @@
 package com.edu.member.service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -23,9 +22,9 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public MemberVo memberExist(Map<String, Object> paramMap) {
+	public MemberVo memberExist(MemberVo memberVo) {
 		// TODO Auto-generated method stub
-		return memberDao.memberExist(paramMap);
+		return memberDao.memberExist(memberVo);
 	}
 
 	@Override

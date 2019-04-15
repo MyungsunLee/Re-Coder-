@@ -1,7 +1,6 @@
 package com.edu.member.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.edu.member.service.MemberService;
 import com.edu.member.vo.MemberVo;
@@ -55,20 +53,17 @@ public class MemberController {
 	public String login(HttpSession session, Model model) {
 		log.debug("Welcome MemberController login 페이지 이동! ");
 
-		return "auth/loginForm";
+		return "/auth/loginform";
 	}
 
 	// 로그인
-	@RequestMapping(value = "/auth/loginCtr.do", method = RequestMethod.GET)
-	public String longinCtr(String email, String password, HttpSession session, Model model) {
+	@RequestMapping(value = "/auth/login.do", method = RequestMethod.POST)
+	public String longinCtr(MemberVo memberVo1, HttpSession session, Model model) {
 
-		log.debug("Welcome MemberController loginCtr! " + email + ", " + password);
+//		log.debug("Welcome MemberController loginCtr! " + memberVo1.getMemberEmail() + ", " + memberVo1.getMemberPassword());
 
-		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put("email", email);
-		paramMap.put("pwd", password);
 
-		MemberVo memberVo = memberService.memberExist(paramMap);
+		MemberVo memberVo = memberService.memberExist(memberVo1);
 
 		String viewUrl = "";
 		if (memberVo != null) {
@@ -76,7 +71,7 @@ public class MemberController {
 			// 회원 전체 조회 페이지로 이동
 			session.setAttribute("login_memberVo", memberVo);
 
-			viewUrl = "redirect:/member/list.do";
+			viewUrl = "redirect:/index";
 		} else {
 			viewUrl = "/auth/loginFail";
 		}

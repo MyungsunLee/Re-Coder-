@@ -13,7 +13,7 @@
 			javaType="java.util.Date" />
 	</resultMap>
 
-	<select id="memberExist" parameterType="map"
+	<select id="memberExist" parameterType="com.edu.member.vo.MemberVo"
 		resultMap="memberResultMap">
 		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_EMAIL
 		FROM MEMBERS

@@ -82,7 +82,7 @@ public class MemberController {
 
 			viewUrl = "/common/index";
 		} else {
-			viewUrl = "/auth/loginFail";
+			viewUrl = "/auth/loginfail";
 		}
 
 		return viewUrl;
@@ -96,7 +96,7 @@ public class MemberController {
 		// 세션의 객체들 파기
 		session.invalidate();
 
-		return "redirect:/auth/login.do";
+		return "/common/index";
 	}
 
 	// 회원가입 페이지로

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.edu.member">
+
+<mapper namespace="com.edu.member">
+
 
 	<resultMap type="com.edu.member.vo.MemberVo"
 		id="memberResultMap">
@@ -13,9 +15,9 @@
 			javaType="java.util.Date" />
 	</resultMap>
 
-	<select id="memberExist" parameterType="com.edu.member.vo.MemberVo"
+	<select id="memberExist" parameterType="memberVo"
 		resultMap="memberResultMap">
-		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_EMAIL
+		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NAME
 		FROM MEMBERS
 		WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_PASSWORD = #{memberPassword}
 	</select>

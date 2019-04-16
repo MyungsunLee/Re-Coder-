@@ -122,14 +122,14 @@ public class MemberController {
 
 	// 마이페이지
 	@RequestMapping(value = "/member/info.do", method = RequestMethod.GET)
-	public String memberUpdate(Model model) {
+	public String memberSelectOne(Model model) {
 		log.debug("Welcome infoPage enter!");
 
 		return "member/info";
 	}
 
 	// 회원정보 수정 페이지
-	@RequestMapping(value = "/member/update.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/info.do", method = RequestMethod.POST)
 	public String memberUpdate(@RequestParam(value = "memberNo") int no, Model model) {
 		log.debug("Welcome memberUpdate enter! - {}", no);
 
@@ -139,10 +139,18 @@ public class MemberController {
 
 		model.addAttribute("memberVo", memberVo);
 
-		return "redirect:/member/info.do";
+		return "redirect:/member/update.do";
 	}
+	
+	// 수정페이지
+		@RequestMapping(value = "/member/update.do", method = RequestMethod.GET)
+		public String memberUpdate(Model model) {
+			log.debug("Welcome infoPage enter!");
 
-//	@RequestMapping(value = "/member/updateCtr.do", method = RequestMethod.POST)
+			return "member/info";
+		}
+
+//	@RequestMapping(value = "/member/update.do", method = RequestMethod.POST)
 //	public String memberUpdateCtr(HttpSession session, MemberVo memberVo, Model model) {
 //		log.debug("Welcome MemberController memberUpdateCtr {} :: {}", memberVo);
 

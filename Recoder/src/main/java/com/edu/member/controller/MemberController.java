@@ -78,7 +78,7 @@ public class MemberController {
 			// 회원 전체 조회 페이지로 이동
 			session.setAttribute("login_memberVo", memberVo);
 
-			viewUrl = "/common/index";
+			viewUrl = "redirect:/common/index.do";
 		} else {
 			viewUrl = "/auth/loginfail";
 		}
@@ -94,7 +94,7 @@ public class MemberController {
 		// 세션의 객체들 파기
 		session.invalidate();
 
-		return "/common/index";
+		return "redirect:/common/index.do";
 	}
 
 	// 회원가입 페이지로
@@ -117,7 +117,7 @@ public class MemberController {
 			return "/member/regifail";
 		}
 
-		return "/common/index";
+		return "redirect:/common/index.do";
 	}
 
 	// 마이페이지
@@ -139,7 +139,7 @@ public class MemberController {
 
 		model.addAttribute("memberVo", memberVo);
 
-		return "member/infoupdate";
+		return "redirect:/member/info.do";
 	}
 
 //	@RequestMapping(value = "/member/updateCtr.do", method = RequestMethod.POST)

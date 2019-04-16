@@ -16,7 +16,7 @@
   <div class="login-form">
 
     <div class="links">
-      <a href="#">회원 가입 정보를 다시 입력해주세요.</a>
+      <a href="add.do">회원 가입 정보를 다시 입력해주세요.</a>
     </div>
   </div>
 </body>

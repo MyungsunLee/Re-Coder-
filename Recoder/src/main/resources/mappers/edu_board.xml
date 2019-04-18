@@ -1,6 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.edu_board">
+<mapper namespace="com.edu.board">
+
+
+<resultMap type="com.edu.board.vo.BoardVo"
+			id="boardResultMap">
+			
+			
+	<id column="BOARD_NO" property="boardNo" />
+<!-- 	<reseult column="RNUM" property="boardNo" /> -->
+	<result column="BOARD_TITLE" property="boardTitle" />
+	<result column="MEMBER_NAME" property="name" />
+	<result column="BOARD_CONTENT" property="boardContent" />
+	<result column="BOARD_CRE_DATE" property="boardCreDate" 
+			javaType="java.util.Date"/>
+	<result column="BOARD_MOD_DATE" property="boardModDate" 
+			javaType="java.util.Date"/>
+</resultMap>
+
+<select id="boardSelectList" parameterType="map"
+		resultMap="boardResultMap">
+		
+		SELECT B.BOARD_NO, B.BOARD_TITLE, B.MEMBER_NAME, B.BOARD_CRE_DATE
+			FROM
+			    (SELECT B.BOARD_NO, ROWNUM, B.BOARD_TITLE, B.MEMBER_NAME, B.BOARD_CRE_DATE
+			     FROM
+			        (SELECT B.BOARD_NO,
+			                B.BOARD_TITLE, 
+			                M.MEMBER_NAME, 
+			                B.BOARD_CRE_DATE
+			        FROM MEMBERS M, BOARD B
+			        WHERE M.MEMBER_NO = B.MEMBER_NO
+			        
+			        <choose>
+			        	<when test="searchOption == title">
+			        		AND  B.BOARD_TITLE LIKE '%'||#{keyword}||'%'
+			        	</when>
+			        	
+			        	<when test="searchOption == content">
+			        		AND  B.BOARD_CONTENT LIKE '%'||#{keyword}||'%'
+			        	</when>
+			        	
+			        	<otherwise>
+			        		AND M.MEMBER_NAME LIKE '%'||#{keyword}||'%'
+			        	</otherwise>
+			        </choose>
+
+			        ORDER BY BOARD_NO DESC
+			    )B
+		) B
+		WHERE ROWNUM BETWEEN #{start} AND #{end}
+		
+		</select>
+
+
+
+<select id="boardSelectTotalCount" parameterType="map"
+		resultType="int">
+		
+	SELECT COUNT(*)
+	FROM BOARD B, MEMBERS M
+	WHERE B.MEMBER_NO = M.MEMBER_NO
+		<choose>
+			<when test="searchOption == title">
+				AND B.BOARD_TITLE LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="searchOption == content">
+				AND B.BOARD_CONTENT LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="searchOption == name">
+				AND M.MEMBER_NAME LIKE '%'||#{keyword}||'%'
+			</when>
+			<otherwise>
+				ORDER BY B.BOARD_NO DESC
+			</otherwise>
+		</choose>
+</select>
+
+<select id="boardSelectOne" 
+	parameterType="boardVo" resultType="int"
+	resultMap="boardResultMap">
+	
+	SELECT B.BOARD_TITLE, B.BOARD_CONTENT, M.MEMBER_NAME, B.BOARD_CRE_DATE
+	FROM BOARD B, MEMBERS M
+	WHERE M.MEMBER_NO = B.MEMBER_NO
+	AND M.MEMBER_NO = #{no}
+
+</select>
+
+
 
 
 

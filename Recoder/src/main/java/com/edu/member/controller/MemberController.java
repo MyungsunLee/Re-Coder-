@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.edu.member.service.MemberService;
 import com.edu.member.vo.MemberVo;
 
+/**
+ * @author TJ
+ *
+ */
 @Controller
 public class MemberController {
 
@@ -196,7 +200,6 @@ public class MemberController {
 
 		return "redirect:/member/info.do";
 	}
-}
 
 //	@RequestMapping(value = "/member/deleteCtr.do", method = RequestMethod.GET)
 //	public String memberDelete(int no, Model model) {
@@ -213,3 +216,51 @@ public class MemberController {
 //		//메인페이지
 //		return "../Recoder/";
 //	}
+	
+	
+	/*
+	 * 관리자 컨트롤러 ********************************************************************************
+	 */
+	
+	/*
+	 * // 로그인페이지로 이동
+	 * 
+	 * @RequestMapping(value = "/auth/login.do", method = RequestMethod.GET) public
+	 * String login(Model model) {
+	 * log.debug("Welcome MemberController login 페이지 이동! ");
+	 * 
+	 * return "/auth/loginform"; }
+	 * 
+	 * // 로그인
+	 * 
+	 * @RequestMapping(value = "/auth/login.do", method = RequestMethod.POST) public
+	 * String longinCtr(MemberVo memberVo1, HttpSession session, Model model) {
+	 * 
+	 * // log.debug("Welcome MemberController loginCtr! " +
+	 * memberVo1.getMemberEmail() + ", " + memberVo1.getMemberPassword());
+	 * 
+	 * MemberVo memberVo = memberService.memberExist(memberVo1);
+	 * 
+	 * String viewUrl = ""; if (memberVo != null) {
+	 * 
+	 * // 회원이 존재한다면 세션에 담고 // 회원 전체 조회 페이지로 이동
+	 * session.setAttribute("login_memberVo", memberVo);
+	 * 
+	 * viewUrl = "redirect:/common/index.do"; } else { viewUrl = "/auth/loginfail";
+	 * }
+	 * 
+	 * return viewUrl; }
+	 * 
+	 * // 로그아웃
+	 * 
+	 * @RequestMapping(value = "auth/logout.do", method = RequestMethod.GET) public
+	 * String logout(HttpSession session, Model model) {
+	 * log.debug("Welcome MemberController logout 페이지 이동! ");
+	 * 
+	 * // 세션의 객체들 파기 session.invalidate();
+	 * 
+	 * return "redirect:/common/index.do"; }
+	 */
+	
+	
+}

@@ -19,7 +19,7 @@
       <input type="text" name="memberName" class="text-field" placeholder="이름"><br>
       <input type="password" name="memberPassword" class="text-field" placeholder="비밀번호"><br>
       <input type="password" name="memberPasswordConfirm" class="text-field" placeholder="비밀번호 확인"><br>
-      <input type="submit" value="이메일, 비밀번호 수정하기" class="submit-btn">
+      <input type="submit" value="이름, 비밀번호 수정하기" class="submit-btn">
     </form>
   </div>
 </body>

@@ -111,7 +111,7 @@ public class MemberController {
 		log.trace("Welcome MemberController memberAdd 신규등록 처리! " + memberVo);
 
 		if (memberVo.getMemberPassword().equals(memberPasswordConfirm)) {
-			
+
 			try {
 				memberService.memberInsertOne(memberVo);
 			} catch (Exception e) {
@@ -119,7 +119,7 @@ public class MemberController {
 				e.printStackTrace();
 				return "/member/regifail";
 			}
-			
+
 		} else {
 			// 회원가입 실패시 처리할 페이지 추가하기
 			return "/member/regifail";
@@ -149,59 +149,54 @@ public class MemberController {
 
 		return "redirect:/member/update.do";
 	}
-	
+
 	// 수정페이지
-		@RequestMapping(value = "/member/update.do", method = RequestMethod.GET)
-		public String memberUpdate(Model model) {
-			log.debug("Welcome infoPage enter!");
-			
-			
-			
-			
-			return "member/infoupdate";
-		}
+	@RequestMapping(value = "/member/update.do", method = RequestMethod.GET)
+	public String memberUpdate(Model model) {
+		log.debug("Welcome infoPage enter!");
+
+		return "member/infoupdate";
+	}
 
 	@RequestMapping(value = "/member/updateCtr.do", method = RequestMethod.POST)
 	public String memberUpdateCtr(HttpSession session, MemberVo memberVo, Model model) {
 		log.debug("Welcome MemberController memberUpdateCtr {} :: {}", memberVo);
 
-		int resultNum = 0;
+//		int resultNum = 0;
 
 		try {
-			resultNum = memberService.memberUpdateOne(memberVo);
+//			resultNum = memberService.memberUpdateOne(memberVo);
 			memberService.memberUpdateOne(memberVo);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		
-		  // 데이터베이스에서 회원정보가 수정이 됬는지 여부 
-		if (resultNum > 0) {
-		  
-		  MemberVo sessionMemberVo = (MemberVo) session.getAttribute("login_memberVo");
-		  
-		  // 세션에 객체가 존재하는지 여부
-		  if (sessionMemberVo != null) {
-			  if (sessionMemberVo.getMemberNo() == memberVo.getMemberNo()) {
-				  MemberVo newMemberVo = new MemberVo();
-		  
-		  newMemberVo.setMemberNo(memberVo.getMemberNo());
-		  newMemberVo.setMemberEmail(memberVo.getMemberEmail());
-		  newMemberVo.setMemberName(memberVo.getMemberName());
-		  
-		  session.removeAttribute("login_memberVo");
-		  
-		  session.setAttribute("login_memberVo", newMemberVo); } 
-		  } else { 
-			  // 실패시 처리 페이지로 이동 
-		  return "123"; }
-		  
-		  // 페이지 미구현
-		  return "common/header"; }
-		 
-		return "common/index";
+		session.setAttribute("login_memberVo", memberVo);
+		
+//		MemberVo sessionMemberVo = (MemberVo) session.getAttribute("login_memberVo");
+//		if (resultNum != 0 && sessionMemberVo != null && sessionMemberVo.getMemberNo() == memberVo.getMemberNo()) {
+//			session.setAttribute("login_memberVo", memberVo);
+//		}
+			
+//		MemberVo sessionMemberVo = (MemberVo) session.getAttribute("login_memberVo");
+//		// 데이터베이스에서 회원정보가 수정이 됬는지 여부
+//		if (resultNum > 0 && sessionMemberVo != null && sessionMemberVo.getMemberNo() == memberVo.getMemberNo()) {
+////				  MemberVo newMemberVo = new MemberVo();
+//
+//		  
+//		  newMemberVo.setMemberNo(memberVo.getMemberNo());
+//		  newMemberVo.setMemberEmail(memberVo.getMemberEmail());
+//		  newMemberVo.setMemberName(memberVo.getMemberName());
+//		  
+//		  session.removeAttribute("login_memberVo");
+//		  
+//		  session.setAttribute("login_memberVo", newMemberVo); } 
+//		}
+
+		return "redirect:/member/info.do";
 	}
+}
 
 //	@RequestMapping(value = "/member/deleteCtr.do", method = RequestMethod.GET)
 //	public String memberDelete(int no, Model model) {
@@ -218,6 +213,3 @@ public class MemberController {
 //		//메인페이지
 //		return "../Recoder/";
 //	}
-
-	
-}

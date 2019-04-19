@@ -55,7 +55,7 @@
 
 
 
-   <c:if test="${ogin_memberVo.memberNo == selectedBoard.memberNo }">
+   <c:if test="${login_memberVo.memberNo == selectedBoard.memberNo }">
  <div style="text-align: right;">
    <a href="../board/delete.do?boardNo=${selectedBoard.boardNo }">삭제</a>
  </div>
@@ -74,9 +74,7 @@
    		<td>
    			<button onclick="pageMove();">수정</button>
    		</td>
-   		<td>
-   			<button>삭제</button>
-   		</td>
+   		
    </c:if>
    
    </tr>

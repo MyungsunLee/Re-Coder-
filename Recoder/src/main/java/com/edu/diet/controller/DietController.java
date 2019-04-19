@@ -29,7 +29,7 @@ public class DietController {
 
 		model.addAttribute("dietList", dietList);
 
-		String viewUrl = "/diet/dietlist";
+		String viewUrl = "diet/dietlist";
 
 		return viewUrl;
 	}
@@ -56,7 +56,7 @@ public class DietController {
 		
 		model.addAttribute("dietNo", dietNo);
 		
-		String viewUrl = "/diet/dietupdateform";
+		String viewUrl = "diet/dietupdateform";
 		return viewUrl;
 	}
 

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.edu.memberInfo.service.MemberInfoService;
 import com.edu.memberInfo.vo.MemberInfoVo;
@@ -24,16 +23,16 @@ public class MemberInfoController {
 	
 	
 	// 칼로리 처방 페이지로 이동
-	@RequestMapping(value = "/memberInfo/memberInfoView.do", method = RequestMethod.GET)
-	public String memberInfoView(Model model) {
+	@RequestMapping(value = "/memberInfo/memberInfo.do", method = RequestMethod.GET)
+	public String memberInfo(Model model) {
 		log.debug("Welcome kcalController memberInfoView 페이지 이동! ");
 		
 		return "/memberInfo/memberInfoView";
 	}
 	
 	// 칼로리 처방전 페이지 member_info 테이블 값 확인
-	@RequestMapping(value = "/memberInfo/memberInfoInsertView.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String memberInfoInsertView(MemberInfoVo memberInfoVo1, Model model) {
+	@RequestMapping(value = "/memberInfo/memberInfoInsert.do", method = {RequestMethod.POST})
+	public String memberInfoInsert(MemberInfoVo memberInfoVo1, Model model) {
 		log.debug("Welcome kcalController memberinfoKcalView 페이지 이동! ");
 		
 		boolean memberInfoVo = memberInfoService.memberInfoExist(memberInfoVo1);

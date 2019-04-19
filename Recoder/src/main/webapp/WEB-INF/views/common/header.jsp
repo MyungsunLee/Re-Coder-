@@ -30,6 +30,6 @@
 		<a href="#"><span>소개</span></a>
 		<a href="../memberInfo/memberInfoView.do"><span>칼로리 처방</span></a>
     	<a href="#"><span>식단 처방</span></a>
-		<a href="#"><span>게시판</span></a>
+		<a href="../board/list.do"><span>게시판</span></a>
 	</div>
 </c:if>

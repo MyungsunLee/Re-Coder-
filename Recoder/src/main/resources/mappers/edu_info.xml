@@ -48,10 +48,17 @@
 			<if test="memberInfoHeight != ''">MEMBER_HEIGHT = #{memberInfoHeight},</if>
 			<if test="memberInfoWeight != ''">MEMBER_WEIGHT = #{memberInfoWeight},</if>
 			<if test="memberInfoActivity != ''">MEMBER_ACTIVITY = #{memberInfoActivity},</if>
-			<if test="memberInfoCal != ''">MEMBER_CAL = #{memberInfoCal}</if>
+<!-- 			<if test="memberInfoCal != ''">MEMBER_CAL = #{memberInfoCal}</if> -->
 		</set>
 		WHERE 	MEMBER_NO = #{memberNo}
 	</update>
 
+	<select id="memberSelectOne" parameterType="int"
+		resultMap="memberResultMap">
+		SELECT MEMBER_NO, MEMBER_GENDER, MEMBER_AGE, MEMBER_HEIGHT,
+			 MEMBER_WEIGHT, MEMBER_ACTIVITY, MEMBER_CAL
+		FROM MEMBERS_INFO
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
 
 </mapper>

@@ -32,13 +32,6 @@ public class MemberInfoServiceImpl implements MemberInfoService {
 			check = true;
 		}
 		
-//		
-//		if(result == 0) {
-//			check = false;			
-//		}else if(result == 1) {
-//			check = true;
-//		}
-//		
 		
 		return check;
 	}

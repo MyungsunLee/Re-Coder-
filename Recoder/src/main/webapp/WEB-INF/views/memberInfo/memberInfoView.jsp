@@ -41,7 +41,7 @@
 
 	<c:if test="${sessionScope.login_memberVo != null }">
 		<div>
-		    <form action="memberInfoKcalView.do" method="post" class="kcalForm">
+		    <form action="memberInfoInsertView.do" method="post" class="kcalForm">
 				<pre style="font-size: medium; font-weight: bolder;">
 				<input type="hidden" name="memberNo" value="${sessionScope.login_memberVo.memberNo}">
 				성별		<input type="radio" name="memberGender" value="M" checked="checked">남자 <input type="radio" name="memberGender" value="F">여자<br>
@@ -56,7 +56,6 @@
 		     			
 		     				<input type="submit" value="칼로리 계산" class="submit-btn">
 					</pre>
-					
 		    </form>
   		</div>
   	</c:if>

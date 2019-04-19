@@ -35,12 +35,10 @@ public class MemberInfoController {
 		return "/memberInfo/memberInfoView";
 	}
 	
-	// 칼로리 처방전 페이지로 이동
-	@RequestMapping(value = "/memberInfo/memberInfoKcalView.do", method = RequestMethod.POST)
-	public String memberInfoKcalView(@RequestParam(value = "memberNo") String no, MemberInfoVo memberInfoVo1, Model model) {
+	// 칼로리 처방전 페이지 member_info 테이블 값 확인
+	@RequestMapping(value = "/memberInfo/memberInfoInsertView.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String memberInfoInsertView(MemberInfoVo memberInfoVo1, Model model) {
 		log.debug("Welcome kcalController memberinfoKcalView 페이지 이동! ");
-		
-		memberInfoVo1.setMemberNo(Integer.parseInt(no));
 		
 		boolean memberInfoVo = memberInfoService.memberInfoExist(memberInfoVo1);
 		
@@ -48,21 +46,55 @@ public class MemberInfoController {
 		
 		String viewUrl = "";
 		if (memberInfoVo == false) {
-			// 칼로리 처방 정보가 존재한다면 세션에 담고
+			// 칼로리 처방 정보가 존재하지않으면 DB에 Insert후  model에 담고
 			// 칼로리 처방전 페이지로 이동
-//			session.setAttribute("login_memberInfoVo", memberInfoVo);
 			
 			System.out.println("까");
 			memberInfoService.memberInfoInsertOne(memberInfoVo1);
 
-
+			model.addAttribute("login_memberInfoVo", memberInfoVo1);
+			
 			System.out.println("뀨");
 			
-			viewUrl = "redirect:/memberInfo/memberInfoKcalView.do";
+			viewUrl = "forward:/memberInfo/memberInfoKcalView";
+		} else {// 칼로리 처방 정보가 존재하면 Update페이지로 이동
+			viewUrl = "/memberInfo/memberInfoUpdateView.do";
+		}
+
+		return viewUrl;
+	}
+	// 칼로리 처방전 페이지 member_info 값 불러오기
+	@RequestMapping(value = "/memberInfo/memberInfoUpdateView.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String memberInfoUpdateView(MemberInfoVo memberInfoVo1, Model model) {
+		log.debug("Welcome kcalController memberinfoTakeView 페이지 이동! ");
+//		@RequestParam(value = "memberNo") int no
+//		@RequestParam(value = "memberNo") String no
+//		memberInfoVo1.setMemberNo(Integer.parseInt(no));
+		System.out.println("하 .. .");
+		boolean memberInfoVo = memberInfoService.memberInfoExist(memberInfoVo1);
+		
+		System.out.println("꾸우R?");
+		
+		String viewUrl = "";
+		if (memberInfoVo == true) {
+			// 칼로리 처방 정보가 존재한다면 세션에 담고
+			// 칼로리 처방전 페이지로 이동
+			memberInfoService.memberInfoSelectOne(memberInfoVo1.getMemberNo());
+			System.out.println("까R");
+			memberInfoService.memberInfoUpdateOne(memberInfoVo1); //업데이트
+			
+			model.addAttribute("login_memberInfoVo", memberInfoVo);
+			
+//			session.setAttribute("login_memberInfoVo", memberInfoVo);
+			
+			System.out.println("R뀨");
+			
+//			viewUrl = "redirect:/memberInfo/memberInfoKcalView.do";
+			viewUrl = "forward:/memberInfo/memberInfoKcalView";
 		} else {
 			viewUrl = "/memberInfo/memberInfoView";
 		}
-
+		
 //		MemberInfoVo memberInfoVo = (memberInfoVo) map.get("memberInfoVo");
 		return viewUrl;
 	}

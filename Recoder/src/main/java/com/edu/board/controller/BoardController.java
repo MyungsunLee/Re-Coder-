@@ -75,13 +75,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="board/addOne.do",method= {RequestMethod.GET})
-	public String boardInsertOne(int memberNo) {
+	public String boardInsertOne(int memberNo, Model model) {
 		
 //		boardService.boardInsertOne(boardVo);
+		model.addAttribute("memberNo", memberNo);
 		
-		
-		
-		return "board/boardInsertOne";
+		return "board/boardForm";
 	}
 	
 	

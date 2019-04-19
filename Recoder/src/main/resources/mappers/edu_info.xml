@@ -1,3 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.edu.kcal"></mapper>
+
+
+<mapper namespace="com.edu.memberInfo">
+
+
+	<resultMap type="com.edu.memberInfo.vo.MemberInfoVo"
+		id="memberResultMap">
+		<id column="MEMBER_NO" property="memberNo" />
+		<result column="MEMBER_GENDER" property="memberInfoGender" />
+		<result column="MEMBER_AGE" property="memberInfoAge" />
+		<result column="MEMBER_HEIGHT" property="memberInfoHeight" />
+		<result column="MEMBER_WEIGHT" property="memberInfoWeight" />
+		<result column="MEMBER_ACTIVITY" property="memberInfoActivity"/>
+		<result column="MEMBER_CAL" property="memberInfoCal"/>
+		<result column="MEMBER_DATE" property="memberInfoDate"
+			javaType="java.util.Date" />
+	</resultMap>
+
+
+
+	<select id="memberInfoExist" parameterType="memberInfoVo"
+		resultMap="memberResultMap">
+		SELECT MEMBER_NO, MEMBER_GENDER, MEMBER_AGE, MEMBER_HEIGHT,
+			 MEMBER_WEIGHT, MEMBER_ACTIVITY, MEMBER_CAL, MEMBER_DATE
+		FROM MEMBERS_INFO
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
+	
+	<insert id="memberInfoInsertOne" 
+		parameterType="memberInfoVo">
+		
+		INSERT INTO MEMBERS_INFO
+			(MEMBER_NO, MEMBER_GENDER, MEMBER_AGE, MEMBER_HEIGHT,
+			 MEMBER_WEIGHT, MEMBER_ACTIVITY, MEMBER_CAL, MEMBER_DATE)
+		VALUES(#{memberNo}, #{memberInfoGender}, #{memberInfoAge}, #{memberInfoHeight},
+				#{memberInfoWeight},#{memberInfoActivity}, 0, SYSDATE)
+	</insert>
+
+	<update id="memberInfoUpdateOne" 
+		parameterType="memberInfoVo">
+		UPDATE MEMBERS_INFO
+		<set>
+			<if test="memberInfoGender != ''">MEMBER_GENDER = #{memberInfoGender},</if>
+			<if test="memberInfoAge != ''">MEMBER_AGE = #{memberInfoAge},</if>
+			<if test="memberInfoHeight != ''">MEMBER_HEIGHT = #{memberInfoHeight},</if>
+			<if test="memberInfoWeight != ''">MEMBER_WEIGHT = #{memberInfoWeight},</if>
+			<if test="memberInfoActivity != ''">MEMBER_ACTIVITY = #{memberInfoActivity},</if>
+			<if test="memberInfoCal != ''">MEMBER_CAL = #{memberInfoCal}</if>
+		</set>
+		WHERE 	MEMBER_NO = #{memberNo}
+	</update>
+
+
+</mapper>

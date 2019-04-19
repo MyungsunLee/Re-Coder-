@@ -84,6 +84,12 @@ public class BoardController {
 		return "board/boardInsertOne";
 	}
 	
+	@RequestMapping(value="board/addOneCtr.do",method= {RequestMethod.POST})
+	public String boardInsertOneCtr(BoardVo boardVo) {
+		
+		return "";
+	}
+	
 	
 	
 	

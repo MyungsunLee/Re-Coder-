@@ -5,7 +5,7 @@
 <html>
 <head>
 <title>로그인 실패</title>
-<meta charset="UTF-8" http-equiv="refresh" content="3; URL=add.do">
+<meta charset="UTF-8" http-equiv="refresh" content="2; URL=add.do">
 <link rel="stylesheet" type="text/css" href="/Recoder//resources/css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">

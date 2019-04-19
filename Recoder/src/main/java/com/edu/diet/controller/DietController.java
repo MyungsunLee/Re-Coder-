@@ -2,8 +2,6 @@ package com.edu.diet.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.edu.diet.service.DietService;
 import com.edu.diet.vo.DietVo;
-import com.edu.member.service.MemberService;
-import com.edu.member.vo.MemberVo;
 
 @Controller
 public class DietController {

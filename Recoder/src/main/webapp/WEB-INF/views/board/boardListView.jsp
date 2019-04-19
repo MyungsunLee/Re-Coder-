@@ -79,17 +79,15 @@ td {
 					</form>
 				</td>
 				<td style="border-bottom: 1px solid white;">
- 					<c:if test="${login_memberVo.memberName}==null"> 
- 					<a>로그인 후 글쓰기가 가능합니다</a>
+ 					<c:if test="${sessionScope.login_memberVo != null}"> 
+ 						<button onclick="location.href='/Recoder/board/addOne.do?memberNo=${login_memberVo.memberNo}'">글쓰기</button>
  					</c:if> 
- 					<c:if test="${login_memberVo.memberName} != null"> 
- 					
- 					</c:if> 
-					<button onclick="location.href='/Recoder/board/addOne.do?no=${login_memberVo.memberNo}'">글쓰기</button>
+					
 				</td>
 				
 			</tr>
 		</table>
+		<a>과연 ${login_memberVo.memberNo}</a>
 	</div>
 </body>
 </html>

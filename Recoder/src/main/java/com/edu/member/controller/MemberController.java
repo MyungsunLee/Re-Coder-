@@ -76,13 +76,19 @@ public class MemberController {
 		MemberVo memberVo = memberService.memberExist(memberVo1);
 
 		String viewUrl = "";
-		if (memberVo != null) {
+		if (memberVo != null && memberVo.getMemberAuth() == 'U') {
 
 			// 회원이 존재한다면 세션에 담고
 			// 회원 전체 조회 페이지로 이동
 			session.setAttribute("login_memberVo", memberVo);
 
 			viewUrl = "redirect:/common/index.do";
+		} else if (memberVo != null && memberVo.getMemberAuth() == 'A') {
+
+			// 회원이 존재한다면 세션에 담고 // 회원 전체 조회 페이지로 이동
+			session.setAttribute("login_memberVo", memberVo);
+
+			viewUrl = "redirect:/diet/list.do";
 		} else {
 			viewUrl = "/auth/loginfail";
 		}
@@ -232,29 +238,29 @@ public class MemberController {
 		return "/admin/adminloginform";
 	}
 
-	// 로그인
-
-	@RequestMapping(value = "/admin/login.do", method = RequestMethod.POST)
-	public String adminLogin(MemberVo memberVo1, HttpSession session, Model model) {
-
-		log.debug("Welcome MemberController adminLogin! " + memberVo1.getMemberEmail() + ", "
-				+ memberVo1.getMemberPassword());
-
-		MemberVo memberVo = memberService.memberExist(memberVo1);
-
-		String viewUrl = "";
-		if (memberVo != null && memberVo.getMemberAuth() == 'A') {
-
-			// 회원이 존재한다면 세션에 담고 // 회원 전체 조회 페이지로 이동
-			session.setAttribute("login_memberVo", memberVo);
-
-			viewUrl = "redirect:/diet/list.do";
-		} else {
-			viewUrl = "redirect:/admin/login.do";
-		}
-
-		return viewUrl;
-	}
+	/*
+	 * // 로그인
+	 * 
+	 * @RequestMapping(value = "/admin/login.do", method = RequestMethod.POST)
+	 * public String adminLogin(MemberVo memberVo1, HttpSession session, Model
+	 * model) {
+	 * 
+	 * log.debug("Welcome MemberController adminLogin! " +
+	 * memberVo1.getMemberEmail() + ", " + memberVo1.getMemberPassword());
+	 * 
+	 * MemberVo memberVo = memberService.memberExist(memberVo1);
+	 * 
+	 * String viewUrl = ""; if (memberVo != null && memberVo.getMemberAuth() == 'A')
+	 * {
+	 * 
+	 * // 회원이 존재한다면 세션에 담고 // 회원 전체 조회 페이지로 이동
+	 * session.setAttribute("login_memberVo", memberVo);
+	 * 
+	 * viewUrl = "redirect:/diet/list.do"; } else { viewUrl =
+	 * "redirect:/admin/login.do"; }
+	 * 
+	 * return viewUrl; }
+	 */
 
 	// 로그아웃
 

@@ -1,7 +1,6 @@
 package com.edu.board.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.edu.board.vo.BoardVo;
 

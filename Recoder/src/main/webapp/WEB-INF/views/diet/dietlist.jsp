@@ -4,16 +4,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>식단 추가(관리자)</title>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/Recoder/resources/css/styles.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 <style>
+table {
+	margin-left: auto;
+	margin-right: auto;
+}
 table, th, tr, td{
+	
 	border: 1px solid black;
 	border-collapse: collapse;
 }
 </style>
 </head>
 <body>
+<jsp:include page="../common/header.jsp"/>
 <div>
 	<table>
 		<tr>
@@ -37,11 +46,11 @@ table, th, tr, td{
 	</table>
 </div>
 
-<div>
+<div class="regi-form">
 	<form action="../diet/add.do" method="post">
 		 <input type="radio" name="dietType" value="P" checked="checked">단백질 <input type="radio" name="dietType" value="C">탄수화물<br>
-		 <input type="text" name="dietName" class="" placeholder="식단이름"><br>
-		 <input type="text" name="dietCal" class="" placeholder="식단칼로리"><br>
+		 <input type="text" name="dietName" class="text-field" placeholder="식단이름" ><br>
+		 <input type="text" name="dietCal" class="text-field" placeholder="식단칼로리" ><br>
 		 <input type="submit" value="식단추가" class="submit-btn">
 	</form>
 </div>

@@ -75,13 +75,23 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="board/addOne.do",method= {RequestMethod.GET})
-	public String boardInsertOne(int memberNo) {
+	public String boardInsertOne(int memberNo, Model model) {
 		
 //		boardService.boardInsertOne(boardVo);
+		model.addAttribute("memberNo", memberNo);
+		
+		return "board/boardForm";
+	}
+	
+	@RequestMapping(value="board/addOneCtr.do",method= {RequestMethod.POST})
+	public String boardInsertOneCtr(BoardVo boardVo, Model model) {
+		
+		log.debug("Welcome BoardController addOneCtr! : {}");
+		
+		boardService.boardInsertOne(boardVo);
 		
 		
-		
-		return "board/boardInsertOne";
+		return "redirect:/board/list.do";
 	}
 	
 	

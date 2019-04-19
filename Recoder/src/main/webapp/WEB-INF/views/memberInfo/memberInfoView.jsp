@@ -53,6 +53,7 @@
 						<input type="radio" name="memberInfoActivity" value="3">보통 활동 <span>(일주일에 3~5일 스포츠 또는 적당한 운동을 함)</span><br>
 						<input type="radio" name="memberInfoActivity" value="4">많은 활동 <span>(일주일에 6~7일 격렬한 스포츠 또는 힘든 운동을 함)</span><br>
 						<input type="radio" name="memberInfoActivity" value="5">격심한 활동 <span>(육체적으로 아주 힘든 일이나 하루 2번 운동을 함)</span><br>
+
 		     			
 		     				<input type="submit" value="칼로리 계산" class="submit-btn">
 					</pre>

@@ -47,13 +47,13 @@ public class MemberInfoController {
 			System.out.println("까");
 			memberInfoService.memberInfoInsertOne(memberInfoVo1);
 
-			model.addAttribute("login_memberInfoVo", memberInfoVo1);
+			model.addAttribute("memberInfoVo", memberInfoVo1);
 			
 			System.out.println("뀨");
 			
-			viewUrl = "forward:/memberInfo/memberInfoKcalView";
+			viewUrl = "redirect:/memberInfo/memberInfoKcalView.do";
 		} else {// 칼로리 처방 정보가 존재하면 Update페이지로 이동
-			viewUrl = "/memberInfo/memberInfoUpdateView.do";
+			viewUrl = "redirect:/memberInfo/memberInfoUpdateView.do";
 		}
 
 		return viewUrl;
@@ -87,10 +87,16 @@ public class MemberInfoController {
 //			viewUrl = "redirect:/memberInfo/memberInfoKcalView.do";
 			viewUrl = "forward:/memberInfo/memberInfoKcalView";
 		} else {
-			viewUrl = "/memberInfo/memberInfoView";
+			viewUrl = "memberInfo/memberInfoView";
 		}
 		
 //		MemberInfoVo memberInfoVo = (memberInfoVo) map.get("memberInfoVo");
 		return viewUrl;
+	}
+	@RequestMapping(value = "/memberInfo/memberInfoKcalView.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String memberInfoKcalView(MemberInfoVo memberInfoVo1, Model model) {
+		log.debug("Welcome kcalController memberinfoKcalView 페이지 이동! ");
+		
+		return "memberInfo/memberInfoKcalView";
 	}
 }

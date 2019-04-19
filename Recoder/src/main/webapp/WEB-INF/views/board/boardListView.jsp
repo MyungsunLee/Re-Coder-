@@ -87,6 +87,7 @@ td {
 				
 			</tr>
 		</table>
+		<a>과연 ${login_memberVo.memberNo}</a>
 	</div>
 </body>
 </html>

@@ -24,12 +24,11 @@ table {
 	<jsp:include page="../common/header.jsp"></jsp:include>
 
 	<h2 style="text-align: center;">글쓰기</h2>
-		<form action="addOneCtr.do" method="post">
+	<form action="../board/addOneCtr.do" method="post">
 	<table>
-
 			<tr>
 				<td>
-					<input type="hidden" name="memberNo" value="${login_member.memberNo}">
+					<input type="hidden" name="memberNo" value="${login_memberVo.memberNo}">
 				</td>
 			</tr>
 			

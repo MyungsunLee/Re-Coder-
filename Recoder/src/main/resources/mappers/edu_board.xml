@@ -92,8 +92,8 @@
 <insert id="boardInsertOne" parameterType="boardVo">
       
       INSERT INTO BOARD
-      (BOARD_NO, BOARD_TITLE, BOARD_CONTENT, MEMBER_NO, CRE_DATE, MOD_DATE)
-      FROM BOARD
+      (BOARD_NO, BOARD_TITLE, BOARD_CONTENT, MEMBER_NO, BOARD_CRE_DATE, BOARD_MOD_DATE)
+      VALUES
       (BOARD_NO_SEQ.NEXTVAL, #{boardTitle}, #{boardContent}, #{memberNo}, SYSDATE, SYSDATE)
       
       </insert>

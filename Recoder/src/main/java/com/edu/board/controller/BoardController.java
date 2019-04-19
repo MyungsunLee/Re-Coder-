@@ -84,14 +84,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="board/addOneCtr.do",method= {RequestMethod.POST})
-	public String boardInsertOneCtr(String boardTitle, int memberNo, String boardContent, Model model) {
+	public String boardInsertOneCtr(BoardVo boardVo, Model model) {
 		
-		BoardVo boardVo = new BoardVo(boardTitle, memberNo, boardContent);
+		log.debug("Welcome BoardController addOneCtr! : {}");
 		
 		boardService.boardInsertOne(boardVo);
 		
 		
-		return "board/boardListView";
+		return "redirect:/board/list.do";
 	}
 	
 	

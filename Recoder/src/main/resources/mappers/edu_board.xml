@@ -84,10 +84,19 @@
 	SELECT B.BOARD_TITLE, B.BOARD_CONTENT, M.MEMBER_NAME, B.BOARD_CRE_DATE
 	FROM BOARD B, MEMBERS M
 	WHERE M.MEMBER_NO = B.MEMBER_NO
-	AND M.MEMBER_NO = #{no}
+	AND B.BOARD_NO = #{no}
 
 </select>
 
+
+<insert id="boardInsetOne" parameterType="boardVo">
+      
+      INSERT INTO BOARD
+      (BOARD_NO, BOARD_TITLE, BOARD_CONTENT, MEMBER_NO, CRE_DATE, MOD_DATE)
+      FROM BOARD
+      (BOARD_NO_SEQ.NEXTVAL, #{title}, #{content}, #{memberNo}, SYSDATE, SYSDATE)
+      
+      </insert>
 
 
 

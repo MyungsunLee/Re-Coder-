@@ -44,7 +44,7 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public int boardInsertOne(BoardVo boardVo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert(nameSpace + "boardInsertOne", boardVo);
 	}
 
 	@Override

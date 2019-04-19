@@ -175,14 +175,14 @@ public class MemberController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		session.setAttribute("login_memberVo", memberVo);
-		
+
 //		MemberVo sessionMemberVo = (MemberVo) session.getAttribute("login_memberVo");
 //		if (resultNum != 0 && sessionMemberVo != null && sessionMemberVo.getMemberNo() == memberVo.getMemberNo()) {
 //			session.setAttribute("login_memberVo", memberVo);
 //		}
-			
+
 //		MemberVo sessionMemberVo = (MemberVo) session.getAttribute("login_memberVo");
 //		// 데이터베이스에서 회원정보가 수정이 됬는지 여부
 //		if (resultNum > 0 && sessionMemberVo != null && sessionMemberVo.getMemberNo() == memberVo.getMemberNo()) {
@@ -216,51 +216,56 @@ public class MemberController {
 //		//메인페이지
 //		return "../Recoder/";
 //	}
-	
-	
+
 	/*
-	 * 관리자 컨트롤러 ********************************************************************************
+	 * 관리자 컨트롤러
+	 * *****************************************************************************
+	 * ***
 	 */
-	
+
+	// 로그인페이지로 이동
+
+	@RequestMapping(value = "/admin/login.do", method = RequestMethod.GET)
+	public String adminLogin(Model model) {
+		log.debug("Welcome MemberController adminLogin 페이지 이동! ");
+
+		return "/admin/adminloginform";
+	}
+
+	// 로그인
+
+	@RequestMapping(value = "/admin/login.do", method = RequestMethod.POST)
+	public String adminLogin(MemberVo memberVo1, HttpSession session, Model model) {
+
+		log.debug("Welcome MemberController adminLogin! " + memberVo1.getMemberEmail() + ", "
+				+ memberVo1.getMemberPassword());
+
+		MemberVo memberVo = memberService.memberExist(memberVo1);
+
+		String viewUrl = "";
+		if (memberVo != null && memberVo.getMemberAuth() == 'A') {
+
+			// 회원이 존재한다면 세션에 담고 // 회원 전체 조회 페이지로 이동
+			session.setAttribute("login_memberVo", memberVo);
+
+			viewUrl = "redirect:/diet/list.do";
+		} else {
+			viewUrl = "redirect:/admin/login.do";
+		}
+
+		return viewUrl;
+	}
+
+	// 로그아웃
+
 	/*
-	 * // 로그인페이지로 이동
-	 * 
-	 * @RequestMapping(value = "/auth/login.do", method = RequestMethod.GET) public
-	 * String login(Model model) {
-	 * log.debug("Welcome MemberController login 페이지 이동! ");
-	 * 
-	 * return "/auth/loginform"; }
-	 * 
-	 * // 로그인
-	 * 
-	 * @RequestMapping(value = "/auth/login.do", method = RequestMethod.POST) public
-	 * String longinCtr(MemberVo memberVo1, HttpSession session, Model model) {
-	 * 
-	 * // log.debug("Welcome MemberController loginCtr! " +
-	 * memberVo1.getMemberEmail() + ", " + memberVo1.getMemberPassword());
-	 * 
-	 * MemberVo memberVo = memberService.memberExist(memberVo1);
-	 * 
-	 * String viewUrl = ""; if (memberVo != null) {
-	 * 
-	 * // 회원이 존재한다면 세션에 담고 // 회원 전체 조회 페이지로 이동
-	 * session.setAttribute("login_memberVo", memberVo);
-	 * 
-	 * viewUrl = "redirect:/common/index.do"; } else { viewUrl = "/auth/loginfail";
-	 * }
-	 * 
-	 * return viewUrl; }
-	 * 
-	 * // 로그아웃
-	 * 
-	 * @RequestMapping(value = "auth/logout.do", method = RequestMethod.GET) public
-	 * String logout(HttpSession session, Model model) {
+	 * @RequestMapping(value = "/admin/logout.do", method = RequestMethod.GET)
+	 * public String adminLogout(HttpSession session, Model model) {
 	 * log.debug("Welcome MemberController logout 페이지 이동! ");
 	 * 
-	 * // 세션의 객체들 파기 session.invalidate();
+	 * session.invalidate();
 	 * 
-	 * return "redirect:/common/index.do"; }
+	 * return "redirect:/admin/login.do"; }
 	 */
-	
-	
+
 }

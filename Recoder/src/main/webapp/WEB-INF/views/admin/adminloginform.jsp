@@ -9,7 +9,7 @@
 <body>
 
 <div class="login-form">
-    <form action="../diet/list.do" method="post">
+    <form action="../admin/login.do" method="post">
       <input type="text" name="memberEmail" class="text-field" placeholder="이메일"><br>
       <input type="password" name="memberPassword" class="text-field" placeholder="비밀번호"><br>
       <input type="submit" value="로그인" class="submit-btn">

@@ -84,9 +84,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="board/addOneCtr.do",method= {RequestMethod.POST})
-	public String boardInsertOneCtr(BoardVo boardVo) {
+	public String boardInsertOneCtr(String boardTitle, int memberNo, String boardContent, Model model) {
 		
-		return "";
+		BoardVo boardVo = new BoardVo(boardTitle, memberNo, boardContent);
+		
+		boardService.boardInsertOne(boardVo);
+		
+		
+		return "board/boardListView";
 	}
 	
 	

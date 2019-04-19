@@ -89,12 +89,12 @@
 </select>
 
 
-<insert id="boardInsetOne" parameterType="boardVo">
+<insert id="boardInsertOne" parameterType="boardVo">
       
       INSERT INTO BOARD
       (BOARD_NO, BOARD_TITLE, BOARD_CONTENT, MEMBER_NO, CRE_DATE, MOD_DATE)
       FROM BOARD
-      (BOARD_NO_SEQ.NEXTVAL, #{title}, #{content}, #{memberNo}, SYSDATE, SYSDATE)
+      (BOARD_NO_SEQ.NEXTVAL, #{boardTitle}, #{boardContent}, #{memberNo}, SYSDATE, SYSDATE)
       
       </insert>
 

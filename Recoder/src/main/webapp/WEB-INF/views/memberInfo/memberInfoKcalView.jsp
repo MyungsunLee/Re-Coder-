@@ -29,6 +29,9 @@
 		width: 120px;
 		height: 30px;
 	}
+	table {
+		border: 3px solid black;
+	}
 </style>
 </head>
 <body>
@@ -40,8 +43,35 @@
     </c:if>
 
 	<c:if test="${sessionScope.login_memberVo != null }">
-		<div >
-		    <form action="login.do" method="post" class="kcalForm">
+		<div>
+		    <form action="memberInfoKcalView.do" method="post" class="kcalForm">
+				<h3 style="text-align: center;">처방전</h3>
+				<input type="hidden" name="memberNo" value="${login_memberVo.memberNo}">
+				이름	${login_memberVo.memberName}
+				<table class="text-field">
+					<tr>
+						<td>기초대사량</td>
+						<td>${login_memberInfoVo.  } kcal</td>
+					</tr>
+					<tr>
+						<td>하루 유지 칼로리</td>
+						<td> kcal</td>
+					</tr>
+					<tr>
+						<td>일주일 칼로리</td>
+						<td> kcal</td>
+					</tr>
+					<tr>
+						<td>건강 몸무게</td>
+						<td>뀨?</td>
+					</tr>
+					<tr>
+						<td>BMI</td>
+						<td></td>
+					</tr>
+				</table>
+				
+				
 				<pre style="font-size: medium; font-weight: bolder;">
 				성별		<input type="radio" name="memberGender" value="M" checked="checked">남자 <input type="radio" name="memberGender" value="F">여자<br>
 				나이		<input type="text" name="memberAge" class="text-field" placeholder="숫자만 입력가능"><br>

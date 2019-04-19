@@ -26,12 +26,19 @@ public class MemberInfoServiceImpl implements MemberInfoService {
 		MemberInfoVo result = memberInfoDao.memberInfoExist(memberInfoVo);
 		boolean check = false;
 		
+		if (result == null) {
+			return check;
+		} else {
+			check = true;
+		}
+		
+//		
 //		if(result == 0) {
 //			check = false;			
-//		}else if(result >=1) {
+//		}else if(result == 1) {
 //			check = true;
 //		}
-		
+//		
 		
 		return check;
 	}

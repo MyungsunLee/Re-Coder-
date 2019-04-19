@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,25 +38,26 @@ table {
 			</tr>
 			
 			<tr>
-				<td><input type="text" name="boardTitle"
-					placeholder="제목을 입력해 주세요">
-					${login_memberVo.memberName}
-					</td>
+				<td><input style="width:100%" type="text" name="boardTitle"
+					placeholder="제목을 입력해 주세요" >					
+				</td>
+			</tr>
+			
+			<tr style="text-align: left;">
+				<td>${login_memberVo.memberName}</td>
 			</tr>
 
 			<tr>
 				<td>
-					<input type="text" name="boardContent">
+					<textarea name="boardContent" rows="20" cols="100" placeholder="내용을 입력해 주세요"></textarea>
+<!-- 					<input type="text" name="boardContent"> -->
 <!-- 					<textarea name="boardContent" rows="30" cols="50" -->
-<!-- 					placeholder="내용을 입력해 주세요"></textarea> -->
+<!-- 					></textarea> -->
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<input type="submit" value="글쓰기">
-				</td>
-				<td>
-					<button onclick="location='../board/listOne.do?boardNo=${selectedBoard.boardNo}'">뒤로가기</button>
 				</td>
 			</tr>
 	</table>

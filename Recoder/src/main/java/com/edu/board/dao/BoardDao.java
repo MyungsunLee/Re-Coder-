@@ -14,7 +14,7 @@ public interface BoardDao {
 	public BoardVo boardSelectOne(int no);
 	public int boardInsertOne(BoardVo boardVo);
 	public int boardUpdateOne(BoardVo boardVo);
-	public int boardDeleteOne(BoardVo boardVo);
+	public int boardDeleteOne(int boardNo);
 	public int boardCountTotal(Map<String, String> map);
 	
 }

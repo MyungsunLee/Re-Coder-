@@ -10,12 +10,24 @@
   <link rel="stylesheet" type="text/css" href="/Recoder/resources/css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+  <style>
+  	table {
+  		width: 980px;
+  	}
+  
+  	table, tr, td {
+  		border: 1px solid black;
+  		border-collapse: collapse;
+  	}
+  </style>
 </head>
 <body>
 <jsp:include page="../common/header.jsp"></jsp:include>
-   
+
+<div>   
    <table>
       <tr>
+      	<td>${selectedBoard.boardNo }
          <td>${selectedBoard.boardTitle}</td>
          <td>${selectedBoard.name} </td>
          <td>
@@ -25,9 +37,24 @@
          </td>
       </tr>
       <tr>
-         <td>${selectedBoard.boardContent}</td>
+         <td colspan="4">${selectedBoard.boardContent}</td>
       </tr>
    </table>
+</div>
+
+
+
+   <c:if test="${ogin_memberVo.memberNo == selectedBoard.memberNo }">
+ <div style="text-align: right;">
+   <a href="../board/delete.do?boardNo=${selectedBoard.boardNo }">삭제</a>
+ </div>
+   </c:if>
+   
+   <c:if test="${login_memberVo.memberAuth == 'A'}">
+ <div style="text-align: right;">
+   <a href="../board/delete.do?boardNo=${selectedBoard.boardNo }">삭제</a>
+ </div>
+   </c:if>
    
    
    

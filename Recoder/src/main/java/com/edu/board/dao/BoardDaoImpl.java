@@ -53,12 +53,6 @@ public class BoardDaoImpl implements BoardDao {
 		return 0;
 	}
 
-	@Override
-	public int boardDeleteOne(BoardVo boardVo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 
 	@Override
 	public int boardCountTotal(Map<String, String> map) {
@@ -68,6 +62,14 @@ public class BoardDaoImpl implements BoardDao {
 		
 //		log.debug(sqlSession.selectOne(nameSpace+"boardSelectTotalCount", map));
 		return sqlSession.selectOne(nameSpace+"boardSelectTotalCount", map);
+	}
+
+
+	@Override
+	public int boardDeleteOne(int boardNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(nameSpace + "boardDeleteOne", boardNo);
+
 	}
 
 }

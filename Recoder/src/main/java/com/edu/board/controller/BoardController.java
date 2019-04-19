@@ -63,9 +63,9 @@ public class BoardController {
 	
 	@RequestMapping(value="board/listOne.do",
 			method= {RequestMethod.GET})
-	public String boardSelectOne(int no, Model model) {
+	public String boardSelectOne(int boardNo, Model model) {
 		
-		BoardVo selectedBoard = boardService.boardSelectOne(no);
+		BoardVo selectedBoard = boardService.boardSelectOne(boardNo);
 		
 		model.addAttribute("selectedBoard",	 selectedBoard);
 		
@@ -94,6 +94,7 @@ public class BoardController {
 		return "redirect:/board/list.do";
 	}
 	
+
 	
 	@RequestMapping(value="board/updateOne.do",method = {RequestMethod.GET})
 	public String boardUpdateOne(int boardNo, Model model) {
@@ -106,6 +107,21 @@ public class BoardController {
 		
 		
 		return "board/boardUpdateView";
+	}
+	
+	@RequestMapping(value = "/board/delete.do", method = RequestMethod.GET)
+	public String boardDelete(int boardNo, Model model) {
+		log.debug("Welcome boardController boardDelete 수행! ");
+
+		try {
+			boardService.boardDeleteOne(boardNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		String viewUrl = "redirect:/board/list.do";
+
+		return viewUrl;
 	}
 	
 	@RequestMapping(value="board/updateCtr.do", method= {RequestMethod.POST})

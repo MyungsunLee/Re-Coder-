@@ -42,12 +42,6 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int boardDeleteOne(BoardVo boardVo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int boardCountTotal(String searchOption, String keyword) {
 		// TODO Auto-generated method stub
 		Map<String, String> map = new HashMap<String, String>();
@@ -56,5 +50,11 @@ public class BoardServiceImpl implements BoardService {
 		
 		
 		return boardDao.boardCountTotal(map);
+	}
+
+	@Override
+	public int boardDeleteOne(int boardNo) {
+		// TODO Auto-generated method stub
+		return boardDao.boardDeleteOne(boardNo);
 	}
 }

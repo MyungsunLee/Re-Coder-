@@ -1,7 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.edu_diet">
 
+<mapper namespace="com.edu.diet">
+
+	<resultMap type="dietVo" id="dietResultMap">
+		<id column="DIET_NO" property="dietNo" />
+		<result column="DIET_TYPE" property="dietType" />
+		<result column="DIET_NAME" property="dietName" />
+		<result column="DIET_CAL" property="dietCal" />
+	</resultMap>
+
+	<select id="dietSelectList" parameterType="map" resultMap="dietResultMap">
+		SELECT *
+		FROM DIET
+		ORDER BY DIET_NO
+	</select>
+	
+	<insert id="dietInsertOne" parameterType="dietVo">
+		INSERT INTO DIET
+		VALUES
+		(DIET_NO_SEQ.NEXTVAL, #{dietType}, #{dietName}, #{dietCal})
+	</insert>
+	
+	<update id="dietUpdateOne" parameterType="dietVo">
+		UPDATE 	DIET
+		<set>
+			<if test="dietType != ''">DIET_TYPE = #{dietType},</if>
+			<if test="dietName != ''">DIET_NAME = #{dietName},</if>
+			<if test="dietCal != ''">DIET_CAL = #{dietCal}</if>
+		</set>
+		WHERE DIET_NO = #{dietNo}
+	</update>
+	
+	<delete id="dietDelete" parameterType="int">
+		DELETE
+		FROM DIET
+		WHERE DIET_NO = #{dietNo}
+	</delete>
 
 
 </mapper>

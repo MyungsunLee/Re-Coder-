@@ -5,8 +5,8 @@ import java.util.Date;
 public class BoardVo {
 
 	private int boardNo;
-	private int memberNo;
 	private String boardTitle;
+	private String name;
 	private String boardContent;
 	private Date boardCreDate;
 	private Date boardModDate;
@@ -17,12 +17,12 @@ public class BoardVo {
 	}
 
 
-	public BoardVo(int boardNo, int memberNo, String boardTitle, String boardContent, Date boardCreDate,
+	public BoardVo(int boardNo, String boardTitle, String name, String boardContent, Date boardCreDate,
 			Date boardModDate) {
 		super();
 		this.boardNo = boardNo;
-		this.memberNo = memberNo;
 		this.boardTitle = boardTitle;
+		this.name = name;
 		this.boardContent = boardContent;
 		this.boardCreDate = boardCreDate;
 		this.boardModDate = boardModDate;
@@ -39,16 +39,6 @@ public class BoardVo {
 	}
 
 
-	public int getMemberNo() {
-		return memberNo;
-	}
-
-
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
-	}
-
-
 	public String getBoardTitle() {
 		return boardTitle;
 	}
@@ -56,6 +46,16 @@ public class BoardVo {
 
 	public void setBoardTitle(String boardTitle) {
 		this.boardTitle = boardTitle;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
@@ -87,7 +87,6 @@ public class BoardVo {
 	public void setBoardModDate(Date boardModDate) {
 		this.boardModDate = boardModDate;
 	}
-	
-	
-	
+
+
 }

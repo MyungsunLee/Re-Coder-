@@ -25,40 +25,33 @@ table {
 
 	<h2 style="text-align: center;">글쓰기</h2>
 	<form action="../board/addOneCtr.do" method="post">
-	<table>
+		<table>
 			<tr>
-				<td>
-					<input type="hidden" name="memberNo" value="${login_memberVo.memberNo}">
-				</td>
-			</tr>
-			
-			<tr>
-			
-			</tr>
-			
-			<tr>
-				<td><input type="text" name="boardTitle"
-					placeholder="제목을 입력해 주세요">
-					${login_memberVo.memberName}
-					</td>
+				<td><input type="hidden" name="memberNo"
+					value="${login_memberVo.memberNo}"></td>
 			</tr>
 
 			<tr>
-				<td>
-					<input type="text" name="boardContent">
-<!-- 					<textarea name="boardContent" rows="30" cols="50" -->
-<!-- 					placeholder="내용을 입력해 주세요"></textarea> -->
-				</td>
+
+			</tr>
+
+			<tr>
+				<td><input type="text" name="boardTitle"
+					placeholder="제목을 입력해 주세요"> ${login_memberVo.memberName}</td>
+			</tr>
+
+			<tr>
+				<td><input type="text" name="boardContent"> <!-- 					<textarea name="boardContent" rows="30" cols="50" -->
+					<!-- 					placeholder="내용을 입력해 주세요"></textarea> --></td>
 			</tr>
 			<tr>
+				<td><input type="submit" value="글쓰기"></td>
 				<td>
-					<input type="submit" value="글쓰기">
-				</td>
-				<td>
-					<button onclick="location='../board/listOne.do?boardNo=${selectedBoard.boardNo}'">뒤로가기</button>
+					<button
+						onclick="location='../board/listOne.do?boardNo=${selectedBoard.boardNo}'">뒤로가기</button>
 				</td>
 			</tr>
-	</table>
-		</form>
+		</table>
+	</form>
 </body>
 </html>

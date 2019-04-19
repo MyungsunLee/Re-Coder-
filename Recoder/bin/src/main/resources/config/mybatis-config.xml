@@ -8,7 +8,7 @@
   	<typeAlias type="com.edu.member.vo.MemberVo" alias="memberVo"/>
   	<typeAlias type="com.edu.board.vo.BoardVo" alias="boardVo"/>
   	<typeAlias type="com.edu.diet.vo.DietVo" alias="dietVo"/>
-  	<typeAlias type="com.edu.kcal.vo.KcalVo" alias="kcalVo"/>
+  	<typeAlias type="com.edu.memberInfo.vo.MemberInfoVo" alias="memberInfoVo"/>
   </typeAliases>
   
 </configuration>

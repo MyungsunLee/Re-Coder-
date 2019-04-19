@@ -55,7 +55,7 @@ public class BoardController {
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("paging", pagingMap);
 		model.addAttribute("keyword", keyword);
-		model.addAttribute("sesarchOption", searchOption);
+		model.addAttribute("searchOption", searchOption);
 		
 		return "board/boardListView";
 	}
@@ -73,6 +73,18 @@ public class BoardController {
 		
 		return "board/boardListOneView";
 	}
+	
+	@RequestMapping(value="board/addOne.do",method= {RequestMethod.GET})
+	public String boardInsertOne(int memberNo) {
+		
+//		boardService.boardInsertOne(boardVo);
+		
+		
+		
+		return "board/boardInsertOne";
+	}
+	
+	
 	
 	
 	

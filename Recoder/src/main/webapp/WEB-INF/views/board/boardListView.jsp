@@ -13,8 +13,6 @@
    rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon"
    rel="stylesheet">
-
-
 <style type="text/css">
 table {
    width: 700px;
@@ -36,14 +34,35 @@ td {
    text-align: center;
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+	window.onload = function(){
+// 		var searchOptionInputObj = document.getElementById('searchOptionVal');
+//  		var searchOptionInputObj = $('#searchOptionVal');
+		
+		var searchOptionVal = $('#searchOptionVal').value; 
+		alert('과연');
+		alert($('#searchOptionVal').value);
+// 		var selectObj = document.getElementById('searchOption');
+//  		var selectObj = $('#searchOption');
+		
+		var optionsArr =$('#searchOption').options;
+		
+			alert(optionsArr[0].value);
+		for (var i = 0; i < optionsArr.length; i++) {
+			if(optionsArr[i].value == searchOptionVal){
+				optionsArr[i].selected = 'selected';
+				break;
+			
+			}
+		}
+	}
+</script>
 </head>
 <body>
    <jsp:include page="../common/header.jsp"></jsp:include>
-   <div>
-      <c:if test="${keyword} != ''">
-         <a>${searchOption} ${keyword}로 검색한 결과 </a>
-      </c:if>
-   </div>
+
    <table>
       <tr>
          <td class="topTd" style="width: 50px;">번호</td>
@@ -74,7 +93,11 @@ td {
          value="${paging.boardPaging.curPage}">
    </form>
 
-
+   <div style="text-align: center; margin-top: 30px;">
+      <c:if test="${keyword != ''}">
+         <a>${keyword}로 검색한 결과 </a>
+      </c:if>
+   </div>
    <div id="divTag">
       <table>
          <tr>
@@ -82,11 +105,32 @@ td {
             <td>
                <form action="list.do" method="post">
 
-                  <select name="searchOption">
+                  <select name="searchOption" id="searchOption">
+                  	<c:if test="${searchOption == ''}">
+                     <option value="title"  selected="selected">제목</option>
+					 <option value="content">내용</option>                     
+                     <option value="name">작성자</option>
+                  	</c:if>
+                  
+                  	<c:if test="${searchOption == 'title'}">
+                     <option value="title"  selected="selected">제목</option>
+					 <option value="content">내용</option>                     
+                     <option value="name">작성자</option>
+                  	</c:if>
+                  
+                     <c:if test="${searchOption == 'content'}">
+                     <option value="title">제목</option>
+                     <option value="content" selected="selected">내용</option>                     
+                     <option value="name">작성자</option>
+                     </c:if>
+                     <c:if test="${searchOption == 'name'}">
                      <option value="title">제목</option>
                      <option value="content">내용</option>
-                     <option value="name">작성자</option>
-                  </select> <input type="text" name="keyword" value="${keyword}"> 
+                     <option value="name" selected="selected">작성자</option>
+                     </c:if>
+                     
+                  </select> 
+                  <input type="text" name="keyword" value="${keyword}"> 
                   <input type="submit" value="검색">
                </form>
             </td>
@@ -96,7 +140,7 @@ td {
                 </c:if> 
                
             </td>
-            
+            <td><input type="hidden" id="searchOptionVal" value="${searchOption}"></td>
          </tr>
       </table>
    </div>

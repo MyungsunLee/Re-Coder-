@@ -33,12 +33,10 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectList(nameSpace+"boardSelectList", map);
 	}
 
-	
-	//mapper 誘멸뎄�쁽
 	@Override
-	public BoardVo boardSelectOne(int no) {
+	public BoardVo boardSelectOne(int boardNo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(nameSpace+"boardSelectOne", no);
+		return sqlSession.selectOne(nameSpace+"boardSelectOne", boardNo);
 	}
 
 	@Override
@@ -70,6 +68,13 @@ public class BoardDaoImpl implements BoardDao {
 		// TODO Auto-generated method stub
 		return sqlSession.delete(nameSpace + "boardDeleteOne", boardNo);
 
+	}
+
+
+	@Override
+	public BoardVo boardSelectOneSub(int rNum) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace+"boardSelectOneRestTwo",rNum);
 	}
 
 }

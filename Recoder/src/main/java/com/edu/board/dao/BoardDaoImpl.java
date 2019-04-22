@@ -72,4 +72,11 @@ public class BoardDaoImpl implements BoardDao {
 
 	}
 
+
+	@Override
+	public BoardVo boardSelectOneSub(int rNum) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace+"boardSelectOneRestTwo",rNum);
+	}
+
 }

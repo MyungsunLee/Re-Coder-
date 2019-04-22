@@ -95,7 +95,7 @@ public class BoardController {
 //      boardService.boardInsertOne(boardVo);
       model.addAttribute("memberNo", memberNo);
       
-      return "board/boardForm";
+      return "board/boardAddForm";
    }
    
    @RequestMapping(value="board/addOneCtr.do",method= {RequestMethod.POST})

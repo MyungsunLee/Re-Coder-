@@ -24,9 +24,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVo boardSelectOne(int no) {
+	public BoardVo boardSelectOne(int boardNo) {
 		// TODO Auto-generated method stub
-		return boardDao.boardSelectOne(no);
+		return boardDao.boardSelectOne(boardNo);
 	}
 
 	@Override

@@ -34,7 +34,7 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	
-	//mapper 미구현
+	//mapper 誘멸뎄�쁽
 	@Override
 	public BoardVo boardSelectOne(int no) {
 		// TODO Auto-generated method stub
@@ -50,7 +50,7 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public int boardUpdateOne(BoardVo boardVo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(nameSpace+"boardUpdateOne", boardVo);
 	}
 
 

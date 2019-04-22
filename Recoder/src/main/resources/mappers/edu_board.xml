@@ -10,7 +10,7 @@
 	<id column="BOARD_NO" property="boardNo" />
 <!-- 	<reseult column="RNUM" property="boardNo" /> -->
 	<result column="BOARD_TITLE" property="boardTitle" />
-	<result column="MEMBER_NO" property="memberNo" />
+	<result column="MEMBER_NO" property="memberNo"/>
 	<result column="MEMBER_NAME" property="name" />
 	<result column="BOARD_CONTENT" property="boardContent" />
 	<result column="BOARD_CRE_DATE" property="boardCreDate" 
@@ -81,7 +81,7 @@
 <select id="boardSelectOne" 
 	parameterType="boardVo" resultType="int"
 	resultMap="boardResultMap">
-	
+
 	SELECT B.BOARD_NO, B.BOARD_TITLE, B.BOARD_CONTENT, M.MEMBER_NO, M.MEMBER_NAME, B.BOARD_CRE_DATE
 	FROM BOARD B, MEMBERS M
 	WHERE M.MEMBER_NO = B.MEMBER_NO
@@ -105,7 +105,16 @@
 		WHERE BOARD_NO = #{boardNo}
 </delete>
 
-
+<update id="boardUpdateOne" parameterType="boardVo">
+	
+	UPDATE BOARD
+		<set>
+			<if test="boardTitle != ''">BOARD_TITLE = #{boardTitle},</if>
+			<if test="boardContent != ''">BOARD_CONTENT= #{boardContent},</if>
+			BOARD_MOD_DATE = SYSDATE
+		</set>
+		WHERE 	BOARD_NO = #{boardNo}
+</update>
 
 
 

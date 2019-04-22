@@ -86,12 +86,27 @@ public class BoardController {
 	@RequestMapping(value="board/addOneCtr.do",method= {RequestMethod.POST})
 	public String boardInsertOneCtr(BoardVo boardVo, Model model) {
 		
-		log.debug("Welcome BoardController addOneCtr! : {}");
+		log.debug("Welcome BoardController addOneCtr! added board number : {}", boardVo.getBoardNo());
 		
 		boardService.boardInsertOne(boardVo);
 		
 		
 		return "redirect:/board/list.do";
+	}
+	
+
+	
+	@RequestMapping(value="board/updateOne.do",method = {RequestMethod.GET})
+	public String boardUpdateOne(int boardNo, Model model) {
+		log.debug("Welcome BoardController updateOne! ");
+		
+		
+		
+		model.addAttribute("boardNo",boardNo);
+		model.addAttribute("selectedBoard", boardService.boardSelectOne(boardNo));
+		
+		
+		return "board/boardUpdateView";
 	}
 	
 	@RequestMapping(value = "/board/delete.do", method = RequestMethod.GET)
@@ -109,6 +124,14 @@ public class BoardController {
 		return viewUrl;
 	}
 	
+	@RequestMapping(value="board/updateCtr.do", method= {RequestMethod.POST})
+	public String boardUpdateCtr(BoardVo boardVo) {
+		log.debug("Welcome BoardController updateOneCtr! boardNo : {}",boardVo.getBoardNo());
+		
+		boardService.boardUpdateOne(boardVo);
+		
+		return "board/boardUpdateSuccess";
+	}
 	
 	
 	

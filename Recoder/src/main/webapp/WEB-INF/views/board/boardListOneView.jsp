@@ -71,7 +71,7 @@ table, tr, td {
             <td>${selectedBoard.boardTitle}</td>
             <td>${selectedBoard.name}</td>
             <td><fmt:formatDate value="${selectedBoard.boardCreDate}"
-                  pattern="yyyy-m-d   H:mm:ss" /></td>
+                  pattern="yyyy-MM-dd   HH:mm:ss" /></td>
          </tr>
          <tr>
             <td colspan="4" style="height: 400px;">${selectedBoard.boardContent}</td>
@@ -123,7 +123,7 @@ table, tr, td {
 
          <td style="width: 100px;">${prevBoard.name}</td>
          <td style="width: 80px;"><fmt:formatDate
-               value="${prevBoard.boardCreDate}" pattern="M/dd" /></td>
+               value="${prevBoard.boardCreDate}" pattern="MM/dd" /></td>
       </tr>
       <tr>
          <td>다음 글</td>
@@ -138,7 +138,7 @@ table, tr, td {
 
          <td>${nextBoard.name}</td>
          <td><fmt:formatDate value="${nextBoard.boardCreDate}"
-               pattern="M/dd" /></td>
+               pattern="MM/dd" /></td>
       </tr>
    </table>
 

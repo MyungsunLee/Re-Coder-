@@ -31,7 +31,7 @@
          </tr>
          <tr>
             <td>내용</td>
-            <td><textarea rows="30" cols="100" name="boardContent">${selectedBoard.boardContent}</textarea>
+            <td><textarea rows="30" cols="100" name="boardContent" id="boardContent">${selectedBoard.boardContent}</textarea>
 <%--             <input type="text" name="boardContent" value="${selectedBoard.boardContent}"> --%>
             </td>
          </tr>

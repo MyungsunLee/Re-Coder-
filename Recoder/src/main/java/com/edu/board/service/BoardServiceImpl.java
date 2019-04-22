@@ -23,6 +23,7 @@ public class BoardServiceImpl implements BoardService {
       return boardDao.boardSelectList(searchOption, keyword, start, end);
    }
 
+
    @Override
    public BoardVo boardSelectOne(int no) {
       // TODO Auto-generated method stub

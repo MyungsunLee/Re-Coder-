@@ -130,7 +130,7 @@ public class BoardController {
       
       String content = boardVo.getBoardContent();
       
-      content = content.replaceAll("\r\n", "<br>");
+      content = content.replaceAll( "<br>","\r\n");
       boardVo.setBoardContent(content);
       
       model.addAttribute("boardNo",boardNo);
@@ -139,6 +139,26 @@ public class BoardController {
       
       return "board/boardUpdateView";
    }
+   
+   
+   
+   @RequestMapping(value="board/updateCtr.do", method= {RequestMethod.POST})
+   public String boardUpdateCtr(BoardVo boardVo) {
+      log.debug("Welcome BoardController updateOneCtr! boardNo : {}",boardVo.getBoardNo());
+      
+      
+      String content = boardVo.getBoardContent();
+      
+      content = content.replaceAll("\r\n",  "<br>");
+      boardVo.setBoardContent(content);
+      
+      
+      
+      boardService.boardUpdateOne(boardVo);
+      
+      return "board/boardUpdateSuccess";
+   }
+   
    
    @RequestMapping(value = "/board/delete.do", method = RequestMethod.GET)
    public String boardDelete(int boardNo, Model model) {
@@ -154,17 +174,6 @@ public class BoardController {
 
       return viewUrl;
    }
-   
-   @RequestMapping(value="board/updateCtr.do", method= {RequestMethod.POST})
-   public String boardUpdateCtr(BoardVo boardVo) {
-      log.debug("Welcome BoardController updateOneCtr! boardNo : {}",boardVo.getBoardNo());
-      
-      boardService.boardUpdateOne(boardVo);
-      
-      return "board/boardUpdateSuccess";
-   }
-   
-   
    
    
    

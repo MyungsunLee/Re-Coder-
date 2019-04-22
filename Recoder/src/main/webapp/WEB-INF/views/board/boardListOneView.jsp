@@ -24,7 +24,7 @@
         location.href='./updateOne.do?boardNo=${selectedBoard.boardNo}';
      }
      function boardOneDelete(){
-        location.href='./deleteOne.do?boardNo=${selectedBoard.boardNo}';
+        location.href='./delete.do?boardNo=${selectedBoard.boardNo}';
      }
      function prevBoard(){
         
@@ -112,9 +112,14 @@ table, tr, td {
    <table id="subTable">
       <tr>
          <td style="width: 100px;">이전 글</td>
-         <td style="width: 370px;"
-            onclick="prevBoard();">
-            ${prevBoard.boardTitle}</td>
+         <td style="width: 370px;">
+         <c:if test="${prevBoard.boardTitle != ''}">
+         	<a onclick="prevBoard();">${prevBoard.boardTitle}</a>
+         </c:if>
+         <c:if test="${prevBoard.boardTitle==null}">
+         	<a>이전 글이 없습니다</a>
+         </c:if>	
+         </td>
 
          <td style="width: 100px;">${prevBoard.name}</td>
          <td style="width: 80px;"><fmt:formatDate
@@ -122,8 +127,14 @@ table, tr, td {
       </tr>
       <tr>
          <td>다음 글</td>
-         <td><a onclick="nextBoard();">
-               ${nextBoard.boardTitle}</a></td>
+         <td>
+         <c:if test="${nextBoard.boardTitle != ''}">
+         	<a onclick="nextBoard();">${nextBoard.boardTitle}</a>
+         </c:if>
+         <c:if test="${nextBoard.boardTitle==null}">
+         	<a>다음 글이 없습니다</a>
+         </c:if>
+         </td>
 
          <td>${nextBoard.name}</td>
          <td><fmt:formatDate value="${nextBoard.boardCreDate}"

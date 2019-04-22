@@ -2,6 +2,7 @@ package com.edu.util;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Paging implements Serializable{
 
 

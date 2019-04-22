@@ -231,12 +231,13 @@ public class MemberController {
 
 	// 로그인페이지로 이동
 
-	@RequestMapping(value = "/admin/login.do", method = RequestMethod.GET)
-	public String adminLogin(Model model) {
-		log.debug("Welcome MemberController adminLogin 페이지 이동! ");
-
-		return "/admin/adminloginform";
-	}
+	/*
+	 * @RequestMapping(value = "/admin/login.do", method = RequestMethod.GET) public
+	 * String adminLogin(Model model) {
+	 * log.debug("Welcome MemberController adminLogin 페이지 이동! ");
+	 * 
+	 * return "/admin/adminloginform"; }
+	 */
 
 	/*
 	 * // 로그인

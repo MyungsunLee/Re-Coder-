@@ -93,12 +93,20 @@ table, tr, td {
       <table>
          <tr>
 
-            <td><c:if
+            <td>
+            	<c:if
                   test="${selectedBoard.memberNo == login_memberVo.memberNo}">
                   <button onclick="boardOneUpdate();">수정</button>
                   <button id="deleteBtn" onclick="boardOneDelete();">삭제</button>
                </c:if>
-            <button onclick="list();">글 목록</button></td>
+               <c:if test="${login_memberVo.memberAuth == 'A'.charAt(0)}">
+
+     			  <button id="deleteBtn" onclick="boardOneDelete();">삭제</button>
+     			 
+      			</c:if>
+            	<button onclick="list();">글 목록</button>
+            
+            </td>
 
          </tr>
 

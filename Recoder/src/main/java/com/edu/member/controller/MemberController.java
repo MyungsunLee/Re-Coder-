@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.edu.member.service.MemberService;
 import com.edu.member.vo.MemberVo;
+import com.edu.memberInfo.service.MemberInfoService;
+import com.edu.memberInfo.vo.MemberInfoVo;
 
 /**
  * @author TJ

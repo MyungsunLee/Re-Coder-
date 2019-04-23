@@ -10,7 +10,7 @@ public class MemberInfoVo {
 	private double memberInfoHeight;	// 계산 후에 int로 
 	private double memberInfoWeight; // 계산 후에 int로
 	private int	memberInfoActivity;
-	private int memberInfoCal;
+	private double memberInfoCal;
 	private Date memberInfoDate;
 
 	public MemberInfoVo() {
@@ -18,7 +18,7 @@ public class MemberInfoVo {
 	}
 
 	public MemberInfoVo(int memberNo, char memberInfoGender, int memberInfoAge, double memberInfoHeight,
-			double memberInfoWeight, int memberInfoActivity, int memberInfoCal, Date memberInfoDate) {
+			double memberInfoWeight, int memberInfoActivity, double memberInfoCal, Date memberInfoDate) {
 		super();
 		this.memberNo = memberNo;
 		this.memberInfoGender = memberInfoGender;
@@ -78,11 +78,11 @@ public class MemberInfoVo {
 		this.memberInfoActivity = memberInfoActivity;
 	}
 
-	public int getMemberInfoCal() {
+	public double getMemberInfoCal() {
 		return memberInfoCal;
 	}
 
-	public void setMemberInfoCal(int memberInfoCal) {
+	public void setMemberInfoCal(double memberInfoCal) {
 		this.memberInfoCal = memberInfoCal;
 	}
 
@@ -93,6 +93,15 @@ public class MemberInfoVo {
 	public void setMemberInfoDate(Date memberInfoDate) {
 		this.memberInfoDate = memberInfoDate;
 	}
+
+	@Override
+	public String toString() {
+		return "MemberInfoVo [memberNo=" + memberNo + ", memberInfoGender=" + memberInfoGender + ", memberInfoAge="
+				+ memberInfoAge + ", memberInfoHeight=" + memberInfoHeight + ", memberInfoWeight=" + memberInfoWeight
+				+ ", memberInfoActivity=" + memberInfoActivity + ", memberInfoCal=" + memberInfoCal
+				+ ", memberInfoDate=" + memberInfoDate + "]";
+	}
+	
 	
 	
 }

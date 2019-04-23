@@ -12,8 +12,8 @@
 		<result column="MEMBER_AGE" property="memberInfoAge" />
 		<result column="MEMBER_HEIGHT" property="memberInfoHeight" />
 		<result column="MEMBER_WEIGHT" property="memberInfoWeight" />
-		<result column="MEMBER_ACTIVITY" property="memberInfoActivity"/>
-		<result column="MEMBER_CAL" property="memberInfoCal"/>
+		<result column="MEMBER_ACTIVITY" property="memberInfoActivity" />
+		<result column="MEMBER_CAL" property="memberInfoCal" />
 		<result column="MEMBER_DATE" property="memberInfoDate"
 			javaType="java.util.Date" />
 	</resultMap>
@@ -23,42 +23,66 @@
 	<select id="memberInfoExist" parameterType="memberInfoVo"
 		resultMap="memberResultMap">
 		SELECT MEMBER_NO, MEMBER_GENDER, MEMBER_AGE, MEMBER_HEIGHT,
-			 MEMBER_WEIGHT, MEMBER_ACTIVITY, MEMBER_CAL, MEMBER_DATE
-		FROM MEMBERS_INFO
+		MEMBER_WEIGHT, MEMBER_ACTIVITY, MEMBER_CAL, MEMBER_DATE
+		FROM
+		MEMBERS_INFO
 		WHERE MEMBER_NO = #{memberNo}
 	</select>
-	
-	
-	<insert id="memberInfoInsertOne" 
-		parameterType="memberInfoVo">
-		
-		INSERT INTO MEMBERS_INFO
-			(MEMBER_NO, MEMBER_GENDER, MEMBER_AGE, MEMBER_HEIGHT,
-			 MEMBER_WEIGHT, MEMBER_ACTIVITY, MEMBER_CAL, MEMBER_DATE)
-		VALUES(#{memberNo}, #{memberInfoGender}, #{memberInfoAge}, #{memberInfoHeight},
-				#{memberInfoWeight},#{memberInfoActivity}, 0, SYSDATE)
+
+
+	<insert id="memberInfoInsertOne" parameterType="memberInfoVo">
+
+		INSERT INTO
+		MEMBERS_INFO
+		(MEMBER_NO, MEMBER_GENDER, MEMBER_AGE, MEMBER_HEIGHT,
+		MEMBER_WEIGHT, MEMBER_ACTIVITY, MEMBER_CAL, MEMBER_DATE)
+		VALUES(#{memberNo},
+		#{memberInfoGender}, #{memberInfoAge},
+		#{memberInfoHeight},
+		#{memberInfoWeight},#{memberInfoActivity}, 0,
+		SYSDATE)
 	</insert>
 
-	<update id="memberInfoUpdateOne" 
+
+
+	<update id="memberInfoUpdateOneKCal"
 		parameterType="memberInfoVo">
+		UPDATE MEMBERS_INFO
+		SET
+		<choose>
+			<when test="memberInfoGender == 'M'">
+				MEMBER_CAL =
+				(MEMBER_HEIGHT*5)+(MEMBER_WEIGHT*13.73)-(MEMBER_AGE*6.8)+66
+			</when>
+			<otherwise>
+				MEMBER_CAL =
+				(MEMBER_HEIGHT*1.85)+(MEMBER_WEIGHT*9.59)-(MEMBER_AGE*4.7)+655
+			</otherwise>
+		</choose>
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+
+	<update id="memberInfoUpdateOne" parameterType="memberInfoVo">
 		UPDATE MEMBERS_INFO
 		<set>
 			<if test="memberInfoGender != ''">MEMBER_GENDER = #{memberInfoGender},</if>
 			<if test="memberInfoAge != ''">MEMBER_AGE = #{memberInfoAge},</if>
 			<if test="memberInfoHeight != ''">MEMBER_HEIGHT = #{memberInfoHeight},</if>
 			<if test="memberInfoWeight != ''">MEMBER_WEIGHT = #{memberInfoWeight},</if>
-			<if test="memberInfoActivity != ''">MEMBER_ACTIVITY = #{memberInfoActivity},</if>
-<!-- 			<if test="memberInfoCal != ''">MEMBER_CAL = #{memberInfoCal}</if> -->
+			<if test="memberInfoActivity != ''">MEMBER_ACTIVITY = #{memberInfoActivity}</if>
 		</set>
-		WHERE 	MEMBER_NO = #{memberNo}
+		WHERE MEMBER_NO = #{memberNo}
 	</update>
 
-	<select id="memberSelectOne" parameterType="int"
+	<select id="memberInfoSelectOne" parameterType="int"
 		resultMap="memberResultMap">
 		SELECT MEMBER_NO, MEMBER_GENDER, MEMBER_AGE, MEMBER_HEIGHT,
-			 MEMBER_WEIGHT, MEMBER_ACTIVITY, MEMBER_CAL
+		MEMBER_WEIGHT, MEMBER_ACTIVITY, MEMBER_CAL
 		FROM MEMBERS_INFO
-		WHERE MEMBER_NO = #{memberNo}
+		WHERE
+		MEMBER_NO = #{memberNo}
 	</select>
+
+
 
 </mapper>

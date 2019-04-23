@@ -21,6 +21,7 @@
 </c:if>
 
 <c:if test="${sessionScope.login_memberVo != null }">
+	
 	<div id="login">
 		<a href="../member/info.do"><span>${login_memberVo.memberName}</span></a>
 		<a href="../auth/logout.do"><span>로그아웃</span></a>
@@ -28,7 +29,16 @@
 	
 	<div id="menu">
 		<a href="#"><span>소개</span></a>
-		<a href="../memberInfo/memberInfoView.do"><span>칼로리 처방</span></a>
+		
+		<c:choose>
+			<c:when test="${login_memberVo.memberNo != null}">
+				<a href="../memberInfo/memberInfoView.do?memberNo=${login_memberVo.memberNo}"><span>칼로리 처방</span></a>
+			</c:when>
+			<c:otherwise>
+				<a href="../memberInfo/memberInfoView.do"><span>칼로리 처방</span></a>
+			</c:otherwise>
+		</c:choose>
+		
     	<a href="#"><span>식단 처방</span></a>
 		<a href="../board/list.do"><span>게시판</span></a>
 	</div>

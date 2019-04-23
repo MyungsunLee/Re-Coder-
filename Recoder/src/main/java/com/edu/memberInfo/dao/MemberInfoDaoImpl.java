@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.edu.member.vo.MemberVo;
 import com.edu.memberInfo.vo.MemberInfoVo;
 
 
@@ -47,5 +48,12 @@ public class MemberInfoDaoImpl implements MemberInfoDao {
 		// TODO Auto-generated method stub
 		return sqlSession.update(namespace + "memberInfoUpdateOne", memberInfoVo);
 	}
+
+	@Override
+	public int memberInfoUpdateOneKCal(MemberInfoVo memberInfoVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + "memberInfoUpdateOneKCal", memberInfoVo);
+	}
+
 
 }

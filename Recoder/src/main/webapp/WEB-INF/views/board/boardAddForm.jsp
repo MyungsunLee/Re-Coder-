@@ -50,7 +50,7 @@ table {
    <jsp:include page="../common/header.jsp"></jsp:include>
 
    <h2 style="text-align: center;">글쓰기</h2>
-   <form action="../board/addOneCtr.do" method="post">
+   <form action="../board/addOneCtr.do" method="post" enctype="multipart/form-data">
       <table>
          <tr>
             <td><input type="hidden" name="memberNo"
@@ -70,6 +70,11 @@ table {
                   placeholder="내용을 입력해 주세요" ></textarea> <!--                <input type="text" name="boardContent"> -->
                <!--                <textarea name="boardContent" rows="30" cols="50" --> <!--                ></textarea> -->
             </td>
+         </tr>
+         <tr>
+         	<td>
+         		<input type="file" name="file">
+         	</td>
          </tr>
          <tr>
             <td><input type="submit" value="글쓰기"></td>

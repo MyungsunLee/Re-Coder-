@@ -16,7 +16,8 @@
    rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon"
    rel="stylesheet">
-
+<script type="text/javascript" 
+	src="/Recoder/resources/js/jquery-3.3.1.js"></script>
 
 
 <script type="text/javascript">
@@ -74,7 +75,22 @@ table, tr, td {
                   pattern="yyyy-MM-dd   HH:mm:ss" /></td>
          </tr>
          <tr>
-            <td colspan="4" style="height: 400px;">${selectedBoard.boardContent}</td>
+            <td colspan="4" style="height: 400px;">
+            
+            
+             <c:choose> 
+			<c:when test="${empty fileList}"><!-- 배열은 반드시 반복문과 힘을 합쳐야 제 기능을 함! -->
+				첨부파일이 없습니다.<br>			<!-- 왼만해선 if도 안들어감 -->
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="row" items="${fileList}">
+<%-- 				<input type="hidden" class="files" value="${row.IDX}"> --%>
+				${row.ORIGINAL_FILE_NAME} (${row.FILE_SIZE}kb)<br>
+				<img alt="image not found" src="<c:url value='/img/${row.STORED_FILE_NAME}'/>"/><br>
+				</c:forEach>										<!-- 난수화되어 저장된 파일 -->
+			</c:otherwise>
+		</c:choose>
+            ${selectedBoard.boardContent}</td>
          </tr>
       </table>
    </div>

@@ -19,6 +19,6 @@
 	</div>
 
 	<jsp:include page="../common/tail.jsp"/>
-
+	
 </body>
 </html>

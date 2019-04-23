@@ -2,6 +2,7 @@ package com.edu.memberInfo.service;
 
 import java.util.List;
 
+import com.edu.member.vo.MemberVo;
 import com.edu.memberInfo.vo.MemberInfoVo;
 
 public interface MemberInfoService {
@@ -11,5 +12,6 @@ public interface MemberInfoService {
 	public boolean memberInfoExist(MemberInfoVo memberInfoVo);
 	public int memberInfoInsertOne(MemberInfoVo memberInfoVo);
 	public MemberInfoVo memberInfoSelectOne(int no);
-	public int memberInfoUpdateOne(MemberInfoVo memberInfo);
+	public int memberInfoUpdateOne(MemberInfoVo memberInfoVo);
+	public int memberInfoUpdateOneKCal(MemberInfoVo memberInfoVo);
 }

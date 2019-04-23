@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.edu.member.dao.MemberDao;
+import com.edu.member.vo.MemberVo;
 import com.edu.memberInfo.dao.MemberInfoDao;
 import com.edu.memberInfo.vo.MemberInfoVo;
 
@@ -49,8 +51,16 @@ public class MemberInfoServiceImpl implements MemberInfoService {
 	}
 
 	@Override
-	public int memberInfoUpdateOne(MemberInfoVo memberInfo) {
+	public int memberInfoUpdateOne(MemberInfoVo memberInfoVo) {
 		// TODO Auto-generated method stub
-		return memberInfoDao.memberInfoUpdateOne(memberInfo);
+		return memberInfoDao.memberInfoUpdateOne(memberInfoVo);
 	}
+
+	@Override
+	public int memberInfoUpdateOneKCal(MemberInfoVo memberInfoVo) {
+		// TODO Auto-generated method stub
+		return memberInfoDao.memberInfoUpdateOneKCal(memberInfoVo);
+	}
+
+
 }

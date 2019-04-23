@@ -36,29 +36,6 @@ td {
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
 </script>
-<script type="text/javascript">
-	window.onload = function(){
-// 		var searchOptionInputObj = document.getElementById('searchOptionVal');
-//  		var searchOptionInputObj = $('#searchOptionVal');
-		
-		var searchOptionVal = $('#searchOptionVal').value; 
-		alert('과연');
-		alert($('#searchOptionVal').value);
-// 		var selectObj = document.getElementById('searchOption');
-//  		var selectObj = $('#searchOption');
-		
-		var optionsArr =$('#searchOption').options;
-		
-			alert(optionsArr[0].value);
-		for (var i = 0; i < optionsArr.length; i++) {
-			if(optionsArr[i].value == searchOptionVal){
-				optionsArr[i].selected = 'selected';
-				break;
-			
-			}
-		}
-	}
-</script>
 </head>
 <body>
    <jsp:include page="../common/header.jsp"></jsp:include>
@@ -91,6 +68,8 @@ td {
 <form action="./list.do" id="pagingForm" method="post">
       <input type="hidden" id="curPage" name="curPage" 
          value="${paging.boardPaging.curPage}">
+      <input type="hidden" name="searchOption" value="${searchOption}">
+      <input type="hidden" name="keyword" value="${keyword}">
    </form>
 
    <div style="text-align: center; margin-top: 30px;">

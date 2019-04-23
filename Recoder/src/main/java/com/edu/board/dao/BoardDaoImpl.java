@@ -77,4 +77,33 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectOne(nameSpace+"boardSelectOneRestTwo",rNum);
 	}
 
+	@Override
+	public void insertFile(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		
+		sqlSession.insert(nameSpace + "insertFile", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> fileSelectList(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + "fileSelectList", no);
+	}
+
+	@Override
+	public int fileDelete(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(nameSpace + "fileDelete", no);
+	}
+
+	@Override
+	public Map<String, Object> fileSelectStoredFileName(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + "fileSelectStoredFileName", no);
+	}
+
+	
+	
+	
+	
 }

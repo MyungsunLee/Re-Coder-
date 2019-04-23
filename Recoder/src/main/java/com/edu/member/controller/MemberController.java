@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.edu.member.service.MemberService;
 import com.edu.member.vo.MemberVo;
+import com.edu.memberInfo.service.MemberInfoService;
+import com.edu.memberInfo.vo.MemberInfoVo;
 
 /**
  * @author TJ
@@ -231,12 +233,13 @@ public class MemberController {
 
 	// 로그인페이지로 이동
 
-	@RequestMapping(value = "/admin/login.do", method = RequestMethod.GET)
-	public String adminLogin(Model model) {
-		log.debug("Welcome MemberController adminLogin 페이지 이동! ");
-
-		return "/admin/adminloginform";
-	}
+	/*
+	 * @RequestMapping(value = "/admin/login.do", method = RequestMethod.GET) public
+	 * String adminLogin(Model model) {
+	 * log.debug("Welcome MemberController adminLogin 페이지 이동! ");
+	 * 
+	 * return "/admin/adminloginform"; }
+	 */
 
 	/*
 	 * // 로그인

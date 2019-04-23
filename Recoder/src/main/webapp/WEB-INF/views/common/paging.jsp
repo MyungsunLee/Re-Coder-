@@ -61,6 +61,7 @@ nav>ul>li>a:hover {
       curPage.val(pageNumber);
 
       $("#pagingForm").submit();
+// 	  $("form").submit();
       
       
    }

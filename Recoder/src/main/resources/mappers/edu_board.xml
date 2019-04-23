@@ -44,10 +44,10 @@
                     <when test="searchOption == 'name'">
                        AND M.MEMBER_NAME LIKE '%'||#{keyword}||'%'
                     </when>
-                    <otherwise>
-                       ORDER BY BOARD_NO DESC      
-                    </otherwise>
+                    
+                    
                  </choose>
+                       ORDER BY BOARD_NO DESC      
              )B
       ) B
       WHERE RNUM BETWEEN #{start} AND #{end}

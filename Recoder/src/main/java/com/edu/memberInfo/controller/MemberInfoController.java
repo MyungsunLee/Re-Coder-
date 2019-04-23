@@ -126,9 +126,9 @@ public class MemberInfoController {
 	}
 	
 	// 칼로리 처방전 페이지 member_info 값 덮어씌우고 수정 페이지로
-	@RequestMapping(value = "/memberInfo/memberInfoUpdate.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/memberInfo/memberInfoUpdateOne.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String memberInfoUpdate(HttpSession session, MemberInfoVo memberInfoVo1, Model model) {
-		log.debug("Welcome kcalController memberinfoUpdate 페이지 이동! ");
+		log.debug("Welcome kcalController memberinfoUpdate 페이지 이동! " + memberInfoVo1);
 		System.out.println("하 .. 3.");
 		
 		

@@ -41,19 +41,19 @@
 
 	<c:if test="${sessionScope.login_memberVo != null }">
 		<div>
-		    <form action="memberInfoUpdate.do" method="post" class="kcalForm">
+		    <form action="memberInfoUpdateOne.do" method="post" class="kcalForm">
 					<pre style="font-size: medium; font-weight: bolder;">
 					<c:choose>
 						<c:when test="${_memberInfoVo.memberInfoGender == 'M'.charAt(0)}">
 					성별		<input type="radio" name="memberInfoGender" value="M" checked="checked">남자
-					</c:when> 
+						</c:when> 
 						<c:otherwise>
-					<input type="radio" name="memberInfoGender" value="F" checked="checked">여자<br>
-					</c:otherwise>
+							<input type="radio" name="memberInfoGender" value="F" checked="checked">여자<br>
+						</c:otherwise>
 					</c:choose>
-					나이		<input type="text" name="memberInfoAge" class="text-field" placeholder="${_memberInfoVo.memberInfoAge}" readonly="readonly"><br>
-					신장(cm) 	<input type="text" name="memberInfoHeight" class="text-field" placeholder="${_memberInfoVo.memberInfoHeight}" readonly="readonly"><br>
-					몸무게(kg)	<input type="text" name="memberInfoWeight" class="text-field" placeholder="${_memberInfoVo.memberInfoWeight}" readonly="readonly"><br>
+					나이		<input type="text" name="memberInfoAge" class="text-field" placeholder="${_memberInfoVo.memberInfoAge}" value="${_memberInfoVo.memberInfoAge}" readonly="readonly"><br>
+ 					신장(cm) 	<input type="text" name="memberInfoHeight" class="text-field" placeholder="${_memberInfoVo.memberInfoHeight}" value="${_memberInfoVo.memberInfoHeight}" readonly="readonly"><br>
+					몸무게(kg)	<input type="text" name="memberInfoWeight" class="text-field" placeholder="${_memberInfoVo.memberInfoWeight}" value="${_memberInfoVo.memberInfoWeight}" readonly="readonly"><br>
 					<c:choose>
 					<c:when test="${_memberInfoVo.memberInfoActivity == 1}">	
 					평소 활동량	<input type="radio" name="memberInfoActivity" value="1" checked="checked" >활동안함 <span>(운동을 전혀 안함)</span><br>

@@ -44,7 +44,6 @@
 	</insert>
 
 
-
 	<update id="memberInfoUpdateOneKCal"
 		parameterType="memberInfoVo">
 		UPDATE MEMBERS_INFO

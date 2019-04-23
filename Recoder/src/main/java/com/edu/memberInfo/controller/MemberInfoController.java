@@ -94,7 +94,7 @@ public class MemberInfoController {
 	@RequestMapping(value = "/memberInfo/memberInfoUpdateView.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String memberInfoUpdateView(HttpSession session, MemberInfoVo memberInfoVo1, Model model) {
 		log.debug("Welcome kcalController memberinfoUpdateView 페이지 이동! ");
-		System.out.println("하 .. .");
+		System.out.println("수정하러가즈아");
 		
 		String viewUrl = "";
 		
@@ -104,7 +104,7 @@ public class MemberInfoController {
 		memberInfoService.memberInfoUpdateOne(memberInfoVo1);
 		memberInfoService.memberInfoUpdateOneKCal(memberInfoVo1);
 		session.setAttribute("_memberInfoVo", memberInfo);
-		
+		System.out.println("안보내?");
 		viewUrl = "forward:/memberInfo/memberInfoKcalView.do";
 
 		return viewUrl;

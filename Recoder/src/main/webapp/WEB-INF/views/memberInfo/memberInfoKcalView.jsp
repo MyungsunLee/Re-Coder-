@@ -14,9 +14,35 @@
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon"
 	rel="stylesheet">
 <style type="text/css">
+	.kcalForm{
+		margin-top: 80px;
+	    width: 800px;
+	    padding: 20px;
+	    margin-left: auto;
+	    margin-right: auto;
+	
+	    background-color: #EEEFF1;
+	    border-radius: 5px;
+	    border: 0;
+	}
+	
+	.leftTd{
+		width: 170px; 
+		text-align: center;
+		font
+	}
 	table{
 		border: 2px solid black;
+		margin: auto;
+		width: 350px;
+		height: 300px;
 	}
+	td{
+		border: 1px solid gray;
+	}
+	span{
+		text-align: center;
+	}	
 </style>
 </head>
 <body>
@@ -24,25 +50,27 @@
 
 
 	<c:if test="${sessionScope.login_memberVo == null }">
-		<span style="text-align: center;">로그인 후 사용가능합니다.</span>
+		<span>로그인 후 사용가능합니다.</span>
 	</c:if>
 
 	<c:if test="${sessionScope.login_memberVo != null }">
 	
 	<c:set var="_memberInfoActivity" value="${_memberInfoVo.memberInfoActivity}"/><!-- 기초대사량 -->
 	<c:set var="_memberInfoCal" value="${_memberInfoVo.memberInfoCal}"/>
-		<div>
+		<div class="kcalForm">
 			<h3 style="text-align: center;">처방전</h3>
 			<input type="hidden" name="memberNo" value="${login_memberVo.memberNo}"> 
-			이름 ${sessionScope.login_memberVo.memberName}
 			
 			<table>
 				<tr>
-					<td>기초대사량</td>
+				<td colspan="2" class="leftTd">이름 ${sessionScope.login_memberVo.memberName}</td>
+				</tr>
+				<tr>
+					<td class="leftTd">기초대사량</td>
 					<td><fmt:formatNumber value="${_memberInfoVo.memberInfoCal}" pattern="0"/>kcal</td>
 				</tr>
 				<tr>
-					<td>하루 유지 칼로리</td>
+					<td class="leftTd">하루 유지 칼로리</td>
 						<c:choose>
 							<c:when test="${_memberInfoActivity == 1}">
 								<td><fmt:formatNumber value="${_memberInfoCal*1.2}" pattern="0"/> kcal</td>
@@ -63,7 +91,7 @@
 						</c:choose>
 				</tr>
 				<tr>
-					<td>일주일 유지 칼로리</td>
+					<td class="leftTd">일주일 유지 칼로리</td>
 					<c:choose>
 							<c:when test="${_memberInfoActivity == 1}">
 								<td><fmt:formatNumber value="${_memberInfoCal*1.2*7}" pattern="0"/> kcal</td>
@@ -85,11 +113,11 @@
 				
 				<c:set var="BMI" value="${_memberInfoVo.memberInfoWeight/((_memberInfoVo.memberInfoHeight*0.01)*(_memberInfoVo.memberInfoHeight*0.01))}"/>
 				<tr>
-					<td>BMI</td>
+					<td class="leftTd">BMI</td>
 					<td><fmt:formatNumber value="${BMI}" pattern=".0"/></td>
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td colspan="2" style="text-align: center;">
 						<c:choose>
 							<c:when test="${BMI >= 30.0}">
 							${sessionScope.login_memberVo.memberName}님은

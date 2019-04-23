@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	window.onload=function(){
+		alert("수정이 완료되었습니다");
+		location.href='./list.do';
+		
+	}
+</script>
 </head>
 <body>
 

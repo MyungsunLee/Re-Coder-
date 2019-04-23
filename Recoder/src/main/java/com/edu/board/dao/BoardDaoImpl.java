@@ -33,12 +33,10 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectList(nameSpace+"boardSelectList", map);
 	}
 
-	
-	//mapper 미구현
 	@Override
-	public BoardVo boardSelectOne(int no) {
+	public BoardVo boardSelectOne(int boardNo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(nameSpace+"boardSelectOne", no);
+		return sqlSession.selectOne(nameSpace+"boardSelectOne", boardNo);
 	}
 
 	@Override
@@ -50,13 +48,7 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public int boardUpdateOne(BoardVo boardVo) {
 		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int boardDeleteOne(BoardVo boardVo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(nameSpace+"boardUpdateOne", boardVo);
 	}
 
 
@@ -70,4 +62,48 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectOne(nameSpace+"boardSelectTotalCount", map);
 	}
 
+
+	@Override
+	public int boardDeleteOne(int boardNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(nameSpace + "boardDeleteOne", boardNo);
+
+	}
+
+
+	@Override
+	public BoardVo boardSelectOneSub(int rNum) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace+"boardSelectOneRestTwo",rNum);
+	}
+
+	@Override
+	public void insertFile(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		
+		sqlSession.insert(nameSpace + "insertFile", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> fileSelectList(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + "fileSelectList", no);
+	}
+
+	@Override
+	public int fileDelete(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(nameSpace + "fileDelete", no);
+	}
+
+	@Override
+	public Map<String, Object> fileSelectStoredFileName(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + "fileSelectStoredFileName", no);
+	}
+
+	
+	
+	
+	
 }

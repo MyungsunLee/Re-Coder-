@@ -30,6 +30,13 @@
 		height: 30px;
 	}
 </style>
+<script type="text/javascript">
+	function kcalViewFnc(){
+		
+		location.href="./memberInfoKcalView.do"
+		
+	}
+</script>
 </head>
 <body>
 <jsp:include page="../common/header.jsp"></jsp:include>
@@ -43,9 +50,10 @@
 		<div>
 		    <form action="memberInfoUpdateOne.do" method="post" class="kcalForm">
 					<pre style="font-size: medium; font-weight: bolder;">
+					<input type="hidden" name="memberNo" value="${_memberInfoVo.memberNo}">
 					<c:choose>
 						<c:when test="${_memberInfoVo.memberInfoGender == 'M'.charAt(0)}">
-					성별		<input type="radio" name="memberInfoGender" value="M" checked="checked">남자
+					성별		<input type="radio" name="memberInfoGender" value="M" checked="checked">남자 
 						</c:when> 
 						<c:otherwise>
 							<input type="radio" name="memberInfoGender" value="F" checked="checked">여자<br>
@@ -72,6 +80,7 @@
 					</c:otherwise>
 			     	</c:choose>
 			     				<input type="submit" value="수정하기" class="submit-btn">
+			     				<input type="button" value="처방전 바로가기" class="submit-btn" onclick="kcalViewFnc();">
 					</pre>
 		    </form>
   		</div>

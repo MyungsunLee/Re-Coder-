@@ -14,16 +14,15 @@
 		<result column="MEMBER_WEIGHT" property="memberInfoWeight" />
 		<result column="MEMBER_ACTIVITY" property="memberInfoActivity" />
 		<result column="MEMBER_CAL" property="memberInfoCal" />
-		<result column=" MEMBER_INFO_DATE" property="memberInfoDate"
+		<result column="MEMBER_INFO_DATE" property="memberInfoDate"
 			javaType="java.util.Date" />
 	</resultMap>
-
 
 
 	<select id="memberInfoExist" parameterType="memberInfoVo"
 		resultMap="memberResultMap">
 		SELECT MEMBER_NO, MEMBER_GENDER, MEMBER_AGE, MEMBER_HEIGHT,
-		MEMBER_WEIGHT, MEMBER_ACTIVITY, MEMBER_CAL,  MEMBER_INFO_DATE
+		MEMBER_WEIGHT, MEMBER_ACTIVITY, MEMBER_CAL, MEMBER_INFO_DATE
 		FROM
 		MEMBERS_INFO
 		WHERE MEMBER_NO = #{memberNo}
@@ -35,7 +34,7 @@
 		INSERT INTO
 		MEMBERS_INFO
 		(MEMBER_NO, MEMBER_GENDER, MEMBER_AGE, MEMBER_HEIGHT,
-		MEMBER_WEIGHT, MEMBER_ACTIVITY, MEMBER_CAL,  MEMBER_INFO_DATE)
+		MEMBER_WEIGHT, MEMBER_ACTIVITY, MEMBER_CAL, MEMBER_INFO_DATE)
 		VALUES(#{memberNo},
 		#{memberInfoGender}, #{memberInfoAge},
 		#{memberInfoHeight},

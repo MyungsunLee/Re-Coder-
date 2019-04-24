@@ -166,7 +166,8 @@ public class BoardController {
 		   					    @RequestParam(value="fileIdx", defaultValue="-1")int fileIdx,
 		   					    MultipartHttpServletRequest multipartHttpServletRequest, Model model) {
       log.debug("Welcome BoardController updateOneCtr! boardNo : {} {}",boardVo,fileIdx);
-      
+      log.debug("                여백의 미");
+      log.debug("updl 값 : {}", boardVo.getUpdl());
       int resultNum = 0;
 
       String content = boardVo.getBoardContent();

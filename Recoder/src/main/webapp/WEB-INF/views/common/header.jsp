@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+<div id = "header">
+	<jsp:include page="../common/slider_ad.jsp"/>
+	
 	<div id="logo">
 		<a href="../common/index.do"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Diet_Coke_logo.svg/200px-Diet_Coke_logo.svg.png"></a>
 	</div>
@@ -43,3 +46,4 @@
 		<a href="../board/list.do"><span>게시판</span></a>
 	</div>
 </c:if>
+</div>

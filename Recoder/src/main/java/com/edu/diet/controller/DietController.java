@@ -2,6 +2,8 @@ package com.edu.diet.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,5 +92,19 @@ public class DietController {
 
 		return viewUrl;
 	}
+	
+	@RequestMapping(value = "/diet/dietPrescription.do", method = RequestMethod.GET)
+	public String dietPrescription(HttpSession session, Model model) {
+		log.debug("Welcome DietController dietPrescription 페이지 이동! ");
+		
+		String viewUrl = "diet/dietPrescription";
+		
+		List<DietVo> dietList = dietService.dietSelectList();
+
+		model.addAttribute("dietList", dietList);
+		
+		return viewUrl;
+	}
+
 
 }

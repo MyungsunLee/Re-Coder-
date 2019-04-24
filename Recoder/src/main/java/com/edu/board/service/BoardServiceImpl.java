@@ -91,7 +91,7 @@ public class BoardServiceImpl implements BoardService {
 				fileUtils.parseInsertFileInfo(parentSeq, 
 											  multipartHttpServletRequest);
 		
-		if (list.isEmpty()==false) {
+		if (boardVo.getUpdl().equals("update")) {
 			if (tempFileMap != null) {
 				fileUtils.parseUpdateFileInfo(tempFileMap);
 				boardDao.fileDelete(parentSeq);
@@ -100,7 +100,7 @@ public class BoardServiceImpl implements BoardService {
 			for (Map<String, Object>map : list) {
 				boardDao.insertFile(map);
 			}
-		}else if (fileIdx == -1) {
+		}else if (boardVo.getUpdl().equals("delete")) {
 			if (tempFileMap != null) {
 				boardDao.fileDelete(parentSeq);
 				fileUtils.parseUpdateFileInfo(tempFileMap);

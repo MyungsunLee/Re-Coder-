@@ -12,10 +12,12 @@ public class BoardVo {
    private Date boardCreDate;
    private Date boardModDate;
    private int rowNum;
+   private String updl;
    
    
-   
-   public BoardVo() {
+
+
+public BoardVo() {
       super();
    }
 
@@ -92,6 +94,12 @@ public class BoardVo {
       this.rowNum = rowNum;
       
    }
-   
+   public String getUpdl() {
+	return updl;
+}
+
+   public void setUpdl(String updl) {
+	this.updl = updl;
+}
 
 }

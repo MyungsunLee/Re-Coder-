@@ -19,6 +19,16 @@
          javaType="java.util.Date"/>
 </resultMap>
 
+<!-- <resultMap type="com.edu.board.vo.CommentVo" -->
+<!-- 			id="commentResultMap"> -->
+<!-- 			<id column="boardNo" property="boardNo" /> -->
+<!-- 			<result /> -->
+			
+			
+<!-- 			</resultMap> -->
+
+
+
 <select id="boardSelectList" parameterType="map"
       resultMap="boardResultMap">
       

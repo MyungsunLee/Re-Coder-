@@ -3,7 +3,7 @@
 <style>
 #slider_ad {
 position: absolute;
-margin-left: -400px;
+margin-left: -430px;
 margin-top: 130px;
 width: 400px;
 } 

@@ -26,34 +26,33 @@ table, th, tr, td{
 <div>
 	<table>
 		<tr>
-			<th>식단번호</th>
-			<th>식단유형</th>
+			<td>유지 칼로리</td><td><input></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<th>${dietVo.dietType. }</th>
 			<th>식단이름</th>
 			<th>식단칼로리</th>
-			<th>수정</th>
-			<th>삭제</th>
 		</tr>
 		<c:forEach var="dietVo" items="${dietList}">
 		<tr>
-			<td>${dietVo.dietNo }</td>
-			<td>${dietVo.dietType }</td>
-			<td>${dietVo.dietName }</td>
+		<c:if test="${dietVo.dietType =='C'.charAt(0)}">
+			<th>${dietVo.dietType}</th>
+		</c:if>		
+			<td>${dietVo.dietName}</td>
 			<td>${dietVo.dietCal } kcal</td>
-			<td><a href="../diet/update.do?dietNo=${dietVo.dietNo }">수정</a></td>
-			<td><a href="../diet/delete.do?dietNo=${dietVo.dietNo }">삭제</a></td>
+		</tr>
+		<tr>
+		<c:if test="${dietVo.dietType =='P'.charAt(0)}">
+			<th>${dietVo.dietType}</th>
+		</c:if>
+			<td></td>
 		</tr>
 		</c:forEach>
 	</table>
 </div>
 
-	<div class="regi-form">
-		<form action="../diet/add.do" method="post">
-			 <input type="radio" name="dietType" value="P" checked="checked">단백질 <input type="radio" name="dietType" value="C">탄수화물<br>
-			 <input type="text" name="dietName" class="text-field" placeholder="식단이름" ><br>
-			 <input type="text" name="dietCal" class="text-field" placeholder="식단칼로리" ><br>
-			 <input type="submit" value="식단추가" class="submit-btn">
-		</form>
-	</div>
 
 </body>
 </html>

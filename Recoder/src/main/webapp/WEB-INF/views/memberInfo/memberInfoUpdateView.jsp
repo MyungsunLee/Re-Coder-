@@ -57,7 +57,7 @@
 					몸무게(kg)	<input type="text" name="memberInfoWeight" class="text-field" placeholder="${_memberInfoVo.memberInfoWeight}" value="${_memberInfoVo.memberInfoWeight}"><br>
 					<c:choose>
 					<c:when test="${_memberInfoVo.memberInfoActivity == 1}">	
-					평소 활동량	<input type="radio" name="memberInfoActivity" value="1" checked="checked" >활동안함 <span>(운동을 전혀 안함)</span><br>
+					평소 활동량	<input type="radio" name="memberInfoActivity" value="1" checked="checked" onclick="checkFnc();">활동안함 <span>(운동을 전혀 안함)</span><br>
 							<input type="radio" name="memberInfoActivity" value="2" >가벼운 활동 <span>(일주일에 1~3일 운동을 함)</span><br>
 							<input type="radio" name="memberInfoActivity" value="3" >보통 활동 <span>(일주일에 3~5일 스포츠 또는 적당한 운동을 함)</span><br>
 							<input type="radio" name="memberInfoActivity" value="4" >많은 활동<span>(일주일에 6~7일 격렬한 스포츠 또는 힘든 운동을 함)</span><br>

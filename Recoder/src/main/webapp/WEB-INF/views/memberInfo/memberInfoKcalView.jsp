@@ -59,7 +59,6 @@
 	<c:set var="_memberInfoCal" value="${_memberInfoVo.memberInfoCal}"/>
 		<div class="kcalForm">
 			<h3 style="text-align: center;">처방전</h3>
-			<input type="hidden" name="memberNo" value="${login_memberVo.memberNo}"> 
 			
 			<table>
 				<tr>

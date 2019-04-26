@@ -30,6 +30,50 @@
 		height: 30px;
 	}
 </style>
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script>
+      $(function() {
+        $('#kcalForm').submit(function() {
+          var gender = $('#gender').val();
+          var age = $('#age').val();
+          var height = $('#height').val();
+          var weight = $('#weight').val();
+          var activity = $('#activity').val();
+          
+          
+          
+          if (gender == '') {
+            alert('성별을 선택해주세요.');
+            $('#gender').focus();
+            return false;
+          }
+
+          if (age == '') {
+            alert('나이를 입력해주세요.');
+            $('#age').focus();
+            return false;
+          }
+          
+          if (height == '') {
+              alert('신장을 입력해주세요.');
+              $('#height').focus();
+              return false;
+            }
+          
+          if (weight == '') {
+              alert('몸무게를 입력해주세요.');
+              $('#weight').focus();
+              return false;
+            }
+          
+          if (activity == '') {
+              alert('활동량을 선택해주세요.');
+              $('#activity').focus();
+              return false;
+            }
+        });
+      });
+    </script>
 </head>
 <body>
 <jsp:include page="../common/header.jsp"></jsp:include>
@@ -41,55 +85,55 @@
 
 	<c:if test="${sessionScope.login_memberVo != null }">
 		<div>
-		    <form action="memberInfoUpdateView.do" method="post" class="kcalForm">
+		    <form action="memberInfoUpdateView.do" method="post" class="kcalForm" id="kcalForm">
 					<pre style="font-size: medium; font-weight: bolder;">
 					<input type="hidden" name="memberNo" value="${_memberInfoVo.memberNo}">
 					<c:choose>
 						<c:when test="${_memberInfoVo.memberInfoGender == 'M'.charAt(0)}">
-					성별		<input type="radio" name="memberInfoGender" value="M" checked="checked">남자 <input type="radio" name="memberInfoGender" value="F">여자<br>
+					성별		<input type="radio" id="gender" name="memberInfoGender" value="M" checked="checked">남자 <input type="radio" name="memberInfoGender" value="F">여자<br>
 					</c:when> 
 						<c:otherwise>
-					성별		<input type="radio" name="memberInfoGender" value="M" >남자 <input type="radio" name="memberInfoGender" value="F" checked="checked">여자<br>
+					성별		<input type="radio" id="gender" name="memberInfoGender" value="M" >남자 <input type="radio" name="memberInfoGender" value="F" checked="checked">여자<br>
 					</c:otherwise>
 					</c:choose>
-					나이		<input type="text" name="memberInfoAge" class="text-field" placeholder="${_memberInfoVo.memberInfoAge}" value="${_memberInfoVo.memberInfoAge}"><br>
-					신장(cm) 	<input type="text" name="memberInfoHeight" class="text-field" placeholder="${_memberInfoVo.memberInfoHeight}" value="${_memberInfoVo.memberInfoHeight}"><br>
-					몸무게(kg)	<input type="text" name="memberInfoWeight" class="text-field" placeholder="${_memberInfoVo.memberInfoWeight}" value="${_memberInfoVo.memberInfoWeight}"><br>
+					나이		<input type="text" id="age" name="memberInfoAge" class="text-field" placeholder="${_memberInfoVo.memberInfoAge}" value="${_memberInfoVo.memberInfoAge}"><br>
+					신장(cm) 	<input type="text" id="height" name="memberInfoHeight" class="text-field" placeholder="${_memberInfoVo.memberInfoHeight}" value="${_memberInfoVo.memberInfoHeight}"><br>
+					몸무게(kg)	<input type="text" id="weight" name="memberInfoWeight" class="text-field" placeholder="${_memberInfoVo.memberInfoWeight}" value="${_memberInfoVo.memberInfoWeight}"><br>
 					<c:choose>
 					<c:when test="${_memberInfoVo.memberInfoActivity == 1}">	
-					평소 활동량	<input type="radio" name="memberInfoActivity" value="1" checked="checked" onclick="checkFnc();">활동안함 <span>(운동을 전혀 안함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="2" >가벼운 활동 <span>(일주일에 1~3일 운동을 함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="3" >보통 활동 <span>(일주일에 3~5일 스포츠 또는 적당한 운동을 함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="4" >많은 활동<span>(일주일에 6~7일 격렬한 스포츠 또는 힘든 운동을 함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="5" >격심한 활동 <span>(육체적으로 아주 힘든 일이나 하루 2번 운동을 함)</span><br>
+					평소 활동량	<input type="radio" id="activity" name="memberInfoActivity" value="1" checked="checked" onclick="checkFnc();">활동안함 <span>(운동을 전혀 안함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="2" >가벼운 활동 <span>(일주일에 1~3일 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="3" >보통 활동 <span>(일주일에 3~5일 스포츠 또는 적당한 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="4" >많은 활동<span>(일주일에 6~7일 격렬한 스포츠 또는 힘든 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="5" >격심한 활동 <span>(육체적으로 아주 힘든 일이나 하루 2번 운동을 함)</span><br>
 					</c:when>
 					<c:when test="${_memberInfoVo.memberInfoActivity == 2}">	
 					평소 활동량	<input type="radio" name="memberInfoActivity" value="1"  >활동안함 <span>(운동을 전혀 안함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="2" checked="checked" >가벼운 활동 <span>(일주일에 1~3일 운동을 함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="3" >보통 활동 <span>(일주일에 3~5일 스포츠 또는 적당한 운동을 함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="4" >많은 활동<span>(일주일에 6~7일 격렬한 스포츠 또는 힘든 운동을 함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="5" >격심한 활동 <span>(육체적으로 아주 힘든 일이나 하루 2번 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="2" checked="checked" >가벼운 활동 <span>(일주일에 1~3일 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="3" >보통 활동 <span>(일주일에 3~5일 스포츠 또는 적당한 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="4" >많은 활동<span>(일주일에 6~7일 격렬한 스포츠 또는 힘든 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="5" >격심한 활동 <span>(육체적으로 아주 힘든 일이나 하루 2번 운동을 함)</span><br>
 					</c:when>
 					<c:when test="${_memberInfoVo.memberInfoActivity == 3}">	
 					평소 활동량	<input type="radio" name="memberInfoActivity" value="1"  >활동안함 <span>(운동을 전혀 안함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="2">가벼운 활동 <span>(일주일에 1~3일 운동을 함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="3" checked="checked">보통 활동 <span>(일주일에 3~5일 스포츠 또는 적당한 운동을 함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="4" >많은 활동<span>(일주일에 6~7일 격렬한 스포츠 또는 힘든 운동을 함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="5" >격심한 활동 <span>(육체적으로 아주 힘든 일이나 하루 2번 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="2">가벼운 활동 <span>(일주일에 1~3일 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="3" checked="checked">보통 활동 <span>(일주일에 3~5일 스포츠 또는 적당한 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="4" >많은 활동<span>(일주일에 6~7일 격렬한 스포츠 또는 힘든 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="5" >격심한 활동 <span>(육체적으로 아주 힘든 일이나 하루 2번 운동을 함)</span><br>
 					</c:when>
 					<c:when test="${_memberInfoVo.memberInfoActivity == 4}">	
 					평소 활동량	<input type="radio" name="memberInfoActivity" value="1"  >활동안함 <span>(운동을 전혀 안함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="2">가벼운 활동 <span>(일주일에 1~3일 운동을 함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="3" >보통 활동 <span>(일주일에 3~5일 스포츠 또는 적당한 운동을 함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="4" checked="checked">많은 활동<span>(일주일에 6~7일 격렬한 스포츠 또는 힘든 운동을 함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="5" >격심한 활동 <span>(육체적으로 아주 힘든 일이나 하루 2번 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="2">가벼운 활동 <span>(일주일에 1~3일 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="3" >보통 활동 <span>(일주일에 3~5일 스포츠 또는 적당한 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="4" checked="checked">많은 활동<span>(일주일에 6~7일 격렬한 스포츠 또는 힘든 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="5" >격심한 활동 <span>(육체적으로 아주 힘든 일이나 하루 2번 운동을 함)</span><br>
 					</c:when>
 					<c:otherwise>
-					평소 활동량	<input type="radio" name="memberInfoActivity" value="1"  >활동안함 <span>(운동을 전혀 안함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="2">가벼운 활동 <span>(일주일에 1~3일 운동을 함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="3" >보통 활동 <span>(일주일에 3~5일 스포츠 또는 적당한 운동을 함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="4" >많은 활동<span>(일주일에 6~7일 격렬한 스포츠 또는 힘든 운동을 함)</span><br>
-							<input type="radio" name="memberInfoActivity" value="5" checked="checked">격심한 활동 <span>(육체적으로 아주 힘든 일이나 하루 2번 운동을 함)</span><br>
+					평소 활동량	<input type="radio" id="activity" name="memberInfoActivity" value="1"  >활동안함 <span>(운동을 전혀 안함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="2">가벼운 활동 <span>(일주일에 1~3일 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="3" >보통 활동 <span>(일주일에 3~5일 스포츠 또는 적당한 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="4" >많은 활동<span>(일주일에 6~7일 격렬한 스포츠 또는 힘든 운동을 함)</span><br>
+							<input type="radio" id="activity" name="memberInfoActivity" value="5" checked="checked">격심한 활동 <span>(육체적으로 아주 힘든 일이나 하루 2번 운동을 함)</span><br>
 						
 					</c:otherwise>
 			     	</c:choose>

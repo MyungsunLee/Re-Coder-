@@ -78,12 +78,13 @@ public class MemberController {
 //		log.debug("Welcome MemberController loginCtr! " + memberVo1.getMemberEmail() + ", " + memberVo1.getMemberPassword());
 
 		MemberVo memberVo = memberService.memberExist(memberVo1);
-		MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberVo.getMemberNo());
+//		MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberVo.getMemberNo());
 	
 		
 		
 		String viewUrl = "";
 		if (memberVo != null && memberVo.getMemberAuth() == 'U') {
+			MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberVo.getMemberNo());
 
 			// 회원이 존재한다면 세션에 담고
 			// 회원 전체 조회 페이지로 이동
@@ -93,6 +94,7 @@ public class MemberController {
 			
 			viewUrl = "redirect:/common/index.do";
 		} else if (memberVo != null && memberVo.getMemberAuth() == 'A') {
+			MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberVo.getMemberNo());
 			
 			// 회원이 존재한다면 세션에 담고 // 회원 전체 조회 페이지로 이동
 			session.setAttribute("login_memberVo", memberVo);

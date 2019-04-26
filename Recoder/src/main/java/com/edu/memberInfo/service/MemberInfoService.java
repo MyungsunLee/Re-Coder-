@@ -2,7 +2,6 @@ package com.edu.memberInfo.service;
 
 import java.util.List;
 
-import com.edu.member.vo.MemberVo;
 import com.edu.memberInfo.vo.MemberInfoVo;
 
 public interface MemberInfoService {

@@ -80,7 +80,7 @@
 		파일 &nbsp;
    	</td>
    	<td>
-   		<a style="color: red;">사진은 한장만 선택 가능합니다</a></br>
+   		<a style="color: red;">사진은 한장만 선택 가능합니다</a><br>
          	 <c:choose> 
 			<c:when test="${empty fileList}"><!-- 배열은 반드시 반복문과 힘을 합쳐야 제 기능을 함! -->
 <!-- 				<a>첨부파일이 없습니다.</a> -->
@@ -89,7 +89,7 @@
 			<c:otherwise>
 				<div id="imgDiv">
 					<c:forEach var="row" items="${fileList}">
-					<a>${row.ORIGINAL_FILE_NAME}</a></br>
+					<a>${row.ORIGINAL_FILE_NAME}</a><br>
 					<img alt="image not found" height="70px" width="100px"  
 					src="<c:url value='/img/${row.STORED_FILE_NAME}'/>"/><br>
 					</c:forEach>										<!-- 난수화되어 저장된 파일 -->

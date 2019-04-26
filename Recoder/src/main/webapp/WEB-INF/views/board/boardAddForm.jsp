@@ -8,6 +8,27 @@
 <title>Insert title here</title>
 <style type="text/css">
 table {
+   width: 680px;
+   margin: auto;
+}
+
+.topTd {
+   text-align: center;
+   background-color: #EEEFF1;
+}
+
+td {
+   border-bottom: 1px solid #EEEFF1;
+}
+
+#divTag, #divTag>form {
+   padding-top: 30px;
+   margin: auto;
+   text-align: center;
+}
+</style>
+<style type="text/css">
+table {
    margin: auto;
    text-align: center;
 }

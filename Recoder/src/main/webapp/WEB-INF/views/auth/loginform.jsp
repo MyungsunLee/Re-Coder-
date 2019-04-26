@@ -44,8 +44,8 @@ prefix="c" %>
   <body>
     <jsp:include page="../common/header.jsp"></jsp:include>
 
-    <div id="reg-form" class="login-form">
-      <form action="login.do" method="post">
+    <div id="regi-form" class="login-form">
+      <form id="reg-form" action="login.do" method="post">
         <input
           type="text"
           id="email"

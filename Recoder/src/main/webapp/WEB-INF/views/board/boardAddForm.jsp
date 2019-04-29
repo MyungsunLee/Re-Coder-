@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 table {
-   width: 680px;
+   width: 750px;
    margin: auto;
    color: #198556;
 }
@@ -71,18 +71,15 @@ a {
 
    <h2 style="text-align: center; color: #198556;">글쓰기</h2>
    <form id="inputform" action="../board/addOneCtr.do" method="post" enctype="multipart/form-data">
+   <input type="hidden" name="memberNo" value="${login_memberVo.memberNo}">
       <table>
          <tr>
-            <td><input type="hidden" name="memberNo"
-               value="${login_memberVo.memberNo}"></td>
-         </tr>
-         <tr>
-            <td><input style="width: 100%" type="text" name="boardTitle"
+            <td><input style="width: 100%;" type="text" name="boardTitle"
                placeholder="제목을 입력해 주세요"></td>
          </tr>
 
          <tr style="text-align: left;">
-            <td><a>${login_memberVo.memberName}</a> </td>
+            <td>${login_memberVo.memberName}</td>
          </tr>
 
          <tr>
@@ -92,12 +89,17 @@ a {
             </td>
          </tr>
          <tr>
+         <td>
+   		<a style="color: red;">사진은 한장만 선택 가능합니다</a><br>
+   		</td>
+   		</tr>
+         <tr>
          	<td>
          		<input type="file" name="file">
          	</td>
          </tr>
          <tr>
-            <td><input type="submit" value="글쓰기"></td>
+            <td style="text-align: right;"><input type="submit" value="글쓰기"></td>
             <td><a id="textLength">2000</a></td>
 <%--             <td><button onclick= "location='../board/listOne.do?boardNo=${selectedBoard.boardNo}'"> 뒤로가기</button></td> --%>
          </tr>

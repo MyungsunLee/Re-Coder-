@@ -11,6 +11,8 @@ public class MemberVo {
 	private Date memberCreDate;
 	private String memberPassword;
 	
+	
+	
 	public String getMemberPassword() {
 		return memberPassword;
 	}

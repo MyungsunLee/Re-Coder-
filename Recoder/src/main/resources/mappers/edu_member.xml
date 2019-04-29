@@ -15,6 +15,77 @@
 			javaType="java.util.Date" />
 	</resultMap>
 
+
+	<select id="memberSelectList" parameterType="map" 
+	resultMap="memberResultMap">
+		SELECT M.MEMBER_NO, M.MEMBER_NAME, M.MEMBER_EMAIL, M.MEMBER_DATE
+		FROM
+		(SELECT ROWNUM AS RNUM, 
+				MEMBER_NO,
+				MEMBER_NAME,
+				MEMBER_EMAIL,
+				MEMBER_DATE
+				FROM MEMBERS
+		<choose>
+			<when test="searchOption == 'memberNo'">
+				WHERE MEMBER_NO LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="searchOption == 'memberName'">
+				WHERE MEMBER_NAME LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="searchOption == 'memberEmail'">
+				WHERE MEMBER_EMAIL LIKE '%'||#{keyword}||'%'
+			</when>
+		</choose>
+		
+		<choose>
+<!-- 		controller : default value="noAscending" -->
+			<when test="order == 'noAscending'">
+				ORDER BY MEMBER_NO)M
+			</when>
+			<when test="order == 'noDescending'">
+				ORDER BY MEMBER_NO DESC)M
+			</when>
+			<when test="order == 'nameAscending'">
+				ORDER BY MEMBER_NAME)M
+			</when>
+			<when test="order == 'nameDescending'">
+				ORDER BY MEMBER_NAME DESC)M
+			</when>
+			<otherwise>
+				)M
+			</otherwise>
+		</choose>
+		
+		WHERE RNUM BETWEEN #{start} AND #{end}
+		
+	</select>
+	
+	<select id="memberSelectTotalCount" parameterType="map"
+			resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBERS
+		
+		<choose>
+			<when test="searchOption == 'memberNo'">
+				WHERE MEMBER_NO LIKE '%'||#{keyword}||'%'
+				ORDER BY MEMBER_NO
+			</when>
+			<when test="searchOption == 'memberName'">
+				WHERE MEMBER_NAME LIKE '%'||#{keyword}||'%'
+				ORDER BY MEMBER_NAME
+			</when>
+			<when test="searchOption == 'memberEmail'">
+				WHERE MEMBER_EMAIL LIKE '%'||#{keyword}||'%'
+				ORDER BY MEMBER_EMAIL
+			</when>
+		</choose>
+		
+		
+	</select>
+
+
+
 	<select id="memberExist" parameterType="memberVo"
 		resultMap="memberResultMap">
 		SELECT MEMBER_NO, MEMBER_AUTH, MEMBER_EMAIL, MEMBER_NAME
@@ -50,6 +121,15 @@
 		FROM MEMBERS
 		WHERE MEMBER_NO = #{memberNo}
 	</select>
-
+	
+	<delete id="memberDeleteOne" parameterType="int">
+		
+		DELETE FROM MEMBERS
+		WHERE MEMBER_NO = #{no}
+		
+	</delete>
+	
+	
+	
 
 </mapper>

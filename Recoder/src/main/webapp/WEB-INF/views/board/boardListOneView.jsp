@@ -51,6 +51,9 @@
    
    
 	})
+   
+   
+	})
      
      function boardOneUpdate(){
         location.href='./updateOne.do?boardNo=${selectedBoard.boardNo}';
@@ -70,6 +73,7 @@
       location.href='./list.do';
       
    }
+     
 
    
    
@@ -77,33 +81,13 @@
 
 <style>
 table {
-   width: 750px;
-   margin: auto;
-   color: #198556;
+   width: 980px;
 }
 
-th {
-   background-color: #59d393;
-   color: black;
+table, tr, td {
+   border: 1px solid #EEEFF1;
+   border-collapse: collapse;
 }
-
-td {
-   border-bottom: 1px solid #eee;
-}
-
-a {
-	text-decoration: none;
-	color: #198556;
-
-}
-
-#divTag, #divTag>form {
-   padding-top: 30px;
-   margin: auto;
-   text-align: center;
-
-}
-
 
 #subTable {
    margin-top: 30px;
@@ -129,16 +113,16 @@ a {
    <div>
       <table>
          <tr>
-            <th style="width: 100px;">${selectedBoard.boardNo }</th>
-            <th style="width: 380px;">${selectedBoard.boardTitle}</th>
-            <th style="width: 100px;">${selectedBoard.name}</th>
-            <th style="width: 170px;"><fmt:formatDate value="${selectedBoard.boardCreDate}" pattern="yyyy-MM-dd HH:mm:ss"/></th>
+            <td>${selectedBoard.boardNo }
+            <td>${selectedBoard.boardTitle}</td>
+            <td>${selectedBoard.name}</td>
+            <td><fmt:formatDate value="${selectedBoard.boardCreDate}"
+                  pattern="yyyy-MM-dd   HH:mm:ss" /></td>
          </tr>
          <tr>
             <td colspan="4">
             
             
-           <p style="height: 500px; overflow:auto;">
              <c:choose> 
 			<c:when test="${empty fileList}">
 			</c:when>
@@ -147,8 +131,8 @@ a {
 				<img alt="image not found" src="<c:url value='/img/${row.STORED_FILE_NAME}'/>"/><br>
 				</c:forEach>
 			</c:otherwise>
-		</c:choose>	 ${selectedBoard.boardContent}
-           </p>
+		</c:choose>
+           <p style="height: 300px;"> ${selectedBoard.boardContent}</p>
          </tr>
       </table>
    </div>

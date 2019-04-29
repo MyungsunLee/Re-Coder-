@@ -10,26 +10,27 @@
 table {
    width: 750px;
    margin: auto;
-   color: #198556;
 }
 
-th {
-   background-color: #59d393;
-   color: black;
+.topTd {
+   text-align: center;
+   background-color: #EEEFF1;
 }
 
-#inputform input, #inputform textarea{
-/*    border-bottom: 1px solid #eee; */
-border: 1px solid #198556;
-border-radius: 5px;
-outline: none;
+td {
+   border-bottom: 1px solid #EEEFF1;
 }
 
-
-a {
-	text-decoration: none;
-	color: #198556;
-
+#divTag, #divTag>form {
+   padding-top: 30px;
+   margin: auto;
+   text-align: center;
+}
+</style>
+<style type="text/css">
+table {
+   margin: auto;
+   text-align: center;
 }
 
 #textLength{
@@ -69,9 +70,11 @@ a {
 <body>
    <jsp:include page="../common/header.jsp"></jsp:include>
 
+
    <h2 style="text-align: center; color: #198556;">글쓰기</h2>
    <form id="inputform" action="../board/addOneCtr.do" method="post" enctype="multipart/form-data">
    <input type="hidden" name="memberNo" value="${login_memberVo.memberNo}">
+
       <table>
          <tr>
             <td><input style="width: 100%;" type="text" name="boardTitle"
@@ -99,9 +102,17 @@ a {
          	</td>
          </tr>
          <tr>
+<<<<<<< HEAD
             <td style="text-align: right;"><input type="submit" value="글쓰기"></td>
             <td><a id="textLength">2000</a></td>
 <%--             <td><button onclick= "location='../board/listOne.do?boardNo=${selectedBoard.boardNo}'"> 뒤로가기</button></td> --%>
+=======
+            <td><input type="submit" value="글쓰기"></td>
+            <td><a id="textLength">2000</a>
+               <button   onclick= "location='../board/listOne.do?boardNo=${selectedBoard.boardNo}'">
+                     뒤로가기</button>
+            </td>
+>>>>>>> branch 'master' of https://github.com/MyungsunLee/Re-Coder-.git
          </tr>
       </table>
    </form>

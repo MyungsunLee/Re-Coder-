@@ -1,6 +1,7 @@
 package com.edu.member.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,29 @@ public class MemberServiceImpl implements MemberService {
 		resultNum = memberDao.memberUpdateOne(memberVo);
 
 		return resultNum;
+	}
+
+	@Override
+	public List<MemberVo> memberSelectList(String searchOption, String keyword, int start, int end, String order) {
+		// TODO Auto-generated method stub
+		return memberDao.memberSelectList(searchOption, keyword, start, end, order);
+	}
+
+	@Override
+	public int memberCountTotal(String searchOption, String keyword) {
+		// TODO Auto-generated method stub
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("sesarchOption", searchOption);
+		map.put("keyword", keyword);
+		
+		
+		return memberDao.memberCountTotal(map);
+	}
+
+	@Override
+	public int memberDeleteOne(int no) {
+		// TODO Auto-generated method stub
+		return memberDao.memberDeleteOne(no);
 	}
 
 

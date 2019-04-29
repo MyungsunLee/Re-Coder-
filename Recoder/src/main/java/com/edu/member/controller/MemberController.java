@@ -29,6 +29,8 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private MemberInfoService memberInfoService;
 
 	// 조회
 //	@RequestMapping(value = "/member/list.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -71,25 +73,31 @@ public class MemberController {
 
 	// 로그인
 	@RequestMapping(value = "/auth/login.do", method = RequestMethod.POST)
-	public String longinCtr(MemberVo memberVo1, HttpSession session, Model model) {
+	public String longinCtr(MemberInfoVo memberInfoVo1, MemberVo memberVo1, HttpSession session, Model model) {
 
 //		log.debug("Welcome MemberController loginCtr! " + memberVo1.getMemberEmail() + ", " + memberVo1.getMemberPassword());
 
 		MemberVo memberVo = memberService.memberExist(memberVo1);
-
+//		MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberVo.getMemberNo());
+	
+		
+		
 		String viewUrl = "";
 		if (memberVo != null && memberVo.getMemberAuth() == 'U') {
+			MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberVo.getMemberNo());
 
 			// 회원이 존재한다면 세션에 담고
 			// 회원 전체 조회 페이지로 이동
 			session.setAttribute("login_memberVo", memberVo);
-
+	
+			session.setAttribute("_memberInfoVo", memberInfoVo);
+			
 			viewUrl = "redirect:/common/index.do";
 		} else if (memberVo != null && memberVo.getMemberAuth() == 'A') {
-
+			MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberVo.getMemberNo());
+			
 			// 회원이 존재한다면 세션에 담고 // 회원 전체 조회 페이지로 이동
 			session.setAttribute("login_memberVo", memberVo);
-
 			viewUrl = "redirect:/diet/list.do";
 		} else {
 			viewUrl = "/auth/loginfail";

@@ -15,7 +15,7 @@
    rel="stylesheet">
 <style type="text/css">
 table {
-   width: 700px;
+   width: 680px;
    margin: auto;
 }
 

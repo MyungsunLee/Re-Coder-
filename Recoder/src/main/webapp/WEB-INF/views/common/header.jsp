@@ -25,6 +25,7 @@
 
 <c:if test="${sessionScope.login_memberVo != null }">
 	<input type="hidden" name="memberNo" value="${login_memberVo.memberNo}">
+	<input type="hidden" name="msemberNo" value="${_memberInfoVo.memberNo}">
 	<div id="login">
 		<a href="../member/info.do"><span>${login_memberVo.memberName}</span></a>
 		<a href="../auth/logout.do"><span>로그아웃</span></a>
@@ -42,7 +43,7 @@
 			</c:otherwise>
 		</c:choose>
 		
-    	<a href="#"><span>식단 처방</span></a>
+    	<a href="../diet/dietPrescription.do"><span>식단 처방</span></a>
 		<a href="../board/list.do"><span>게시판</span></a>
 	</div>
 </c:if>

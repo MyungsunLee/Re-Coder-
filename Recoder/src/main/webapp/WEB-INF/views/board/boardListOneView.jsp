@@ -51,6 +51,10 @@
    
    
 	})
+   
+   
+	})
+     
      function boardOneUpdate(){
         location.href='./updateOne.do?boardNo=${selectedBoard.boardNo}';
      }

@@ -48,6 +48,10 @@
 // 		$('.hideTag').show();
 // 		$('#updateForm').show();
 // 	})
+   
+   
+	})
+     
      function boardOneUpdate(){
         location.href='./updateOne.do?boardNo=${selectedBoard.boardNo}';
      }
@@ -66,10 +70,6 @@
       location.href='./list.do';
       
    }
-   
-   
-	})
-     
 
    
    
@@ -77,13 +77,33 @@
 
 <style>
 table {
-   width: 980px;
+   width: 750px;
+   margin: auto;
+   color: #198556;
 }
 
-table, tr, td {
-   border: 1px solid #EEEFF1;
-   border-collapse: collapse;
+th {
+   background-color: #59d393;
+   color: black;
 }
+
+td {
+   border-bottom: 1px solid #eee;
+}
+
+a {
+	text-decoration: none;
+	color: #198556;
+
+}
+
+#divTag, #divTag>form {
+   padding-top: 30px;
+   margin: auto;
+   text-align: center;
+
+}
+
 
 #subTable {
    margin-top: 30px;
@@ -109,16 +129,16 @@ table, tr, td {
    <div>
       <table>
          <tr>
-            <td>${selectedBoard.boardNo }
-            <td>${selectedBoard.boardTitle}</td>
-            <td>${selectedBoard.name}</td>
-            <td><fmt:formatDate value="${selectedBoard.boardCreDate}"
-                  pattern="yyyy-MM-dd   HH:mm:ss" /></td>
+            <th style="width: 100px;">${selectedBoard.boardNo }</th>
+            <th style="width: 380px;">${selectedBoard.boardTitle}</th>
+            <th style="width: 100px;">${selectedBoard.name}</th>
+            <th style="width: 170px;"><fmt:formatDate value="${selectedBoard.boardCreDate}" pattern="yyyy-MM-dd HH:mm:ss"/></th>
          </tr>
          <tr>
             <td colspan="4">
             
             
+           <p style="height: 500px; overflow:auto;">
              <c:choose> 
 			<c:when test="${empty fileList}">
 			</c:when>
@@ -127,8 +147,8 @@ table, tr, td {
 				<img alt="image not found" src="<c:url value='/img/${row.STORED_FILE_NAME}'/>"/><br>
 				</c:forEach>
 			</c:otherwise>
-		</c:choose>
-           <p style="height: 300px;"> ${selectedBoard.boardContent}</p>
+		</c:choose>	 ${selectedBoard.boardContent}
+           </p>
          </tr>
       </table>
    </div>

@@ -89,7 +89,6 @@ public class MemberController {
 			// 회원이 존재한다면 세션에 담고
 			// 회원 전체 조회 페이지로 이동
 			session.setAttribute("login_memberVo", memberVo);
-	
 			session.setAttribute("_memberInfoVo", memberInfoVo);
 			
 			viewUrl = "redirect:/common/index.do";
@@ -98,6 +97,8 @@ public class MemberController {
 			
 			// 회원이 존재한다면 세션에 담고 // 회원 전체 조회 페이지로 이동
 			session.setAttribute("login_memberVo", memberVo);
+			session.setAttribute("_memberInfoVo", memberInfoVo);
+			
 			viewUrl = "redirect:/diet/list.do";
 		} else {
 			viewUrl = "/auth/loginfail";

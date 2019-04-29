@@ -15,23 +15,31 @@
    rel="stylesheet">
 <style type="text/css">
 table {
-   width: 680px;
+   width: 750px;
    margin: auto;
+   color: #198556;
 }
 
-.topTd {
-   text-align: center;
-   background-color: #EEEFF1;
+th {
+   background-color: #59d393;
+   color: black;
 }
 
 td {
-   border-bottom: 1px solid #EEEFF1;
+   border-bottom: 1px solid #eee;
+}
+
+a {
+	text-decoration: none;
+	color: #198556;
+
 }
 
 #divTag, #divTag>form {
    padding-top: 30px;
    margin: auto;
    text-align: center;
+
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
@@ -42,10 +50,10 @@ td {
 
    <table>
       <tr>
-         <td class="topTd" style="width: 50px;">번호</td>
-         <td class="topTd">제목</td>
-         <td class="topTd">작성자</td>
-         <td class="topTd" style="width: 100px;">작성일</td>
+         <th style="width: 100px;">번호</th>
+         <th style="width: 380px;">제목</th>
+         <th style="width: 100px;">작성자</th>
+         <th style="width: 170px;">작성일</th>
       </tr>
       <c:forEach var="boardVo" items="${boardList}">
          <tr>
@@ -58,7 +66,7 @@ td {
             </a></td>
             <td style="text-align: center;">${boardVo.name}</td>
             <td style="text-align: center;"><fmt:formatDate
-                  value="${boardVo.boardCreDate}" pattern="M/dd" /></td>
+                  value="${boardVo.boardCreDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
          </tr>
 
       </c:forEach>

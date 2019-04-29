@@ -10,27 +10,26 @@
 table {
    width: 680px;
    margin: auto;
+   color: #198556;
 }
 
-.topTd {
-   text-align: center;
-   background-color: #EEEFF1;
+th {
+   background-color: #59d393;
+   color: black;
 }
 
-td {
-   border-bottom: 1px solid #EEEFF1;
+#inputform input, #inputform textarea{
+/*    border-bottom: 1px solid #eee; */
+border: 1px solid #198556;
+border-radius: 5px;
+outline: none;
 }
 
-#divTag, #divTag>form {
-   padding-top: 30px;
-   margin: auto;
-   text-align: center;
-}
-</style>
-<style type="text/css">
-table {
-   margin: auto;
-   text-align: center;
+
+a {
+	text-decoration: none;
+	color: #198556;
+
 }
 
 #textLength{
@@ -70,8 +69,8 @@ table {
 <body>
    <jsp:include page="../common/header.jsp"></jsp:include>
 
-   <h2 style="text-align: center;">글쓰기</h2>
-   <form action="../board/addOneCtr.do" method="post" enctype="multipart/form-data">
+   <h2 style="text-align: center; color: #198556;">글쓰기</h2>
+   <form id="inputform" action="../board/addOneCtr.do" method="post" enctype="multipart/form-data">
       <table>
          <tr>
             <td><input type="hidden" name="memberNo"
@@ -99,10 +98,8 @@ table {
          </tr>
          <tr>
             <td><input type="submit" value="글쓰기"></td>
-            <td><a id="textLength">2000</a>
-               <button   onclick= "location='../board/listOne.do?boardNo=${selectedBoard.boardNo}'">
-                     뒤로가기</button>
-            </td>
+            <td><a id="textLength">2000</a></td>
+<%--             <td><button onclick= "location='../board/listOne.do?boardNo=${selectedBoard.boardNo}'"> 뒤로가기</button></td> --%>
          </tr>
       </table>
    </form>

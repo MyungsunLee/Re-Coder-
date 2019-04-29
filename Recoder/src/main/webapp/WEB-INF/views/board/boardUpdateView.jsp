@@ -70,6 +70,8 @@
             <td></td>
             <td style="text-align: right;">
                <input type="submit" value="수정">
+<!--                <input type="button" id="outFormDel" value="전송 버튼"> -->
+<!-- 				버튼을 이렇게 만들어 놓으면 click function 이벤트 수행 시 submit되지 않음? -->
             </td>
          </tr>
       </table>

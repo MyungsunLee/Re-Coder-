@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.edu.board.vo.BoardVo;
+import com.edu.board.vo.CommentVo;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -102,6 +103,43 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectOne(nameSpace + "fileSelectStoredFileName", no);
 	}
 
+	@Override
+	public List<CommentVo> commentSelectList(int boardNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + "commentSelectList", boardNo);
+	}
+
+	@Override
+	public int commentInsertOne(CommentVo commentVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(nameSpace + "commentInsertOne", commentVo);
+	}
+
+	@Override
+	public int commentUpdateOne(CommentVo commentVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(nameSpace + "commentUpdateOne", commentVo);
+	}
+
+	@Override
+	public int commentDeleteOne(int commentNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(nameSpace + "commentDeleteOne", commentNo);
+	}
+
+	@Override
+	public int commentDeleteList(int boardNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(nameSpace + "commentDeleteList", boardNo);
+	}
+
+	@Override
+	public int commentTotalList(int boardNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + "commentTotalList", boardNo);
+	}
+
+	
 	
 	
 	

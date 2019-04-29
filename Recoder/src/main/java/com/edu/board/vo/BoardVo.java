@@ -13,7 +13,7 @@ public class BoardVo {
    private Date boardModDate;
    private int rowNum;
    private String updl;
-   
+   private int commentTotCount = 0;
    
 
 
@@ -21,14 +21,30 @@ public BoardVo() {
       super();
    }
 
-   public BoardVo(String boardTitle, int memberNo,   String boardContent) {
-      super();
-      this.boardTitle = boardTitle;
-      this.memberNo = memberNo;
-      this.boardContent = boardContent;
-   }
+  
 
-   public int getMemberNo() {
+
+
+   public BoardVo(int boardNo, String boardTitle, String name, int memberNo, String boardContent, Date boardCreDate,
+		Date boardModDate, int rowNum, String updl, int commentTotCount) {
+	super();
+	this.boardNo = boardNo;
+	this.boardTitle = boardTitle;
+	this.name = name;
+	this.memberNo = memberNo;
+	this.boardContent = boardContent;
+	this.boardCreDate = boardCreDate;
+	this.boardModDate = boardModDate;
+	this.rowNum = rowNum;
+	this.updl = updl;
+	this.commentTotCount = commentTotCount;
+}
+
+
+
+
+
+public int getMemberNo() {
       return memberNo;
    }
 
@@ -102,4 +118,15 @@ public BoardVo() {
 	this.updl = updl;
 }
 
+
+public int getCommentTotCount() {
+	return commentTotCount;
+}
+
+
+public void setCommentTotCount(int commentTotCount) {
+	this.commentTotCount = commentTotCount;
+}
+   
+   
 }

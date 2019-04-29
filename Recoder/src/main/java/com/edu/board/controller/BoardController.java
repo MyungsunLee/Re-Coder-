@@ -1,5 +1,6 @@
 package com.edu.board.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.edu.board.service.BoardService;
 import com.edu.board.vo.BoardVo;
+import com.edu.board.vo.CommentVo;
 import com.edu.util.Paging;
 
 
@@ -55,6 +57,21 @@ public class BoardController {
       pagingMap.put("totalCount", totalCount);
       pagingMap.put("boardPaging", boardPaging);
       
+//      List<Integer> commentTotCount = new ArrayList<Integer>();
+		
+      	log.debug("boardList" + boardList.get(0).getBoardNo() + " , " + boardList.get(1).getBoardNo());
+      for (int i = 0; i < boardList.size(); i++) {
+    	  
+    	  int commentTotCount = boardService.commentTotalList(boardList.get(i).getBoardNo());
+    	  
+    	  boardList.get(i).setCommentTotCount(commentTotCount);
+    	  
+    	  
+	}
+      
+      
+      
+      
       model.addAttribute("boardList", boardList);
       model.addAttribute("paging", pagingMap);
       model.addAttribute("keyword", keyword);
@@ -69,13 +86,17 @@ public class BoardController {
    public String boardSelectOne(int boardNo, Model model) {
       
 	  Map<String, Object> map = boardService.boardSelectOne(boardNo);
-//	  Map<String, Object> map = boardService.
-	   
+	  List<CommentVo> commentList = boardService.commentSelectList(boardNo);
+	  
 	  BoardVo boardVo = (BoardVo)map.get("selectedBoard");
 	  List<Map<String,Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
 	  
+	  int commentTotalCount = boardService.commentTotalList(boardNo);
+	  
 	  model.addAttribute("selectedBoard", boardVo);
 	  model.addAttribute("fileList", fileList);
+	  model.addAttribute("commentList",commentList);
+	  model.addAttribute("commentTotCount", commentTotalCount);
 //      BoardVo selectedBoard = boardService.boardSelectOne(boardNo);
 
       
@@ -216,11 +237,61 @@ public class BoardController {
          boardService.boardDeleteOne(boardNo);
       } catch (Exception e) {
          e.printStackTrace();
+         
+//        String viewUrl = 실패페이지
       }
 
       String viewUrl = "redirect:/board/list.do";
 
       return viewUrl;
+   }
+   
+   @RequestMapping(value="/board/commentInsertOne.do", method=RequestMethod.POST)
+   public String commentInsertOne(CommentVo commentVo, Model model) {
+	   
+	   
+	   boardService.commentInsertOne(commentVo);
+	   
+	   int boardNo = commentVo.getBoardNo();
+	   
+	   Map<String, Object> map = boardService.boardSelectOne(boardNo);
+		  List<CommentVo> commentList = boardService.commentSelectList(boardNo);
+		  
+		  BoardVo boardVo = (BoardVo)map.get("selectedBoard");
+		  List<Map<String,Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
+		  
+		  int commentTotalCount = boardService.commentTotalList(boardNo);
+		  
+		  model.addAttribute("selectedBoard", boardVo);
+		  model.addAttribute("fileList", fileList);
+		  model.addAttribute("commentList",commentList);
+		  model.addAttribute("commentTotCount", commentTotalCount);
+	   
+	   
+	   
+	   return "board/boardListOneView";
+   }
+   
+   
+   
+   
+   //미구현
+   @RequestMapping(value="/board/commentDeleteOne.do", method=RequestMethod.GET)
+   public String commentDeleteOne(int commentNo, int boardNo, Model model) {
+	   
+	   boardService.commentDeleteOne(commentNo);
+	   
+	      model.addAttribute(boardNo);
+	   
+		  return "redirect:/board/listOne.do?boardNo=" + boardNo;
+   }
+   
+   @RequestMapping(value="/board/commentUpdateOne.do", method=RequestMethod.GET)
+   public String commentUpdateOne(int commentNo, Model model) {
+	   		
+	   
+	   
+	   return "board/boardUpdateOne";
    }
    
    

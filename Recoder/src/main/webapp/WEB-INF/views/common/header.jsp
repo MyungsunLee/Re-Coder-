@@ -16,7 +16,7 @@
 	</div>
 	
 	<div id="menu">
-		<a href="#"><span>소개</span></a>
+		<a href="../introduce/home.do"><span>소개</span></a>
 		<a href="../auth/login.do"><span>칼로리 처방</span></a>
     	<a href="../auth/login.do"><span>식단 처방</span></a>
 		<a href="../board/list.do"><span>게시판</span></a>
@@ -31,7 +31,7 @@
 	</div>
 	
 	<div id="menu">
-		<a href="#"><span>소개</span></a>
+		<a href="../introduce/home.do"><span>소개</span></a>
 		
 		<c:choose>
 			<c:when test="${login_memberVo.memberNo != null}">

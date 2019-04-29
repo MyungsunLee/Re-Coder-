@@ -21,6 +21,33 @@
 
 
 <script type="text/javascript">
+
+	
+	$(document).ready(function(){
+		
+		
+		$('#updateBtn').click(function(){
+			var htmlInStr = $(this).closest('td').html();
+			
+			alert(htmlInStr);
+			
+		});
+		
+		
+		function updateBtn(commentNo){
+			alert(commentNo);
+// 			$("#hiddenDiv"[id*=commentNo]).show();
+		}
+		
+// 	$('#update').click(function(){
+		
+// 		if (condition) {
+			
+// 		}
+		
+// 		$('.hideTag').show();
+// 		$('#updateForm').show();
+// 	})
      function boardOneUpdate(){
         location.href='./updateOne.do?boardNo=${selectedBoard.boardNo}';
      }
@@ -39,6 +66,9 @@
       location.href='./list.do';
       
    }
+   
+   
+	})
      
 
    
@@ -61,6 +91,14 @@ table, tr, td {
    width: 650px;
 
 }
+
+#commentInsert{
+	width: 500px;
+	border: 5px solid white;
+
+}
+
+
 </style>
 
 </head>
@@ -90,7 +128,7 @@ table, tr, td {
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-           <p style="height: 500px;"> ${selectedBoard.boardContent}</p>
+           <p style="height: 300px;"> ${selectedBoard.boardContent}</p>
          </tr>
       </table>
    </div>
@@ -98,12 +136,6 @@ table, tr, td {
 
    <c:if test="${login_memberVo.memberNo == selectedBoard.memberNo }">
    </c:if>
-
-   <%--    <c:if test="${login_memberVo.memberAuth == 'A'}"> --%>
-   <!--  <div style="text-align: right;"> -->
-   <%--    <a href="../board/delete.do?boardNo=${selectedBoard.boardNo }">삭제</a> --%>
-   <!--  </div> -->
-   <%--    </c:if> --%>
 
    <div style="text-align: right;">
       <table>
@@ -128,11 +160,97 @@ table, tr, td {
 
       </table>
    </div>
+   
+<!--    데이터확인 -->
+   <div> 
    <%--    <a>작성자 회원번호 : ${selectedBoard.memberNo} </a> --%>
    <%--    <a>로그인 회원번호 : ${login_memberVo.memberNo}</a> --%>
    <%--    <a>게시글 글 번호 : ${selectedBoard.boardNo}</a> --%>
    <!-- 데이터가 미심쩍을때 확인 바로바로 -->
+	</div>	
+	
 
+	<div>
+		<span>덧글 [${commentTotCount}]</span>
+		<c:forEach var="commentVo" items="${commentList}">
+		<div style="border: 1px solid #EEEFF1;">
+		<span style="border: 1px solid #EEEFF1;">${commentVo.memberName}</span>
+		<span>${commentVo.comments}</span>
+		<span><fmt:formatDate value="${commentVo.creDate}" pattern="yyyy.M.dd hh:mm:ss" /></span>
+		<button onclick="updateBtn(${commentVo.commentNo});">[수정]</button>
+		</div>
+		<div id="hiddenDiv">
+			<form id="update${commentVo.commentNo}" hidden="hidden" action="" method="post">
+						<input type="hidden" name="boardNo" value="${selectedBoard.boardNo}">
+						<input type="hidden" name="memberNo" value="${login_memberVo.memberNo}">
+						<input type="text" name="comments">
+						<input type="button" value="수정">
+					</form>
+		</div>
+		</c:forEach>
+	</div>
+	
+	
+	
+	<table>
+		<tr>
+			<td>덧글 [${commentTotCount}]</td>
+		</tr>
+		<c:forEach var="commentVo" items="${commentList}">
+		<tr>
+			<td>${commentVo.memberName}</td>
+			<td>${commentVo.comments}</td>
+			<td>
+				<span><fmt:formatDate value="${commentVo.creDate}" pattern="yyyy.M.dd hh:mm:ss" />
+				<c:if test="${commentVo.memberNo == login_memberVo.memberNo}">
+               	<a href="./commentDeleteOne.do?commentNo=${commentVo.commentNo}&boardNo=${selectedBoard.boardNo}">[X]</a>
+               		<button onclick="updateBtn(${commentVo.commentNo});"
+               		id="updateBtn">[수정]</button>
+               </c:if></span>               
+            </td>
+		</tr>
+		<tr>
+			<td colspan="3"> 
+			
+<!-- 			[comment update] -->
+				<div class="hideTag">
+					<form id="hideForm${commentVo.commentNo}" hidden="hidden" action="" method="post">
+						<input type="hidden" name="boardNo" value="${selectedBoard.boardNo}">
+						<input type="hidden" name="memberNo" value="${login_memberVo.memberNo}">
+						<input type="text" name="comments">
+						<input type="button" value="수정">
+					</form>
+				</div>
+			</td>
+		</tr>
+		</c:forEach>
+	
+	</table>
+	
+<!-- 	덧글입력테이블 -->
+
+	<c:if test="${login_memberVo != null}">
+	
+		<form action="../board/commentInsertOne.do" method="post">
+	<table id="commentInsert" >
+		<tr>
+			<td>${login_memberVo.memberName}</td>
+			<td>
+			<input type="hidden" name="boardNo" value="${selectedBoard.boardNo}">
+			<input type="hidden" name="memberNo" value="${login_memberVo.memberNo}">
+			<input type="text" name="comments" placeholder="덧글을 입력해 주세요"></td>
+			<td><input type="submit" value="등록"></td>
+		</tr>
+	</table>
+		</form>
+	
+	</c:if>
+	<c:if test="${login_memberVo == null}">
+		<div>
+			<a>로그인 후 덧글 기능 이용이 가능합니다</a>
+		</div>
+	</c:if>	
+	
    <table id="subTable">
       <tr>
          <td style="width: 100px;">이전 글</td>
@@ -162,7 +280,9 @@ table, tr, td {
 
          <td>${nextBoard.name}</td>
          <td><fmt:formatDate value="${nextBoard.boardCreDate}"
-               pattern="MM/dd" /></td>
+               pattern="MM/dd" />
+               
+               </td>
       </tr>
    </table>
 

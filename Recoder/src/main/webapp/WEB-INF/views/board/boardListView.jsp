@@ -50,7 +50,12 @@ td {
       <c:forEach var="boardVo" items="${boardList}">
          <tr>
             <td style="text-align: center;">${boardVo.boardNo}</td>
-            <td><a href="./listOne.do?boardNo=${boardVo.boardNo}">${boardVo.boardTitle}</a></td>
+            <td><a href="./listOne.do?boardNo=${boardVo.boardNo}">
+            ${boardVo.boardTitle} 
+            <c:if test="${boardVo.commentTotCount != 0}">
+           [${boardVo.commentTotCount}]
+            </c:if>
+            </a></td>
             <td style="text-align: center;">${boardVo.name}</td>
             <td style="text-align: center;"><fmt:formatDate
                   value="${boardVo.boardCreDate}" pattern="M/dd" /></td>

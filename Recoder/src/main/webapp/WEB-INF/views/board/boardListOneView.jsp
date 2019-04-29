@@ -48,6 +48,9 @@
 // 		$('.hideTag').show();
 // 		$('#updateForm').show();
 // 	})
+   
+   
+	})
      function boardOneUpdate(){
         location.href='./updateOne.do?boardNo=${selectedBoard.boardNo}';
      }
@@ -66,9 +69,6 @@
       location.href='./list.do';
       
    }
-   
-   
-	})
      
 
    

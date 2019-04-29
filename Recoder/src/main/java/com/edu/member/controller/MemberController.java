@@ -79,8 +79,10 @@ public class MemberController {
 	public String memberListOne(int no, Model model) {
 		log.debug("Welcome memberListOne enter! - {}", no);
 
-		Map<String, Object> map = memberService.memberSelectOne(no);
-		MemberVo memberVo = (MemberVo) map.get("memberVo");
+//		Map<String, Object> map = memberService.memberSelectOne(no);
+//		MemberVo memberVo = (MemberVo) map.get("memberVo");
+		
+		MemberVo memberVo = memberService.memberSelectOne(no);
 
 		model.addAttribute("memberVo", memberVo);
 
@@ -120,7 +122,6 @@ public class MemberController {
 			// 회원이 존재한다면 세션에 담고
 			// 회원 전체 조회 페이지로 이동
 			session.setAttribute("login_memberVo", memberVo);
-	
 			session.setAttribute("_memberInfoVo", memberInfoVo);
 			
 			viewUrl = "redirect:/common/index.do";
@@ -129,6 +130,8 @@ public class MemberController {
 			
 			// 회원이 존재한다면 세션에 담고 // 회원 전체 조회 페이지로 이동
 			session.setAttribute("login_memberVo", memberVo);
+			session.setAttribute("_memberInfoVo", memberInfoVo);
+			
 			viewUrl = "redirect:/diet/list.do";
 		} else {
 			viewUrl = "/auth/loginfail";
@@ -192,9 +195,11 @@ public class MemberController {
 	public String memberUpdate(@RequestParam(value = "memberNo") int no, Model model) {
 		log.debug("Welcome memberUpdate enter! - {}", no);
 
-		Map<String, Object> map = memberService.memberSelectOne(no);
-
-		MemberVo memberVo = (MemberVo) map.get("memberVo");
+//		Map<String, Object> map = memberService.memberSelectOne(no);
+//
+//		MemberVo memberVo = (MemberVo) map.get("memberVo");
+		
+		MemberVo memberVo = memberService.memberSelectOne(no);
 
 		model.addAttribute("memberVo", memberVo);
 

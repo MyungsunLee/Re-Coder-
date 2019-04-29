@@ -34,15 +34,15 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Map<String, Object> memberSelectOne(int no) {
+	public MemberVo memberSelectOne(int no) {
 		// TODO Auto-generated method stub
 
-		Map<String, Object> resultMap = new HashMap<String, Object>();
+//		Map<String, Object> resultMap = new HashMap<String, Object>();
 
 		MemberVo memberVo = memberDao.memberSelectOne(no);
-		resultMap.put("memberVo", memberVo);
+//		resultMap.put("memberVo", memberVo);
 
-		return resultMap;
+		return memberVo;
 	}
 
 	@Override

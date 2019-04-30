@@ -10,27 +10,24 @@
 table {
    width: 750px;
    margin: auto;
+   color: #198556;
 }
 
-.topTd {
-   text-align: center;
-   background-color: #EEEFF1;
+th {
+   background-color: #59d393;
+   color: black;
 }
 
-td {
-   border-bottom: 1px solid #EEEFF1;
+#inputform input, #inputform textarea{
+/*    border-bottom: 1px solid #eee; */
+border: 1px solid #198556;
+border-radius: 5px;
+outline: none;
 }
 
-#divTag, #divTag>form {
-   padding-top: 30px;
-   margin: auto;
-   text-align: center;
-}
-</style>
-<style type="text/css">
-table {
-   margin: auto;
-   text-align: center;
+a {
+	text-decoration: none;
+	color: #198556;
 }
 
 #textLength{
@@ -102,18 +99,9 @@ table {
          	</td>
          </tr>
          <tr>
-<<<<<<< HEAD
             <td style="text-align: right;"><input type="submit" value="글쓰기"></td>
             <td><a id="textLength">2000</a></td>
 <%--             <td><button onclick= "location='../board/listOne.do?boardNo=${selectedBoard.boardNo}'"> 뒤로가기</button></td> --%>
-=======
-            <td><input type="submit" value="글쓰기"></td>
-            <td><a id="textLength">2000</a>
-               <button   onclick= "location='../board/listOne.do?boardNo=${selectedBoard.boardNo}'">
-                     뒤로가기</button>
-            </td>
->>>>>>> branch 'master' of https://github.com/MyungsunLee/Re-Coder-.git
-         </tr>
       </table>
    </form>
 </body>

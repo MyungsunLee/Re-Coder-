@@ -1,5 +1,9 @@
 package com.edu.member.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,6 +19,7 @@ import com.edu.member.service.MemberService;
 import com.edu.member.vo.MemberVo;
 import com.edu.memberInfo.service.MemberInfoService;
 import com.edu.memberInfo.vo.MemberInfoVo;
+import com.edu.util.Paging;
 
 /**
  * @author TJ
@@ -31,15 +36,43 @@ public class MemberController {
 	private MemberInfoService memberInfoService;
 
 	// 조회
-//	@RequestMapping(value = "/member/list.do", method = { RequestMethod.GET, RequestMethod.POST })
-//	public String memberList(Model model) {
-//
-//		List<MemberVo> memberList = memberService.memberList();
-//
-//		model.addAttribute("memberList", memberList);
-//
-//		return "member/memberListView";
-//	}
+	@RequestMapping(value = "/member/list.do", 
+			method = { RequestMethod.GET, RequestMethod.POST })
+	public String memberList(
+			@RequestParam(defaultValue="1")int curPage,
+			@RequestParam(defaultValue="")String searchOption,
+			@RequestParam(defaultValue="")String keyword,
+			@RequestParam(defaultValue="noAscending")String order,
+			Model model) {
+
+		log.debug("Welcome MemberController memberList for Admisistrator !");
+		
+		
+		int totalCount = memberService.memberCountTotal(searchOption, keyword);
+		
+		
+		Paging memberPaging = new Paging(totalCount, curPage);
+		
+		int start = memberPaging.getPageBegin();
+		int end = memberPaging.getPageEnd();
+		
+		List<MemberVo> memberList = 
+				memberService.memberSelectList(searchOption, keyword, start, end, order);
+
+		Map<String, Object> pagingMap = new HashMap<>();
+		pagingMap.put("totalCount", totalCount);
+		pagingMap.put("memberPaging", memberPaging);
+		
+		
+		
+		model.addAttribute("memberList", memberList);
+		model.addAttribute("paging",pagingMap);
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("searchOption",searchOption);
+		
+		
+		return "admin/memberListView";
+	}
 
 	// 1명 조회
 	@RequestMapping(value = "/member/listOne.do")
@@ -75,24 +108,27 @@ public class MemberController {
 //		log.debug("Welcome MemberController loginCtr! " + memberVo1.getMemberEmail() + ", " + memberVo1.getMemberPassword());
 
 		MemberVo memberVo = memberService.memberExist(memberVo1);
-		MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberVo.getMemberNo());
+//		MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberVo.getMemberNo());
 	
 		
 		
 		String viewUrl = "";
 		if (memberVo != null && memberVo.getMemberAuth() == 'U') {
+			MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberVo.getMemberNo());
 
 			// 회원이 존재한다면 세션에 담고
 			// 회원 전체 조회 페이지로 이동
 			session.setAttribute("login_memberVo", memberVo);
-	
 			session.setAttribute("_memberInfoVo", memberInfoVo);
 			
 			viewUrl = "redirect:/common/index.do";
 		} else if (memberVo != null && memberVo.getMemberAuth() == 'A') {
+			MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberVo.getMemberNo());
 			
 			// 회원이 존재한다면 세션에 담고 // 회원 전체 조회 페이지로 이동
 			session.setAttribute("login_memberVo", memberVo);
+			session.setAttribute("_memberInfoVo", memberInfoVo);
+			
 			viewUrl = "redirect:/diet/list.do";
 		} else {
 			viewUrl = "/auth/loginfail";
@@ -158,7 +194,6 @@ public class MemberController {
 
 		MemberVo memberVo = memberService.memberSelectOne(no);
 
-
 		model.addAttribute("memberVo", memberVo);
 
 		return "redirect:/member/update.do";
@@ -211,21 +246,21 @@ public class MemberController {
 		return "redirect:/member/info.do";
 	}
 
-//	@RequestMapping(value = "/member/deleteCtr.do", method = RequestMethod.GET)
-//	public String memberDelete(int no, Model model) {
-//		log.debug("Welcome MemberController memberDelete" + " 회원삭제 처리! - {}", no);
-//
-//		try {
-//			memberService.memberDelete(no);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			//실패시 처리 페이지로 이동
-//		}
-//		
-//		//메인페이지
-//		return "../Recoder/";
-//	}
+	@RequestMapping(value = "/member/deleteCtr.do", method = RequestMethod.GET)
+	public String memberDelete(int memberNo, Model model) {
+		log.debug("Welcome MemberController memberDelete" + " 회원삭제 처리! - {}", memberNo);
+
+		try {
+			memberService.memberDeleteOne(memberNo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//실패시 처리 페이지로 이동
+		}
+		
+		//메인페이지
+		return "../Recoder/member/list.do";
+	}
 
 	/*
 	 * 관리자 컨트롤러

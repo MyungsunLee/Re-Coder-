@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.edu.board.vo.BoardVo;
+import com.edu.board.vo.CommentVo;
 
 
 public interface BoardDao {
@@ -27,5 +28,24 @@ public interface BoardDao {
    public List<Map<String, Object>> fileSelectList(int no);
    public int fileDelete(int no);
    public Map<String, Object> fileSelectStoredFileName(int no);
-
+   
+   //덧글 관리
+   public List<CommentVo> commentSelectList(int boardNo);
+   public int commentInsertOne(CommentVo commentVo);
+   public int commentUpdateOne(CommentVo commentVo);
+   
+   //덧글1개 삭제
+   public int commentDeleteOne(int commentNo);
+   //게시판 삭제시 관련댓글 모두 삭제
+   public int commentDeleteList(int boardNo);
+   
+   public int commentTotalList(int boardNo);
+   
+   
+   
+   
+   
+   
+   
+   
 }

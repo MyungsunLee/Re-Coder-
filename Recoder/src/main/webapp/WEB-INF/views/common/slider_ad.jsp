@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
-#slider_ad {
-position: absolute;
-margin-left: -430px;
-margin-top: 130px;
-width: 400px;
-} 
+/* #slider_ad { */
+/* position: absolute; */
+/* left: 0; */
+/* top: 0; */
+/* width: 100px; */
+/* }  */
 
 #wrap {
 	position: absolute;
 	top: 0;
-	left: 0;
-	width: 400px;
-	height: 300px;
+	left: 115px;
+	width: 100px;
+	height: 100px;
 	border: 1px solid black;
 	overflow: hidden;
 }
@@ -22,21 +22,25 @@ width: 400px;
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 2500px;
+	width: 600px;
 }
 
 #slider img{
-	width: 400px;
-	height: 300px;
+	width: 100px;
+	height: 100px;
 }
 
 #control {
-	position: absolute;
-	width: 400px;
-	top: 300px;
-	left: 0;
-	text-align: center;
-	
+position: absolute;
+top: 100px;
+left: 90px;
+text-align: center;
+
+}
+
+#control a {
+color: #198556;
+font-family: 'Noto Sans KR', sans-serif;
 }
 
 </style>
@@ -55,13 +59,13 @@ $(document).ready(function() {
 	    if (currentPosition > 5) {
 	      currentPosition = 0;
 	    }
-	    $('#slider').animate({ left: -400 * currentPosition });
+	    $('#slider').animate({ left: -100 * currentPosition });
 	  }, 3000);
 
   $('#buttons a').click(function() {
     var index = $(this).index();
     currentPosition = index;
-    $('#slider').animate({ left: -400 * currentPosition });
+    $('#slider').animate({ left: -100 * currentPosition });
     return false;
   });
 
@@ -70,7 +74,7 @@ $(document).ready(function() {
     if (currentPosition < 0) {
       currentPosition = 5;
     }
-    $('#slider').animate({ left: -400 * currentPosition });
+    $('#slider').animate({ left: -100 * currentPosition });
 
     return false;
   });
@@ -80,7 +84,7 @@ $(document).ready(function() {
     if (currentPosition > 5) {
       currentPosition = 0;
     }
-    $('#slider').animate({ left: -400 * currentPosition });
+    $('#slider').animate({ left: -100 * currentPosition });
 
     return false;
   });
@@ -89,7 +93,7 @@ $(document).ready(function() {
 </script>
 
 
-	<div id="slider_ad">
+<!-- 	<div id="slider_ad"> -->
 		<div id="wrap">
 			<span id="slider">
 				<img src="/Recoder/resources/images/1.jpg"/><img src="/Recoder/resources/images/2.jpg"/><img src="/Recoder/resources/images/3.jpg"/><img src="/Recoder/resources/images/4.jpg"/><img src="/Recoder/resources/images/5.jpg"/><img src="/Recoder/resources/images/6.jpg"/>
@@ -107,7 +111,7 @@ $(document).ready(function() {
 			</span>
 			<a href="#" id="right">다음</a>
 		</div>
-	</div>
+<!-- 	</div> -->
 
 
 

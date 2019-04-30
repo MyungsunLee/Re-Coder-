@@ -11,6 +11,19 @@ public class MemberVo {
 	private Date memberCreDate;
 	private String memberPassword;
 	
+	
+	
+	public MemberVo(int memberNo, char memberAuth, String memberEmail, String memberName, Date memberCreDate,
+			String memberPassword) {
+		super();
+		this.memberNo = memberNo;
+		this.memberAuth = memberAuth;
+		this.memberEmail = memberEmail;
+		this.memberName = memberName;
+		this.memberCreDate = memberCreDate;
+		this.memberPassword = memberPassword;
+	}
+
 	public String getMemberPassword() {
 		return memberPassword;
 	}

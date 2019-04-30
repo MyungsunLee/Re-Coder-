@@ -13,7 +13,8 @@ public class DietServiceImpl implements DietService {
 
 	@Autowired
 	public DietDao dietDao;
-
+	
+	
 	@Override
 	public List<DietVo> dietSelectList() {
 		// TODO Auto-generated method stub
@@ -38,7 +39,17 @@ public class DietServiceImpl implements DietService {
 		return dietDao.dietDelete(dietNo);
 	}
 
-	
+	@Override
+	public DietVo selectCarbohydrate() {
+		// TODO Auto-generated method stub
+		return dietDao.selectCarbohydrate();
+	}
+
+	@Override
+	public DietVo selectProtein() {
+		// TODO Auto-generated method stub
+		return dietDao.selectProtein();
+	}
 
 	
 }

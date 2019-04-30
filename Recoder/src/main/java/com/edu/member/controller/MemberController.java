@@ -1,7 +1,5 @@
 package com.edu.member.controller;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -48,8 +46,7 @@ public class MemberController {
 	public String memberListOne(int no, Model model) {
 		log.debug("Welcome memberListOne enter! - {}", no);
 
-		Map<String, Object> map = memberService.memberSelectOne(no);
-		MemberVo memberVo = (MemberVo) map.get("memberVo");
+		MemberVo memberVo = memberService.memberSelectOne(no);
 
 		model.addAttribute("memberVo", memberVo);
 
@@ -159,9 +156,8 @@ public class MemberController {
 	public String memberUpdate(@RequestParam(value = "memberNo") int no, Model model) {
 		log.debug("Welcome memberUpdate enter! - {}", no);
 
-		Map<String, Object> map = memberService.memberSelectOne(no);
+		MemberVo memberVo = memberService.memberSelectOne(no);
 
-		MemberVo memberVo = (MemberVo) map.get("memberVo");
 
 		model.addAttribute("memberVo", memberVo);
 

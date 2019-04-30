@@ -1,3 +1,4 @@
+<%@page import="com.edu.diet.vo.DietVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -33,22 +34,14 @@ table, th, tr, td{
 	border-collapse: collapse;
 }
 </style>
-<script type="text/javascript">
-
-	function selfFnc() {
-		location.href="../diet/selfChoice.do";
-	}
-
-	function randomFnc() {
-		location.href="../diet/randomChoice.do?memberNo=${login_memberVo.memberNo}";
-	}
-</script>
 </head>
 <body>
 <jsp:include page="../common/header.jsp"/>
 <c:set var="_memberInfoActivity" value="${_memberInfoVo.memberInfoActivity}"/><!-- 기초대사량 -->
 <c:set var="_memberInfoCal" value="${_memberInfoVo.memberInfoCal}"/>
+<input type="hidden" name="memberNo" value="${_memberInfoVo.memberNo}">
 <div class="kcalForm">
+<form action="../diet/randomChoice.do?memberNo=${_memberInfoVo.memberNo}" method="post">
 	<table>
 		<tr>
 			<th>유지 칼로리</th>
@@ -88,17 +81,26 @@ table, th, tr, td{
 				</c:when>
 			</c:choose>
 		</tr>
-		<c:forEach var="dietVo" items="${dietList}">
+		
+		<c:set var="dietTypeC" value="C" />
+		<c:set var="dietTypeP" value="P" />
+		<c:forEach var="_dietVoC" items="${carbCollection}">
 		<tr>
-			<th>식품명</th>
-			<td colspan="3" style="text-align: center;">${dietVo.dietName} ${dietVo.dietCal } kcal</td>
+			<th>탄수화물</th>
+			<td colspan="3" style="text-align: center;">${_dietVoC.dietVoC.dietName} ${_dietVoC.dietVoC.dietCal} kcal</td>
+		</tr>
+		</c:forEach>
+		<c:forEach var="_dietVoP" items="${proCollection}">
+		<tr>
+			<th>단백질</th>
+			<td colspan="3" style="text-align: center;">${_dietVoP.dietVoP.dietName} ${_dietVoP.dietVoP.dietCal} kcal</td>
 		</tr>
 		</c:forEach>
 	</table>
-	<input type="button"  value="직접 선택" class="submit-btn" onclick="selfFnc();">
-	<input type="button" value="랜덤 선택" class="submit-btn" onclick="randomFnc();">
+	<input type="submit" value="다시하기" class="submit-btn">
+</form>	
 </div>
-
+${dietVoCMap.dietVoC.dietType}
 
 </body>
 </html>

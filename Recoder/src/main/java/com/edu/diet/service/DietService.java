@@ -10,4 +10,6 @@ public interface DietService {
 	public int dietInsertOne(DietVo dietVo);
 	public int dietUpdateOne(DietVo dietVo);
 	public int dietDelete(int dietNo);
+	public DietVo selectCarbohydrate();
+	public DietVo selectProtein();
 }

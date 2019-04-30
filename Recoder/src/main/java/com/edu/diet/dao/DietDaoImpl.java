@@ -40,8 +40,16 @@ public class DietDaoImpl implements DietDao {
 		return sqlSession.delete(namespace + "dietDelete" , dietNo);
 	}
 
+	@Override
+	public DietVo selectCarbohydrate() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "selectCarbohydrate");
+	}
 
-
-	
+	@Override
+	public DietVo selectProtein() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "selectProtein");
+	}
 
 }

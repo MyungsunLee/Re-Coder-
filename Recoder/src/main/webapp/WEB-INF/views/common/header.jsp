@@ -25,7 +25,7 @@
 
 <c:if test="${sessionScope.login_memberVo != null }">
 	<input type="hidden" name="memberNo" value="${login_memberVo.memberNo}">
-	<input type="hidden" name="msemberNo" value="${_memberInfoVo.memberNo}">
+	<input type="hidden" name="memberNo" value="${_memberInfoVo.memberNo}">
 	<div id="login">
 		<a href="../member/info.do"><span>${login_memberVo.memberName}</span></a>
 		<a href="../auth/logout.do"><span>로그아웃</span></a>

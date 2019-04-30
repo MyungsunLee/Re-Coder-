@@ -60,5 +60,14 @@ public class DietVo {
 	public void setDietCal(int dietCal) {
 		this.dietCal = dietCal;
 	}
+
+
+	@Override
+	public String toString() {
+		return "DietVo [dietNo=" + dietNo + ", dietType=" + dietType + ", dietName=" + dietName + ", dietCal=" + dietCal
+				+ "]";
+	}
+	
+	
 	
 }

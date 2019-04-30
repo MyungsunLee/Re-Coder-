@@ -1,8 +1,5 @@
 package com.edu.member.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,15 +30,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Map<String, Object> memberSelectOne(int no) {
+	public MemberVo memberSelectOne(int no) {
 		// TODO Auto-generated method stub
 
-		Map<String, Object> resultMap = new HashMap<String, Object>();
 
 		MemberVo memberVo = memberDao.memberSelectOne(no);
-		resultMap.put("memberVo", memberVo);
 
-		return resultMap;
+		return memberVo;
 	}
 
 	@Override

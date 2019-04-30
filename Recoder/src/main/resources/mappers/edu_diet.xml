@@ -5,7 +5,7 @@
 
 	<resultMap type="dietVo" id="dietResultMap">
 		<id column="DIET_NO" property="dietNo" />
-		<result column="DIET_TYPE" property="dietType" />
+		<result column="DIET_TYPE" property="dietType" javaType="java.lang.String" />
 		<result column="DIET_NAME" property="dietName" />
 		<result column="DIET_CAL" property="dietCal" />
 	</resultMap>
@@ -38,5 +38,29 @@
 		WHERE DIET_NO = #{dietNo}
 	</delete>
 
+	<select id="selectCarbohydrate" 
+		resultMap="dietResultMap">
+		<![CDATA[ 
+		SELECT R.DIET_NO, R.DIET_TYPE, R.DIET_NAME, R.DIET_CAL
+		FROM (SELECT *
+	    	  FROM DIET
+		      WHERE DIET_TYPE='C'
+		      ORDER BY DBMS_RANDOM.VALUE) R
+		WHERE ROWNUM < 2
+		]]>
+	</select>
+	
+	<select id="selectProtein" 
+		resultMap="dietResultMap">
+		<![CDATA[ 
+		SELECT R.DIET_NO, R.DIET_TYPE, R.DIET_NAME, R.DIET_CAL
+		FROM (SELECT *
+	    	  FROM DIET
+		      WHERE DIET_TYPE='P'
+		      ORDER BY DBMS_RANDOM.VALUE) R
+		WHERE 
+			ROWNUM < 2
+		]]>
+	</select>
 
 </mapper>

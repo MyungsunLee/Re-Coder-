@@ -1,6 +1,5 @@
 package com.edu.board.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -89,6 +88,8 @@ public class BoardController {
 	  List<CommentVo> commentList = boardService.commentSelectList(boardNo);
 	  
 	  BoardVo boardVo = (BoardVo)map.get("selectedBoard");
+	  
+	  @SuppressWarnings("unchecked")
 	  List<Map<String,Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
 	  
 	  int commentTotalCount = boardService.commentTotalList(boardNo);
@@ -189,7 +190,7 @@ public class BoardController {
       log.debug("Welcome BoardController updateOneCtr! boardNo : {} {}",boardVo,fileIdx);
       log.debug("                여백의 미");
       log.debug("updl 값 : {}", boardVo.getUpdl());
-      int resultNum = 0;
+//      int resultNum = 0;
 
       String content = boardVo.getBoardContent();
       
@@ -197,7 +198,7 @@ public class BoardController {
       boardVo.setBoardContent(content);
       
       try {
-		resultNum = boardService.boardUpdateOne(boardVo, multipartHttpServletRequest, fileIdx);
+		boardService.boardUpdateOne(boardVo, multipartHttpServletRequest, fileIdx);
 	} catch (Exception e) {
 		// TODO: handle exception
 		e.printStackTrace();
@@ -258,6 +259,8 @@ public class BoardController {
 		  List<CommentVo> commentList = boardService.commentSelectList(boardNo);
 		  
 		  BoardVo boardVo = (BoardVo)map.get("selectedBoard");
+		  
+		  @SuppressWarnings("unchecked")
 		  List<Map<String,Object>> fileList = (List<Map<String, Object>>)map.get("fileList");
 		  
 		  int commentTotalCount = boardService.commentTotalList(boardNo);

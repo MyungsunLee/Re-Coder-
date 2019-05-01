@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
@@ -8,125 +8,131 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
-   href="/Recoder//resources/css/styles.css">
+	href="/Recoder//resources/css/styles.css">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR"
-   rel="stylesheet">
+	rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon"
-   rel="stylesheet">
+	rel="stylesheet">
 <style type="text/css">
 table {
-   width: 680px;
-   margin: auto;
+	width: 750px;
+	margin: auto;
+	color: #198556;
 }
 
-.topTd {
-   text-align: center;
-   background-color: #EEEFF1;
+th {
+	background-color: #59d393;
+	color: black;
 }
 
 td {
-   border-bottom: 1px solid #EEEFF1;
+	border-bottom: 1px solid #eee;
+}
+
+a {
+	text-decoration: none;
+	color: #198556;
 }
 
 #divTag, #divTag>form {
-   padding-top: 30px;
-   margin: auto;
-   text-align: center;
+	padding-top: 30px;
+	margin: auto;
+	text-align: center;
 }
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	
 </script>
 </head>
 <body>
-   <jsp:include page="../common/header.jsp"></jsp:include>
+	<jsp:include page="../common/header.jsp"></jsp:include>
 
-   <table>
-      <tr>
-         <td class="topTd" style="width: 50px;">번호</td>
-         <td class="topTd">제목</td>
-         <td class="topTd">작성자</td>
-         <td class="topTd" style="width: 100px;">작성일</td>
-      </tr>
-      <c:forEach var="boardVo" items="${boardList}">
-         <tr>
-            <td style="text-align: center;">${boardVo.boardNo}</td>
-            <td><a href="./listOne.do?boardNo=${boardVo.boardNo}">
-            ${boardVo.boardTitle} 
-            <c:if test="${boardVo.commentTotCount != 0}">
+	<table>
+		<tr>
+			<th style="width: 100px;">번호</th>
+         <th style="width: 380px;">제목</th>
+         <th style="width: 100px;">작성자</th>
+         <th style="width: 170px;">작성일</th>
+		</tr>
+		<c:forEach var="boardVo" items="${boardList}">
+			<tr>
+				<td style="text-align: center;">${boardVo.boardNo}</td>
+				<td><a href="./listOne.do?boardNo=${boardVo.boardNo}">
+						${boardVo.boardTitle} <c:if test="${boardVo.commentTotCount != 0}">
            [${boardVo.commentTotCount}]
             </c:if>
-            </a></td>
-            <td style="text-align: center;">${boardVo.name}</td>
-            <td style="text-align: center;"><fmt:formatDate
-                  value="${boardVo.boardCreDate}" pattern="M/dd" /></td>
-         </tr>
+				</a></td>
+				<td style="text-align: center;">${boardVo.name}</td>
+				<td style="text-align: center;"><fmt:formatDate
+						value="${boardVo.boardCreDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+			</tr>
 
-      </c:forEach>
-   </table>
+		</c:forEach>
+	</table>
 
 
-<jsp:include page="/WEB-INF/views/common/paging.jsp">
-      <jsp:param value="${paging}" name="paging"/>
-   </jsp:include>
-   
-   
-<form action="./list.do" id="pagingForm" method="post">
-      <input type="hidden" id="curPage" name="curPage" 
-         value="${paging.boardPaging.curPage}">
-      <input type="hidden" name="searchOption" value="${searchOption}">
-      <input type="hidden" name="keyword" value="${keyword}">
-   </form>
+	<jsp:include page="/WEB-INF/views/common/paging.jsp">
+		<jsp:param value="${paging}" name="paging" />
+	</jsp:include>
 
-   <div style="text-align: center; margin-top: 30px;">
-      <c:if test="${keyword != ''}">
-         <a>${keyword}로 검색한 결과 </a>
-      </c:if>
-   </div>
-   <div id="divTag">
-      <table>
-         <tr>
-            <td style="border-bottom: 1px solid white;"></td>
-            <td>
-               <form action="list.do" method="post">
 
-                  <select name="searchOption" id="searchOption">
-                  	<c:if test="${searchOption == ''}">
-                     <option value="title"  selected="selected">제목</option>
-					 <option value="content">내용</option>                     
-                     <option value="name">작성자</option>
-                  	</c:if>
-                  
-                  	<c:if test="${searchOption == 'title'}">
-                     <option value="title"  selected="selected">제목</option>
-					 <option value="content">내용</option>                     
-                     <option value="name">작성자</option>
-                  	</c:if>
-                  
-                     <c:if test="${searchOption == 'content'}">
-                     <option value="title">제목</option>
-                     <option value="content" selected="selected">내용</option>                     
-                     <option value="name">작성자</option>
-                     </c:if>
-                     <c:if test="${searchOption == 'name'}">
-                     <option value="title">제목</option>
-                     <option value="content">내용</option>
-                     <option value="name" selected="selected">작성자</option>
-                     </c:if>
-                     
-                  </select> 
-                  <input type="text" name="keyword" value="${keyword}"> 
-                  <input type="submit" value="검색">
-               </form>
-            </td>
-            <td style="border-bottom: 1px solid white;">
-                <c:if test="${sessionScope.login_memberVo != null}"> 
-                   <button onclick="location.href='/Recoder/board/addOne.do?memberNo=${login_memberVo.memberNo}'">글쓰기</button>
-                </c:if> 
-               
-            </td>
-            <td><input type="hidden" id="searchOptionVal" value="${searchOption}"></td>
-         </tr>
-      </table>
-   </div>
+	<form action="./list.do" id="pagingForm" method="post">
+		<input type="hidden" id="curPage" name="curPage"
+			value="${paging.boardPaging.curPage}"> <input type="hidden"
+			name="searchOption" value="${searchOption}"> <input
+			type="hidden" name="keyword" value="${keyword}">
+	</form>
+
+	<div style="text-align: center; margin-top: 30px;">
+		<c:if test="${keyword != ''}">
+			<a>${keyword}로 검색한 결과 </a>
+		</c:if>
+	</div>
+	<div id="divTag">
+		<table>
+			<tr>
+				<td style="border-bottom: 1px solid white;"></td>
+				<td>
+					<form action="list.do" method="post">
+
+						<select name="searchOption" id="searchOption">
+							<c:if test="${searchOption == ''}">
+								<option value="title" selected="selected">제목</option>
+								<option value="content">내용</option>
+								<option value="name">작성자</option>
+							</c:if>
+
+							<c:if test="${searchOption == 'title'}">
+								<option value="title" selected="selected">제목</option>
+								<option value="content">내용</option>
+								<option value="name">작성자</option>
+							</c:if>
+
+							<c:if test="${searchOption == 'content'}">
+								<option value="title">제목</option>
+								<option value="content" selected="selected">내용</option>
+								<option value="name">작성자</option>
+							</c:if>
+							<c:if test="${searchOption == 'name'}">
+								<option value="title">제목</option>
+								<option value="content">내용</option>
+								<option value="name" selected="selected">작성자</option>
+							</c:if>
+
+						</select> <input type="text" name="keyword" value="${keyword}"> <input
+							type="submit" value="검색">
+					</form>
+				</td>
+				<td style="border-bottom: 1px solid white;"><c:if
+						test="${sessionScope.login_memberVo != null}">
+						<button
+							onclick="location.href='/Recoder/board/addOne.do?memberNo=${login_memberVo.memberNo}'">글쓰기</button>
+					</c:if></td>
+				<td><input type="hidden" id="searchOptionVal"
+					value="${searchOption}"></td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>

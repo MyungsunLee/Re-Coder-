@@ -203,11 +203,11 @@ public class DietController {
 				break;
 			}
 			
-//			model.addAttribute("_carbKcal", sumCarbKcal);		// 세션에 담고 보내벌이긔
-//			model.addAttribute("_dietVoC", dietVoC);
 			model.addAttribute("dietVoCMap", dietVoCMap);
+			
 		}
 		log.debug("sumCarbKcal ================================================================={}", sumCarbKcal);
+		
 		model.addAttribute("carbCollection", carbCollection);
 		
 		// 단백질

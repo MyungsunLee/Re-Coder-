@@ -19,7 +19,17 @@
    src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
    
 </script>
-<style></style>
+<style>
+table {
+	margin-left: auto;
+	margin-right: auto;
+}
+table, th, tr, td{
+	
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+</style>
 </head>
 <body>
 
@@ -43,7 +53,8 @@
 	</tr>
 	</c:forEach>
 	</table>
-
+	 <jsp:include page="../admin/paging.jsp"></jsp:include>
+<div style="text-align: center; margin-top: 30px;">
 	<form action="../member/list.do" method="post">
 		
 		 <select name="searchOption" id="searchOption">
@@ -74,6 +85,7 @@
           <input type="text" name="keyword" value="${keyword}">
           <input type="submit" value="검색">
 	</form>
+	</div>
 
 	
 	

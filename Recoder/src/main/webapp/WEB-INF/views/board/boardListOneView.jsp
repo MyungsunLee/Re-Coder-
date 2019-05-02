@@ -233,7 +233,7 @@ a {
          
          <div class="update" style="display:none;">
             <form action="commentUpdateOne.do" method="post">
-<%--                <input type="hidden" name="boardNo" value="${selectedBoard.boardNo}"> --%>
+               <input type="hidden" name="boardNo" value="${selectedBoard.boardNo}">
 <%--                <input type="hidden" name="memberNo" value="${login_memberVo.memberNo}"> --%>
 <%--                <input type="hidden" name="commentMemberVo" value="${comment.memberNo}">    --%>
                <input type="hidden" name="commentNo" value="${commentVo.commentNo}">

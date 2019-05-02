@@ -261,9 +261,7 @@
 			COMMENTS = #{comments}
 		</set>
 		
-		WHEERE BOARD_NO = #{boardNo}
-		AND MEMBER_NO = #{memberNo}
-		
+		WHERE COMMENT_NO = #{commentNo}
 	</update>
 
 <!-- 	d -->

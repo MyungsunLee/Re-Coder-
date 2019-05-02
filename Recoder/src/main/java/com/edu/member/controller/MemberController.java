@@ -259,7 +259,7 @@ public class MemberController {
 		}
 		
 		//메인페이지
-		return "../Recoder/member/list.do";
+		return "redirect:/member/list.do";
 	}
 
 	/*

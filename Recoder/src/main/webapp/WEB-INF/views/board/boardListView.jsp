@@ -50,10 +50,10 @@ a {
 
 	<table>
 		<tr>
-			<th style="width: 100px;">번호</th>
+			<th style="width: 70px;">번호</th>
          <th style="width: 380px;">제목</th>
          <th style="width: 100px;">작성자</th>
-         <th style="width: 170px;">작성일</th>
+         <th style="width: 130px;">작성일</th>
 		</tr>
 		<c:forEach var="boardVo" items="${boardList}">
 			<tr>
@@ -65,7 +65,7 @@ a {
 				</a></td>
 				<td style="text-align: center;">${boardVo.name}</td>
 				<td style="text-align: center;"><fmt:formatDate
-						value="${boardVo.boardCreDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+						value="${boardVo.boardCreDate}" pattern="yyyy-MM-dd"/></td>
 			</tr>
 
 		</c:forEach>

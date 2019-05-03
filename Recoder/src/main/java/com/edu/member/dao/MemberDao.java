@@ -20,4 +20,6 @@ public interface MemberDao {
 		//페이징
 		public int memberCountTotal(Map<String, String> map);
 		
+		public MemberVo memberExistCheck(MemberVo memberVo);
+		
 }

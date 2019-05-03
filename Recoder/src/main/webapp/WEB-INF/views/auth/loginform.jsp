@@ -37,6 +37,8 @@ prefix="c" %>
             return false;
           }
         });
+        
+        
       });
     </script>
   </head>
@@ -52,7 +54,10 @@ prefix="c" %>
           name="memberEmail"
           class="text-field"
           placeholder="이메일"
-        /><br />
+        />
+
+        
+        <br />
         <input
           type="password"
           id="password"
@@ -60,7 +65,7 @@ prefix="c" %>
           class="text-field"
           placeholder="비밀번호"
         /><br />
-        <input type="submit" value="로그인" class="submit-btn" />
+        <a href="#"><input type="submit" value="로그인" class="submit-btn" /></a>
       </form>
 
       <div class="links">

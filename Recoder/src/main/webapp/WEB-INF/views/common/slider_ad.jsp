@@ -11,7 +11,7 @@
 #wrap {
 	position: absolute;
 	top: 0;
-	left: 115px;
+	left: 145px;
 	width: 100px;
 	height: 100px;
 	border: 1px solid black;
@@ -33,7 +33,7 @@
 #control {
 position: absolute;
 top: 100px;
-left: 90px;
+left: 117px;
 text-align: center;
 
 }

@@ -34,6 +34,29 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private MemberInfoService memberInfoService;
+	
+	
+	@RequestMapping(value = "/member/membercheck.do", method = RequestMethod.GET)
+	public String memberCheck(MemberVo memberVo1, Model model) {
+		log.debug("Welcome membermembercheck enter! - {}", memberVo1);
+
+		MemberVo memberVo = memberService.memberExistCheck(memberVo1);
+		
+		model.addAttribute("memberVo1", memberVo1);
+		model.addAttribute("memberVo", memberVo);
+		
+		String viewUrl;
+		if(memberVo == null) {
+			viewUrl = "member/memberchecksuccess";
+		}else {
+
+			viewUrl = "member/membercheckfail";
+		}
+		
+		
+
+		return viewUrl;
+	}
 
 	// 조회
 	@RequestMapping(value = "/member/list.do", 

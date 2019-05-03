@@ -153,7 +153,7 @@ a {
             <td colspan="4">
 
 
-               <p style="height: 450px; overflow: auto;">
+               <p style="height: 500px; overflow: auto;">
                   <c:choose>
                      <c:when test="${empty fileList}">
                      </c:when>
@@ -237,7 +237,7 @@ a {
 <%--                <input type="hidden" name="memberNo" value="${login_memberVo.memberNo}"> --%>
 <%--                <input type="hidden" name="commentMemberVo" value="${comment.memberNo}">    --%>
                <input type="hidden" name="commentNo" value="${commentVo.commentNo}">
-                  ㄴ<input style="width:750px; height: 30px;" type="text" name="comments" value="${commentVo.comments}">
+                  ㄴ<input style="width:673px; height: 30px;" type="text" name="comments" value="${commentVo.comments}">
                <input type="submit" value="수정">
             </form>
          </div>

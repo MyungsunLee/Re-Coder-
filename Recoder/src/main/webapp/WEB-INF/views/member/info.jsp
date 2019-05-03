@@ -17,7 +17,7 @@
     	<input type="hidden" name="memberNo" value=" ${login_memberVo.memberNo }">
     	<p class="text-field"> [이메일]   ${login_memberVo.memberEmail }</p>
         <p class="text-field">[회원 이름]  ${sessionScope.login_memberVo.memberName }</p>
-        <input type="submit" value="수정하기" class="submit-btn">
+        <a href="#"><input type="submit" value="수정하기" class="submit-btn"></a>
     </form>
   </div>
 </body>

@@ -22,6 +22,8 @@ public interface MemberService {
 	//페이징
 	public int memberCountTotal(String searchOption, String keyword);
 	
+	public MemberVo memberExistCheck(MemberVo memberVo);
+	
 	
 	
 }

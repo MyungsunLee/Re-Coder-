@@ -9,6 +9,10 @@ a {
 	text-decoration: none;
 }
 
+a:hover {
+	opacity: 0.7;
+}
+
 body {
 	/*overflow: hidden;*/
 	width: 980px;
@@ -55,7 +59,8 @@ body {
 	text-align: center;
 	font-family: 'Do Hyeon', sans-serif;
 	font-size: 24px;
-	margin: 20px;
+	margin-top: 20px;
+	margin-bottom: 10px;
 	height: 80px;
 	border-bottom: 1px solid gray;
 	

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -197,9 +198,13 @@ public class MemberController {
 
 	// 회원가입 페이지로
 	@RequestMapping(value = "/member/add.do", method = RequestMethod.GET)
-	public String memberAdd(Model model) {
+	public String memberAdd(
+			@RequestParam(defaultValue="")String memberEmail,
+			Model model) {
 		log.debug("Welcome MemberController memberAdd 페이지 이동! ");
-
+		
+		model.addAttribute("memberEmail", memberEmail);
+		
 		return "member/regiform";
 	}
 

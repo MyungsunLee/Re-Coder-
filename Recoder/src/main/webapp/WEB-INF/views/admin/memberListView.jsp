@@ -21,14 +21,25 @@
 </script>
 <style>
 table {
-	margin-left: auto;
-	margin-right: auto;
+	width: 600px;
+	margin: auto;
+	color: #198556;
 }
-table, th, tr, td{
-	
-	border: 1px solid black;
-	border-collapse: collapse;
+
+th {
+	background-color: #59d393;
+	color: black;
 }
+
+td {
+	border-bottom: 1px solid #eee;
+}
+
+a {
+	text-decoration: none;
+	color: #198556;
+}
+
 </style>
 </head>
 <body>
@@ -36,11 +47,11 @@ table, th, tr, td{
  <jsp:include page="../common/header.jsp"></jsp:include>
 	<table id="memberTable">
 		<tr>
-			<td>회원번호</td>
-			<td>이름</td>
-			<td>이메일</td>
-			<td>가입일</td>
-			<td>삭제</td>
+			<th>회원번호</th>
+			<th>이름</th>
+			<th>이메일</th>
+			<th>가입일</th>
+			<th>삭제</th>
 		</tr>
 	<c:forEach var="member" items="${memberList}">
 	<tr>
@@ -54,8 +65,15 @@ table, th, tr, td{
 	</c:forEach>
 	</table>
 	 <jsp:include page="../admin/paging.jsp"></jsp:include>
+	 
+	 	<form action="./list.do" id="pagingForm" method="post">
+		<input type="hidden" id="curPage" name="curPage"
+			value="${paging.boardPaging.curPage}"> <input type="hidden"
+			name="searchOption" value="${searchOption}"> <input
+			type="hidden" name="keyword" value="${keyword}">
+	</form>
 <div style="text-align: center; margin-top: 30px;">
-	<form action="../member/list.do" method="post">
+	<form action="../member/list.do" method="post" id="select">
 		
 		 <select name="searchOption" id="searchOption">
                   	<c:if test="${searchOption == ''}">

@@ -10,8 +10,30 @@
 <link rel="stylesheet" type="text/css" href="/Recoder/resources/css/styles.css">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
-<style>
+<!-- <style> -->
 
+<!-- /* .kcalForm{ */ -->
+<!-- /* 		margin-top: 80px; */ -->
+<!-- /* 	    width: 800px; */ -->
+<!-- /* 	    padding: 20px; */ -->
+<!-- /* 	    margin-left: auto; */ -->
+<!-- /* 	    margin-right: auto; */ -->
+	
+<!-- /* 	    background-color: #EEEFF1; */ -->
+<!-- /* 	    border-radius: 5px; */ -->
+<!-- /* 	    border: 0; */ -->
+<!-- /* 	} */ -->
+<!-- /* table { */ -->
+<!-- /* 	margin-left: auto; */ -->
+<!-- /* 	margin-right: auto; */ -->
+<!-- /* } */ -->
+<!-- /* table, th, tr, td{ */ -->
+	
+<!-- /* 	border: 1px solid black; */ -->
+<!-- /* 	border-collapse: collapse; */ -->
+<!-- /* } */ -->
+<!-- </style> -->
+<style type="text/css">
 .kcalForm{
 		margin-top: 80px;
 	    width: 800px;
@@ -24,13 +46,39 @@
 	    border: 0;
 	}
 table {
-	margin-left: auto;
-	margin-right: auto;
+	width: 650px;
+	margin: auto;
+	color: #198556;
 }
-table, th, tr, td{
-	
-	border: 1px solid black;
+
+th {
+	background-color: #59d393;
+	color: black;
+}
+
+td {
+	border-bottom: 1px solid #eee;
+}
+
+a {
+	text-decoration: none;
+	color: #198556;
+}
+
+#divTag, #divTag>form {
+	padding-top: 30px;
+	margin: auto;
+	text-align: center;
+}
+
+#dietName{
+	margin-top: 50px;
 	border-collapse: collapse;
+	
+}
+
+#dietName tr td{
+	border: 3px solid lightgrey;
 }
 </style>
 <script type="text/javascript">
@@ -88,15 +136,27 @@ table, th, tr, td{
 				</c:when>
 			</c:choose>
 		</tr>
-		<c:forEach var="dietVo" items="${dietList}">
+	</table>
+
+
+	<table id="dietName" style="width:400px;">
 		<tr>
 			<th>식품명</th>
-			<td colspan="3" style="text-align: center;">${dietVo.dietName} ${dietVo.dietCal } kcal</td>
+			
+		</tr>
+		<c:forEach var="dietVo" items="${dietList}">
+		<tr>
+			<td style="text-align: center;">${dietVo.dietName} ${dietVo.dietCal } kcal</td>
 		</tr>
 		</c:forEach>
 	</table>
+	
+	
+	
+	<div style="margin: auto; width: 600px; padding-left: 45px; padding-top: 50px;">
 	<input type="button"  value="직접 선택" class="submit-btn" onclick="selfFnc();">
 	<input type="button" value="랜덤 선택" class="submit-btn" onclick="randomFnc();">
+	</div>
 </div>
 
 

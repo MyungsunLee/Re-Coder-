@@ -11,13 +11,23 @@
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 <style>
 table {
-	margin-left: auto;
-	margin-right: auto;
+	width: 550px;
+	margin: auto;
+	color: #198556;
 }
-table, th, tr, td{
-	
-	border: 1px solid black;
-	border-collapse: collapse;
+
+th {
+	background-color: #59d393;
+	color: black;
+}
+
+td {
+	border-bottom: 1px solid #eee;
+}
+
+a {
+	text-decoration: none;
+	color: #198556;
 }
 </style>
 </head>
@@ -38,7 +48,7 @@ table, th, tr, td{
 			<td>${dietVo.dietNo }</td>
 			<td>${dietVo.dietType }</td>
 			<td>${dietVo.dietName }</td>
-			<td>${dietVo.dietCal } kcal</td>
+			<td style="text-align: right;">${dietVo.dietCal } kcal</td>
 			<td><a href="../diet/update.do?dietNo=${dietVo.dietNo }">수정</a></td>
 			<td><a href="../diet/delete.do?dietNo=${dietVo.dietNo }">삭제</a></td>
 		</tr>

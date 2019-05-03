@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edu.member.service.MemberService;
 import com.edu.member.vo.MemberVo;
@@ -34,6 +35,7 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private MemberInfoService memberInfoService;
+	
 	
 	
 	@RequestMapping(value = "/member/membercheck.do", method = RequestMethod.GET)
@@ -57,6 +59,28 @@ public class MemberController {
 
 		return viewUrl;
 	}
+	
+//	@ResponseBody
+//	@RequestMapping(value = "/member/membercheck.do")
+//	public int memberCheck(MemberVo memberVo1, Model model) {
+//		log.debug("Welcome membermembercheck enter! - {}", memberVo1);
+//
+//		MemberVo memberVo = memberService.memberExistCheck(memberVo1);
+//		
+//		model.addAttribute("memberVo1", memberVo1);
+//		model.addAttribute("memberVo", memberVo);
+//		
+//		int memberchk= 0;
+//		if(memberVo == null) {
+//			
+//		}else {
+//			memberchk = 1;
+//		}
+//		
+//		
+//
+//		return memberchk;
+//	}
 
 	// 조회
 	@RequestMapping(value = "/member/list.do", 

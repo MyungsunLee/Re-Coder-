@@ -1,6 +1,6 @@
 <%@page import="com.edu.diet.vo.DietVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
@@ -8,30 +8,70 @@
 <head>
 <title>식단 처방</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/Recoder/resources/css/styles.css">
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
-<style>
+<link rel="stylesheet" type="text/css"
+	href="/Recoder/resources/css/styles.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon"
+	rel="stylesheet">
 
-.kcalForm{
-		margin-top: 80px;
-	    width: 800px;
-	    padding: 20px;
-	    margin-left: auto;
-	    margin-right: auto;
-	
-	    background-color: #EEEFF1;
-	    border-radius: 5px;
-	    border: 0;
-	}
-table {
+<style type="text/css">
+.kcalForm {
+	margin-top: 80px;
+	width: 700px;
+	padding: 20px; margin-left : auto; margin-right : auto;
+	background-color: #EEEFF1;
+	border-radius: 5px;
+	border: 0;
 	margin-left: auto;
 	margin-right: auto;
 }
-table, th, tr, td{
-	
-	border: 1px solid black;
+
+table {
+	width: 650px;
+	margin: auto;
+	color: #198556;
+}
+
+th {
+	background-color: #59d393;
+	color: black;
+}
+
+td {
+	border-bottom: 1px solid #eee;
+}
+
+a {
+	text-decoration: none;
+	color: #198556;
+}
+
+#divTag, #divTag>form {
+	padding-top: 30px;
+	margin: auto;
+	text-align: center;
+}
+#bigTable{
+	width: 500px;
+}
+.subTable1 {
+	border: 3px solid lightgrey;
 	border-collapse: collapse;
+	width: 200px;
+	margin-top: 50px;
+	padding: 0px 0px 0px 0px;
+}
+
+.subTable2 {
+	border: 3px solid lightgrey;
+	border-collapse: collapse;
+	width: 200px;
+	margin-top: 50px;
+	padding: 0px 0px 0px 0px;
+}
+#kcalFormTab{
+	width: 250px;
 }
 </style>
 </head>
@@ -114,11 +154,5 @@ table, th, tr, td{
 	<input type="submit" value="다시하기" class="submit-btn">
 </form>	
 </div>
-<div>
-	<span>ㅎㅇ</span>
-	<span>${newDietVoCMap.aaa}</span>
-</div>
-${newDietVoCMap.dietVo2.getDietName()}
-
 </body>
 </html>

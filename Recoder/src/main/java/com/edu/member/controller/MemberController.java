@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edu.member.service.MemberService;
 import com.edu.member.vo.MemberVo;
@@ -34,6 +36,52 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private MemberInfoService memberInfoService;
+	
+	
+	
+	@RequestMapping(value = "/member/membercheck.do", method = RequestMethod.GET)
+	public String memberCheck(MemberVo memberVo1, Model model) {
+		log.debug("Welcome membermembercheck enter! - {}", memberVo1);
+
+		MemberVo memberVo = memberService.memberExistCheck(memberVo1);
+		
+		model.addAttribute("memberVo1", memberVo1);
+		model.addAttribute("memberVo", memberVo);
+		
+		String viewUrl;
+		if(memberVo == null) {
+			viewUrl = "member/memberchecksuccess";
+		}else {
+
+			viewUrl = "member/membercheckfail";
+		}
+		
+		
+
+		return viewUrl;
+	}
+	
+//	@ResponseBody
+//	@RequestMapping(value = "/member/membercheck.do")
+//	public int memberCheck(MemberVo memberVo1, Model model) {
+//		log.debug("Welcome membermembercheck enter! - {}", memberVo1);
+//
+//		MemberVo memberVo = memberService.memberExistCheck(memberVo1);
+//		
+//		model.addAttribute("memberVo1", memberVo1);
+//		model.addAttribute("memberVo", memberVo);
+//		
+//		int memberchk= 0;
+//		if(memberVo == null) {
+//			
+//		}else {
+//			memberchk = 1;
+//		}
+//		
+//		
+//
+//		return memberchk;
+//	}
 
 	// 조회
 	@RequestMapping(value = "/member/list.do", 
@@ -150,9 +198,13 @@ public class MemberController {
 
 	// 회원가입 페이지로
 	@RequestMapping(value = "/member/add.do", method = RequestMethod.GET)
-	public String memberAdd(Model model) {
+	public String memberAdd(
+			@RequestParam(defaultValue="")String memberEmail,
+			Model model) {
 		log.debug("Welcome MemberController memberAdd 페이지 이동! ");
-
+		
+		model.addAttribute("memberEmail", memberEmail);
+		
 		return "member/regiform";
 	}
 
@@ -259,7 +311,7 @@ public class MemberController {
 		}
 		
 		//메인페이지
-		return "../Recoder/member/list.do";
+		return "redirect:/member/list.do";
 	}
 
 	/*

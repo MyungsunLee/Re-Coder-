@@ -92,6 +92,13 @@
 		FROM MEMBERS
 		WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_PASSWORD = #{memberPassword}
 	</select>
+	
+	<select id="memberExistCheck" parameterType="memberVo"
+		resultMap="memberResultMap">
+		SELECT MEMBER_NO, MEMBER_AUTH, MEMBER_EMAIL, MEMBER_NAME
+		FROM MEMBERS
+		WHERE MEMBER_EMAIL = #{memberEmail}
+	</select>
 
 	
 	

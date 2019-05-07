@@ -31,7 +31,7 @@
 	<input type="hidden" name="memberNo" value="${_memberInfoVo.memberNo}">
 	<div id="login">
 	<c:if test="${sessionScope.login_memberVo.memberAuth == 'A'.charAt(0)}">
-	
+		<a href="../diet/list.do"><span>식단관리</span></a>
 		<a href="../member/list.do"><span>회원관리</span></a>
 	</c:if>
 		<a href="../member/info.do"><span>${login_memberVo.memberName}</span></a>

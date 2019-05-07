@@ -75,6 +75,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.memberDeleteOne(no);
 	}
 
+	@Override
+	public MemberVo memberExistCheck(MemberVo memberVo) {
+		// TODO Auto-generated method stub
+		return memberDao.memberExistCheck(memberVo);
+	}
+
 
 
 }

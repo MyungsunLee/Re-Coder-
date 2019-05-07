@@ -284,17 +284,19 @@ public class BoardController {
 	   
 	   boardService.commentDeleteOne(commentNo);
 	   
-	      model.addAttribute(boardNo);
 	   
 		  return "redirect:/board/listOne.do?boardNo=" + boardNo;
    }
    
-   @RequestMapping(value="/board/commentUpdateOne.do", method=RequestMethod.GET)
-   public String commentUpdateOne(int commentNo, Model model) {
+   @RequestMapping(value="/board/commentUpdateOne.do", method=RequestMethod.POST)
+   public String commentUpdateOne(CommentVo commentVo, Model model) {
 	   		
+	   boardService.commentUpdateOne(commentVo);
+	   
+	   model.addAttribute("boardNo", commentVo.getBoardNo());
 	   
 	   
-	   return "board/boardUpdateOne";
+	   return "redirect:/board/listOne.do?boardNo=" + commentVo.getBoardNo();
    }
    
    

@@ -62,6 +62,10 @@ public class DietServiceImpl implements DietService {
 		// TODO Auto-generated method stub
 		return dietDao.selectProteinList();
 	}
+	public DietVo selectFat() {
+		// TODO Auto-generated method stub
+		return dietDao.selectFat();
+	}
 
 	
 }

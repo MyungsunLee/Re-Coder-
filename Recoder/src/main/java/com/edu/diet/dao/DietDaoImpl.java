@@ -52,7 +52,7 @@ public class DietDaoImpl implements DietDao {
 		return sqlSession.selectOne(namespace + "selectProtein");
 	}
 
-	@Override
+
 	public List<DietVo> selectCarbohydrateList() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+"selectCarbohydrateList");
@@ -62,6 +62,11 @@ public class DietDaoImpl implements DietDao {
 	public List<DietVo> selectProteinList() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+"selectProteinList");
+	}
+
+	public DietVo selectFat() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "selectFat");
 	}
 
 }

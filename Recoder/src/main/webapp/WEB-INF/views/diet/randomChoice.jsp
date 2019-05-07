@@ -90,69 +90,55 @@ a {
 </style>
 </head>
 <body>
-	<jsp:include page="../common/header.jsp" />
-	<c:set var="_memberInfoActivity"
-		value="${_memberInfoVo.memberInfoActivity}" />
-	<!-- 기초대사량 -->
-	<c:set var="_memberInfoCal" value="${_memberInfoVo.memberInfoCal}" />
-	<input type="hidden" name="memberNo" value="${_memberInfoVo.memberNo}">
-	<div class="kcalForm">
-		<form
-			action="../diet/randomChoice.do?memberNo=${_memberInfoVo.memberNo}"
-			method="post">
-			<table>
-				<tr>
-					<th>유지 칼로리</th>
-					<c:choose>
-						<c:when test="${_memberInfoActivity == 1}">
-							<td><fmt:formatNumber value="${_memberInfoCal*1.2}"
-									pattern="0" /> kcal</td>
-						</c:when>
-						<c:when test="${_memberInfoActivity == 2}">
-							<td><fmt:formatNumber value="${_memberInfoCal*1.375}"
-									pattern="0" /> kcal</td>
-						</c:when>
-						<c:when test="${_memberInfoActivity == 3}">
-							<td><fmt:formatNumber value="${_memberInfoCal*1.55}"
-									pattern="0" /> kcal</td>
-						</c:when>
-						<c:when test="${_memberInfoActivity == 4}">
-							<td><fmt:formatNumber value="${_memberInfoCal*1.725}"
-									pattern="0" /> kcal</td>
-						</c:when>
-						<c:when test="${_memberInfoActivity == 5}">
-							<td><fmt:formatNumber value="${_memberInfoCal*1.9}"
-									pattern="0" /> kcal</td>
-						</c:when>
-					</c:choose>
-					<th>식단 처방 칼로리</th>
-					<c:choose>
-						<c:when test="${_memberInfoActivity == 1}">
-							<td><fmt:formatNumber value="${_memberInfoCal*1.2-500}"
-									pattern="0" /> kcal</td>
-						</c:when>
-						<c:when test="${_memberInfoActivity == 2}">
-							<td><fmt:formatNumber value="${_memberInfoCal*1.375-500}"
-									pattern="0" /> kcal</td>
-						</c:when>
-						<c:when test="${_memberInfoActivity == 3}">
-							<td><fmt:formatNumber value="${_memberInfoCal*1.55-500}"
-									pattern="0" /> kcal</td>
-						</c:when>
-						<c:when test="${_memberInfoActivity == 4}">
-							<td><fmt:formatNumber value="${_memberInfoCal*1.725-500}"
-									pattern="0" /> kcal</td>
-						</c:when>
-						<c:when test="${_memberInfoActivity == 5}">
-							<td><fmt:formatNumber value="${_memberInfoCal*1.9-500}"
-									pattern="0" /> kcal</td>
-						</c:when>
-					</c:choose>
-				</tr>
-
-				<c:set var="dietTypeC" value="C" />
-				<c:set var="dietTypeP" value="P" />
-
+<jsp:include page="../common/header.jsp"/>
+<c:set var="_memberInfoActivity" value="${_memberInfoVo.memberInfoActivity}"/><!-- 기초대사량 -->
+<c:set var="_memberInfoCal" value="${_memberInfoVo.memberInfoCal}"/>
+<input type="hidden" name="memberNo" value="${_memberInfoVo.memberNo}">
+<div class="kcalForm">
+<form action="../diet/randomChoice.do?memberNo=${_memberInfoVo.memberNo}" method="post">
+	<table>
+		<tr>
+			<th>유지 칼로리</th>
+			<c:choose>
+				<c:when test="${_memberInfoActivity == 1}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.2}" pattern="0"/> kcal</td>
+				</c:when>
+				<c:when test="${_memberInfoActivity == 2}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.375}" pattern="0"/> kcal</td>
+				</c:when>
+				<c:when test="${_memberInfoActivity == 3}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.55}" pattern="0"/> kcal</td>
+				</c:when>
+				<c:when test="${_memberInfoActivity == 4}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.725}" pattern="0"/> kcal</td>
+				</c:when>
+				<c:when test="${_memberInfoActivity == 5}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.9}" pattern="0"/> kcal</td>
+				</c:when>
+			</c:choose>
+			<th>식단 처방 칼로리</th>
+			<c:choose>
+				<c:when test="${_memberInfoActivity == 1}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.2-500}" pattern="0"/> kcal</td>
+				</c:when>
+				<c:when test="${_memberInfoActivity == 2}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.375-500}" pattern="0"/> kcal</td>
+				</c:when>
+				<c:when test="${_memberInfoActivity == 3}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.55-500}" pattern="0"/> kcal</td>
+				</c:when>
+				<c:when test="${_memberInfoActivity == 4}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.725-500}" pattern="0"/> kcal</td>
+				</c:when>
+				<c:when test="${_memberInfoActivity == 5}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.9-500}" pattern="0"/> kcal</td>
+				</c:when>
+			</c:choose>
+		</tr>
+		
+		<c:set var="dietTypeC" value="C" />
+		<c:set var="dietTypeP" value="P" />
+		
 				<tr>
 					<table>
 						<tr>
@@ -218,6 +204,42 @@ a {
 																varStatus="status">
 																<tr>
 																	<td>${_dietVoP.value}kcal</td>
+																</tr>
+															</c:forEach>
+														</table>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<table>
+									<tr>
+										<td>
+											<table>
+												<tr>
+													<th>지방</th>
+												</tr>
+												<tr>
+													<td>
+														<table>
+															<c:forEach var="_dietVoF" items="${fatDietVoCntMap}"
+																varStatus="status">
+																<tr>
+																	<td style="text-align: center;">${_dietVoF.key}
+																		${_dietVoF.value}개</td>
+																</tr>
+															</c:forEach>
+														</table>
+													</td>
+													<td>
+														<table>
+															<c:forEach var="_dietVoF" items="${fatDietVoCalMap}"
+																varStatus="status">
+																<tr>
+																	<td>${_dietVoF.value}kcal</td>
 																</tr>
 															</c:forEach>
 														</table>

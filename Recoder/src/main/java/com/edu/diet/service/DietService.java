@@ -12,6 +12,7 @@ public interface DietService {
 	public int dietDelete(int dietNo);
 	public DietVo selectCarbohydrate();
 	public DietVo selectProtein();
+	public DietVo selectFat();
 	public List<DietVo> selectCarbohydrateList();
 	public List<DietVo> selectProteinList();
 }

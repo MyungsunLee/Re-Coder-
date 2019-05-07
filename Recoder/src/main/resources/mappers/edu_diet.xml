@@ -74,6 +74,7 @@
 		]]>
 	</select>
 	
+
 	
 	<select id="selectProteinList"
 		resultMap="dietResultMap">
@@ -82,6 +83,21 @@
 	    	  FROM DIET
 		      WHERE DIET_TYPE='P'
 		      )R
+	</select>
+	
+	
+	<select id="selectFat" 
+		resultMap="dietResultMap">
+		<![CDATA[ 
+		SELECT R.DIET_NO, R.DIET_TYPE, R.DIET_NAME, R.DIET_CAL
+		FROM (SELECT *
+	    	  FROM DIET
+		      WHERE DIET_TYPE='F'
+		      ORDER BY DBMS_RANDOM.VALUE) R
+		WHERE 
+			ROWNUM < 2
+		]]>
+
 	</select>
 
 </mapper>

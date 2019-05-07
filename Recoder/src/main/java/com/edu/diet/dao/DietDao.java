@@ -15,5 +15,5 @@ public interface DietDao {
 	public DietVo selectFat();
 	public List<DietVo> selectCarbohydrateList();
 	public List<DietVo> selectProteinList();
-
+	public List<DietVo> selectFatList();
 }

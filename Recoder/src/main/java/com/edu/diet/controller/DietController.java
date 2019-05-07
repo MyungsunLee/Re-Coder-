@@ -126,13 +126,14 @@ public class DietController {
 		
 		//carbohydrate List
 		List<DietVo> cList = dietService.selectCarbohydrateList();
-//		for (int i = 0; i < cList.size(); i++) {
-//			log.debug("cList.get(" + i + ").getDietName : {}", cList.get(i).getDietName());
-//		}
 		model.addAttribute("cList", cList);
+		
 		//protein List
 		List<DietVo> pList = dietService.selectProteinList();
 		model.addAttribute("pList", pList);
+		
+		List<DietVo> fList = dietService.selectFatList();
+		model.addAttribute("fList", fList);
 		
 		
 		return viewUrl;

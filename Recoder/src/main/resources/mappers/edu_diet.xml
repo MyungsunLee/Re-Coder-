@@ -99,5 +99,15 @@
 		]]>
 
 	</select>
+	
+	<select id="selectFatList" 
+		resultMap="dietResultMap">
+		SELECT R.DIET_NO, R.DIET_TYPE, R.DIET_NAME, R.DIET_CAL
+		FROM (SELECT *
+	    	  FROM DIET
+		      WHERE DIET_TYPE='F'
+		      ORDER BY DBMS_RANDOM.VALUE) R
+
+	</select>
 
 </mapper>

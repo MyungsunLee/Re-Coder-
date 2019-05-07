@@ -15,4 +15,5 @@ public interface DietService {
 	public DietVo selectFat();
 	public List<DietVo> selectCarbohydrateList();
 	public List<DietVo> selectProteinList();
+	public List<DietVo> selectFatList();
 }

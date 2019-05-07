@@ -14,7 +14,17 @@
 	rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon"
 	rel="stylesheet">
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	
+</script>	
+	
+<script type="text/javascript">
+function selfFnc() {
+	location.href="../diet/selfChoice.do";
+}
 
+</script>
 <style type="text/css">
 .kcalForm {
 	margin-top: 80px;
@@ -256,6 +266,7 @@ a {
 			</table>
 			<input type="submit" value="다시하기" class="submit-btn">
 		</form>
+			<button onclick="selfFnc();">직접선택</button>
 	</div>
 
 

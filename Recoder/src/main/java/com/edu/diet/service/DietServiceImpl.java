@@ -51,5 +51,17 @@ public class DietServiceImpl implements DietService {
 		return dietDao.selectProtein();
 	}
 
+	@Override
+	public List<DietVo> selectCarbohydrateList() {
+		// TODO Auto-generated method stub
+		return dietDao.selectCarbohydrateList();
+	}
+
+	@Override
+	public List<DietVo> selectProteinList() {
+		// TODO Auto-generated method stub
+		return dietDao.selectProteinList();
+	}
+
 	
 }

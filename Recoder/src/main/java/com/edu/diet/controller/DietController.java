@@ -121,10 +121,19 @@ public class DietController {
 		log.debug("Welcome DietController dietselfChoice 페이지 이동! ");
 		
 		String viewUrl = "diet/selfChoice";
+//		List<DietVo> dietList = dietService.dietSelectList();
 		
-		List<DietVo> dietList = dietService.dietSelectList();
 		
-		model.addAttribute("dietList", dietList);
+		//carbohydrate List
+		List<DietVo> cList = dietService.selectCarbohydrateList();
+//		for (int i = 0; i < cList.size(); i++) {
+//			log.debug("cList.get(" + i + ").getDietName : {}", cList.get(i).getDietName());
+//		}
+		model.addAttribute("cList", cList);
+		//protein List
+		List<DietVo> pList = dietService.selectProteinList();
+		model.addAttribute("pList", pList);
+		
 		
 		return viewUrl;
 	}

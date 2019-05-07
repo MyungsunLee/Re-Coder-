@@ -51,5 +51,11 @@ public class DietServiceImpl implements DietService {
 		return dietDao.selectProtein();
 	}
 
+	@Override
+	public DietVo selectFat() {
+		// TODO Auto-generated method stub
+		return dietDao.selectFat();
+	}
+
 	
 }

@@ -12,5 +12,6 @@ public interface DietDao {
 	public int dietDelete(int dietNo);
 	public DietVo selectCarbohydrate();
 	public DietVo selectProtein();
+	public DietVo selectFat();
 
 }

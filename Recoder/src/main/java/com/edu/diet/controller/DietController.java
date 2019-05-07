@@ -324,7 +324,7 @@ public class DietController {
 		
 		
 		while(true) { //다이어트 셀렉트원 만들자
-			DietVo dietVoF = dietService.selectProtein();
+			DietVo dietVoF = dietService.selectFat();
 			Map<String, Object> dietVoFMap = new HashMap<String, Object>();
 			if(sumFatKcal < tdeeFat) {							// 단백총합 < TDEE-500 이면
 				fatKcal = dietVoF.getDietCal();	// fatKcal에 랜덤 선택하여 담는다.

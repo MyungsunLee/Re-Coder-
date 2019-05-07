@@ -90,7 +90,6 @@ a {
 </style>
 </head>
 <body>
-<<<<<<< HEAD
 <jsp:include page="../common/header.jsp"/>
 <c:set var="_memberInfoActivity" value="${_memberInfoVo.memberInfoActivity}"/><!-- 기초대사량 -->
 <c:set var="_memberInfoCal" value="${_memberInfoVo.memberInfoCal}"/>

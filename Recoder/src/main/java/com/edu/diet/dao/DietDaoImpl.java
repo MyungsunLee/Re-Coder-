@@ -52,4 +52,10 @@ public class DietDaoImpl implements DietDao {
 		return sqlSession.selectOne(namespace + "selectProtein");
 	}
 
+	@Override
+	public DietVo selectFat() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "selectFat");
+	}
+
 }

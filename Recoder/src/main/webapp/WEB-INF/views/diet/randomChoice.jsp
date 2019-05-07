@@ -84,23 +84,41 @@ table, th, tr, td{
 		
 		<c:set var="dietTypeC" value="C" />
 		<c:set var="dietTypeP" value="P" />
-		<c:forEach var="_dietVoC" items="${carbCollection}">
+		
 		<tr>
 			<th>탄수화물</th>
-			<td colspan="3" style="text-align: center;">${_dietVoC.dietVoC.dietName} ${_dietVoC.dietVoC.dietCal} kcal</td>
+			<c:forEach var="_dietVoC" items="${carbDietVoCntMap}" varStatus="status">
+			<td style="text-align: center;">${_dietVoC.key} ${_dietVoC.value}개</td>
+			</c:forEach>
 		</tr>
-		</c:forEach>
-		<c:forEach var="_dietVoP" items="${proCollection}">
+		<tr>
+			<th>칼로리</th>
+			<c:forEach var="_dietVoC" items="${carbDietVoCalMap}" varStatus="status">
+			<td style="text-align: center;">${_dietVoC.value} kcal</td>
+			</c:forEach>
+		</tr>
+		
 		<tr>
 			<th>단백질</th>
-			<td colspan="3" style="text-align: center;">${_dietVoP.dietVoP.dietName} ${_dietVoP.dietVoP.dietCal} kcal</td>
+			<c:forEach var="_dietVoP" items="${proDietVoCntMap}" varStatus="status">
+			<td style="text-align: center;">${_dietVoP.key} ${_dietVoP.value}개</td>
+			</c:forEach>
 		</tr>
-		</c:forEach>
+		<tr>
+			<th>칼로리</th>
+			<c:forEach var="_dietVoP" items="${proDietVoCalMap}" varStatus="status">
+			<td style="text-align: center;">${_dietVoP.value} kcal</td>
+			</c:forEach>
+		</tr>
 	</table>
 	<input type="submit" value="다시하기" class="submit-btn">
 </form>	
 </div>
-${dietVoCMap.dietVoC.dietType}
+<div>
+	<span>ㅎㅇ</span>
+	<span>${newDietVoCMap.aaa}</span>
+</div>
+${newDietVoCMap.dietVo2.getDietName()}
 
 </body>
 </html>

@@ -56,7 +56,7 @@
 					성별		<input type="radio" name="memberInfoGender" value="M" checked="checked">남자 
 						</c:when> 
 						<c:otherwise>
-							<input type="radio" name="memberInfoGender" value="F" checked="checked">여자<br>
+					성별		<input type="radio" name="memberInfoGender" value="F" checked="checked">여자<br>
 						</c:otherwise>
 					</c:choose>
 					나이		<input type="text" name="memberInfoAge" class="text-field" placeholder="${_memberInfoVo.memberInfoAge}" value="${_memberInfoVo.memberInfoAge}" readonly="readonly"><br>

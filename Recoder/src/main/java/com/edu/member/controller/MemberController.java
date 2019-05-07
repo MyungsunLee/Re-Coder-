@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edu.member.service.MemberService;
 import com.edu.member.vo.MemberVo;
@@ -197,9 +196,13 @@ public class MemberController {
 
 	// 회원가입 페이지로
 	@RequestMapping(value = "/member/add.do", method = RequestMethod.GET)
-	public String memberAdd(Model model) {
+	public String memberAdd(
+			@RequestParam(defaultValue="")String memberEmail,
+			Model model) {
 		log.debug("Welcome MemberController memberAdd 페이지 이동! ");
-
+		
+		model.addAttribute("memberEmail", memberEmail);
+		
 		return "member/regiform";
 	}
 

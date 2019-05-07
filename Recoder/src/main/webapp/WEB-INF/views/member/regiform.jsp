@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,14 +91,20 @@
 			method="post"  >
 
 			<input type="text" id="email" name="memberEmail" class="text-field"
-				placeholder="이메일">
+				placeholder="이메일" value="${memberEmail}">
+			
 			<br> <input type="text" id="name" name="memberName"
-				class="text-field" placeholder="이름"><br> <input
-				type="password" id="password" name="memberPassword"
-				class="text-field" placeholder="비밀번호"><br> <input
-				type="password" id="passwordConfirm" name="memberPasswordConfirm"
-				class="text-field" placeholder="비밀번호 확인"><br> <a
-				href="#"><input type="submit" value="회원가입" class="submit-btn"></a>
+				class="text-field" placeholder="이름">
+				<br> 
+				<input type="password" id="password" name="memberPassword"
+				class="text-field" placeholder="비밀번호">
+				<br> 
+				<input type="password" id="passwordConfirm" name="memberPasswordConfirm"
+				class="text-field" placeholder="비밀번호 확인">
+				<br>
+				<a href="#">
+					<input type="submit" value="회원가입" class="submit-btn">
+				</a>
 		</form>
 		<form id="membercheck-form"
 			action="../member/membercheck.do?memberEmail=" method="get"
@@ -107,20 +114,6 @@
 		</form>
 		
 	</div>
-
-	
-
-
-
-	
-
-
-
-
-
-
-
-
 
 </body>
 </html>

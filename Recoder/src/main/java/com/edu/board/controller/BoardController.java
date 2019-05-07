@@ -58,7 +58,7 @@ public class BoardController {
       
 //      List<Integer> commentTotCount = new ArrayList<Integer>();
 		
-      	log.debug("boardList" + boardList.get(0).getBoardNo() + " , " + boardList.get(1).getBoardNo());
+//      	log.debug("boardList" + boardList.get(0).getBoardNo() + " , " + boardList.get(1).getBoardNo());
       for (int i = 0; i < boardList.size(); i++) {
     	  
     	  int commentTotCount = boardService.commentTotalList(boardList.get(i).getBoardNo());

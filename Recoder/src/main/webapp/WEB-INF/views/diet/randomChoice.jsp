@@ -19,7 +19,9 @@
 .kcalForm {
 	margin-top: 80px;
 	width: 700px;
-	padding: 20px; margin-left : auto; margin-right : auto;
+	padding: 20px;
+	margin-left: auto;
+	margin-right: auto;
 	background-color: #EEEFF1;
 	border-radius: 5px;
 	border: 0;
@@ -28,9 +30,10 @@
 }
 
 table {
-	width: 650px;
+	/*  	width: 650px; */
 	margin: auto;
 	color: #198556;
+	border-collapse: collapse;
 }
 
 th {
@@ -52,16 +55,22 @@ a {
 	margin: auto;
 	text-align: center;
 }
-#bigTable{
+
+
+#bigTable {
 	width: 500px;
+
 }
+
 .subTable1 {
 	border: 3px solid lightgrey;
 	border-collapse: collapse;
 	width: 200px;
 	margin-top: 50px;
 	padding: 0px 0px 0px 0px;
+
 }
+
 
 .subTable2 {
 	border: 3px solid lightgrey;
@@ -69,115 +78,188 @@ a {
 	width: 200px;
 	margin-top: 50px;
 	padding: 0px 0px 0px 0px;
+
 }
-#kcalFormTab{
+
+
+#kcalFormTab {
 	width: 250px;
+
 }
+
 </style>
 </head>
 <body>
-	<jsp:include page="../common/header.jsp" />
-	<c:set var="_memberInfoActivity"
-		value="${_memberInfoVo.memberInfoActivity}" />
-	<!-- 기초대사량 -->
-	<c:set var="_memberInfoCal" value="${_memberInfoVo.memberInfoCal}" />
-	<input type="hidden" name="memberNo" value="${_memberInfoVo.memberNo}">
-	<div class="kcalForm">
-		<form
-			action="../diet/randomChoice.do?memberNo=${_memberInfoVo.memberNo}"
-			method="post">
-			<table id="kcalFormTab">
+<<<<<<< HEAD
+<jsp:include page="../common/header.jsp"/>
+<c:set var="_memberInfoActivity" value="${_memberInfoVo.memberInfoActivity}"/><!-- 기초대사량 -->
+<c:set var="_memberInfoCal" value="${_memberInfoVo.memberInfoCal}"/>
+<input type="hidden" name="memberNo" value="${_memberInfoVo.memberNo}">
+<div class="kcalForm">
+<form action="../diet/randomChoice.do?memberNo=${_memberInfoVo.memberNo}" method="post">
+	<table>
+		<tr>
+			<th>유지 칼로리</th>
+			<c:choose>
+				<c:when test="${_memberInfoActivity == 1}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.2}" pattern="0"/> kcal</td>
+				</c:when>
+				<c:when test="${_memberInfoActivity == 2}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.375}" pattern="0"/> kcal</td>
+				</c:when>
+				<c:when test="${_memberInfoActivity == 3}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.55}" pattern="0"/> kcal</td>
+				</c:when>
+				<c:when test="${_memberInfoActivity == 4}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.725}" pattern="0"/> kcal</td>
+				</c:when>
+				<c:when test="${_memberInfoActivity == 5}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.9}" pattern="0"/> kcal</td>
+				</c:when>
+			</c:choose>
+			<th>식단 처방 칼로리</th>
+			<c:choose>
+				<c:when test="${_memberInfoActivity == 1}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.2-500}" pattern="0"/> kcal</td>
+				</c:when>
+				<c:when test="${_memberInfoActivity == 2}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.375-500}" pattern="0"/> kcal</td>
+				</c:when>
+				<c:when test="${_memberInfoActivity == 3}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.55-500}" pattern="0"/> kcal</td>
+				</c:when>
+				<c:when test="${_memberInfoActivity == 4}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.725-500}" pattern="0"/> kcal</td>
+				</c:when>
+				<c:when test="${_memberInfoActivity == 5}">
+					<td><fmt:formatNumber value="${_memberInfoCal*1.9-500}" pattern="0"/> kcal</td>
+				</c:when>
+			</c:choose>
+		</tr>
+		
+		<c:set var="dietTypeC" value="C" />
+		<c:set var="dietTypeP" value="P" />
+		
 				<tr>
-					<th>유지 칼로리</th>
-					<c:choose>
-						<c:when test="${_memberInfoActivity == 1}">
-							<th><fmt:formatNumber value="${_memberInfoCal*1.2}"
-									pattern="0" /> kcal</th>
-						</c:when>
-						<c:when test="${_memberInfoActivity == 2}">
-							<th><fmt:formatNumber value="${_memberInfoCal*1.375}"
-									pattern="0" /> kcal</th>
-						</c:when>
-						<c:when test="${_memberInfoActivity == 3}">
-							<th><fmt:formatNumber value="${_memberInfoCal*1.55}"
-									pattern="0" /> kcal</th>
-						</c:when>
-						<c:when test="${_memberInfoActivity == 4}">
-							<th><fmt:formatNumber value="${_memberInfoCal*1.725}"
-									pattern="0" /> kcal</th>
-						</c:when>
-						<c:when test="${_memberInfoActivity == 5}">
-							<th><fmt:formatNumber value="${_memberInfoCal*1.9}"
-									pattern="0" /> kcal</th>
-						</c:when>
-					</c:choose>
-				<tr>
-					<th>식단 처방 칼로리</th>
-					<c:choose>
-						<c:when test="${_memberInfoActivity == 1}">
-							<th><fmt:formatNumber value="${_memberInfoCal*1.2-500}"
-									pattern="0" /> kcal</th>
-						</c:when>
-						<c:when test="${_memberInfoActivity == 2}">
-							<th><fmt:formatNumber value="${_memberInfoCal*1.375-500}"
-									pattern="0" /> kcal</th>
-						</c:when>
-						<c:when test="${_memberInfoActivity == 3}">
-							<th><fmt:formatNumber value="${_memberInfoCal*1.55-500}"
-									pattern="0" /> kcal</th>
-						</c:when>
-						<c:when test="${_memberInfoActivity == 4}">
-							<th><fmt:formatNumber value="${_memberInfoCal*1.725-500}"
-									pattern="0" /> kcal</th>
-						</c:when>
-						<c:when test="${_memberInfoActivity == 5}">
-							<th><fmt:formatNumber value="${_memberInfoCal*1.9-500}"
-									pattern="0" /> kcal</th>
-						</c:when>
-					</c:choose>
-				</tr>
-
-				<c:set var="dietTypeC" value="C" />
-				<c:set var="dietTypeP" value="P" />
-			</table>
-			<table id="bigTable">
-				<tr>
-					<td>
-						<table class="subTable1">
-							<tr>
-								<th>단백질</th>
-							</tr>
-							<c:forEach var="_dietVoP" items="${proCollection}">
-								<tr>
-									<td style="text-align: center;">${_dietVoP.dietVoP.dietName}
-										${_dietVoP.dietVoP.dietCal} kcal</td>
-								</tr>
-							</c:forEach>
-						</table>
-				</td>
-
-				<td>
-					<table class="subTable2">
+					<table>
 						<tr>
-							<th>탄수화물</th>
+							<td>
+								<table>
+									<tr>
+										<td>
+											<table>
+												<tr>
+													<th>탄수화물</th>
+												</tr>
+												<tr>
+													<td>
+														<table>
+															<c:forEach var="_dietVoC" items="${carbDietVoCntMap}"
+																varStatus="status">
+																<tr>
+																	<td style="text-align: center;">${_dietVoC.key}
+																		${_dietVoC.value}개</td>
+																</tr>
+															</c:forEach>
+														</table>
+													</td>
+													<td>
+														<table>
+															<c:forEach var="_dietVoC" items="${carbDietVoCalMap}"
+																varStatus="status">
+																<tr>
+																	<td>${_dietVoC.value}kcal</td>
+																</tr>
+															</c:forEach>
+														</table>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<table>
+									<tr>
+										<td>
+											<table>
+												<tr>
+													<th>단백질</th>
+												</tr>
+												<tr>
+													<td>
+														<table>
+															<c:forEach var="_dietVoP" items="${proDietVoCntMap}"
+																varStatus="status">
+																<tr>
+																	<td style="text-align: center;">${_dietVoP.key}
+																		${_dietVoP.value}개</td>
+																</tr>
+															</c:forEach>
+														</table>
+													</td>
+													<td>
+														<table>
+															<c:forEach var="_dietVoP" items="${proDietVoCalMap}"
+																varStatus="status">
+																<tr>
+																	<td>${_dietVoP.value}kcal</td>
+																</tr>
+															</c:forEach>
+														</table>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<table>
+									<tr>
+										<td>
+											<table>
+												<tr>
+													<th>지방</th>
+												</tr>
+												<tr>
+													<td>
+														<table>
+															<c:forEach var="_dietVoF" items="${fatDietVoCntMap}"
+																varStatus="status">
+																<tr>
+																	<td style="text-align: center;">${_dietVoF.key}
+																		${_dietVoF.value}개</td>
+																</tr>
+															</c:forEach>
+														</table>
+													</td>
+													<td>
+														<table>
+															<c:forEach var="_dietVoF" items="${fatDietVoCalMap}"
+																varStatus="status">
+																<tr>
+																	<td>${_dietVoF.value}kcal</td>
+																</tr>
+															</c:forEach>
+														</table>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
 						</tr>
-						<c:forEach var="_dietVoC" items="${carbCollection}">
-							<tr>
-								<td style="text-align: center;">${_dietVoC.dietVoC.dietName}
-									${_dietVoC.dietVoC.dietCal} kcal</td>
-							</tr>
-						</c:forEach>
 					</table>
-				</td>
 				</tr>
 			</table>
-			<div
-				style="margin: auto; width: 300px; padding-top: 50px; padding-left: 20px;">
-				<input type="submit" value="다시하기" class="submit-btn">
-			</div>
+			<input type="submit" value="다시하기" class="submit-btn">
 		</form>
-
-
 	</div>
+
+
+	<div></div>
 </body>
 </html>

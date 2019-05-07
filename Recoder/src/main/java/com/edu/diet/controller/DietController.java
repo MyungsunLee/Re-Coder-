@@ -137,13 +137,16 @@ public class DietController {
 		String viewUrl = "/diet/randomChoice";
 		int tdeeCarbohydrate = 0; 	// 하루 유지 칼로리 中 탄수화물 칼로리
 		int tdeeProtein = 0;
+		int tdeeFat = 0;
 		
 		int carbKcal = 0;		// 탄수화물 식품 1개 칼로리
 		int sumCarbKcal = 0;	// 탄수화물 식품 칼로리 총합
 		
 		int proteinKcal = 0;	// 단백질 식품 1개 칼로리
 		int sumProKcal = 0;		// 단백질 식품 칼로리 총함
-//		int cnt = 0;
+		
+		int fatKcal = 0;
+		int sumFatKcal = 0;
 		int memberNo = memberInfoVo1.getMemberNo();
 		
 		
@@ -158,24 +161,29 @@ public class DietController {
 		case 1:  
 			tdeeCarbohydrate = (int)(((memberInfoVo.getMemberInfoCal()*1.2) - 500) * 0.5); // 탄수화물 = (유지칼로리-500) * 0.5
 			tdeeProtein = (int)(((memberInfoVo.getMemberInfoCal()*1.2) - 500) * 0.3);		 //	단백질 = (유지칼로리 - 500) *0.3
+			tdeeFat = (int)(((memberInfoVo.getMemberInfoCal()*1.2) - 500) * 0.2);		 //	지방 = (유지칼로리 - 500) *0.2
 			
 			break;
 		case 2:  
 			tdeeCarbohydrate = (int)(((memberInfoVo.getMemberInfoCal()*1.375) - 500) * 0.5); // 탄수화물 = (유지칼로리-500) * 0.5
 			tdeeProtein = (int)(((memberInfoVo.getMemberInfoCal()*1.375) - 500) * 0.3);		 //	단백질 = (유지칼로리 - 500) *0.3
+			tdeeFat = (int)(((memberInfoVo.getMemberInfoCal()*1.375) - 500) * 0.2);		 //	지방 = (유지칼로리 - 500) *0.2
 			break;
 		case 3:  
 			tdeeCarbohydrate = (int)(((memberInfoVo.getMemberInfoCal()*1.55) - 500) * 0.5); // 탄수화물 = (유지칼로리-500) * 0.5
 			tdeeProtein = (int)(((memberInfoVo.getMemberInfoCal()*1.55) - 500) * 0.3);		 //	단백질 = (유지칼로리 - 500) *0.3
+			tdeeFat = (int)(((memberInfoVo.getMemberInfoCal()*1.55) - 500) * 0.2);		 //	지방 = (유지칼로리 - 500) *0.2
 			
 			break;
 		case 4:  
 			tdeeCarbohydrate = (int)(((memberInfoVo.getMemberInfoCal()*1.725) - 500) * 0.5); // 탄수화물 = (유지칼로리-500) * 0.5
 			tdeeProtein = (int)(((memberInfoVo.getMemberInfoCal()*1.725) - 500) * 0.3);		 //	단백질 = (유지칼로리 - 500) *0.3
+			tdeeFat = (int)(((memberInfoVo.getMemberInfoCal()*1.725) - 500) * 0.2);		 //	지방 = (유지칼로리 - 500) *0.2
 			break;
 		case 5:  
 			tdeeCarbohydrate = (int)(((memberInfoVo.getMemberInfoCal()*1.9) - 500) * 0.5); // 탄수화물 = (유지칼로리-500) * 0.5
 			tdeeProtein = (int)(((memberInfoVo.getMemberInfoCal()*1.9) - 500) * 0.3);		 //	단백질 = (유지칼로리 - 500) *0.3
+			tdeeFat = (int)(((memberInfoVo.getMemberInfoCal()*1.9) - 500) * 0.2);		 //	지방 = (유지칼로리 - 500) *0.2
 			break;
 			
 		default:
@@ -253,12 +261,12 @@ public class DietController {
 		
 		
 		while(true) { //다이어트 셀렉트원 만들자
-			DietVo dietVoP = dietService.selectProtein();
-			Map<String, Object> dietVoPMap = new HashMap<String, Object>();
+			DietVo dietVoF = dietService.selectProtein();
+			Map<String, Object> dietVoFMap = new HashMap<String, Object>();
 			if(sumProKcal < tdeeProtein) {							// 단백총합 < TDEE-500 이면
-				proteinKcal = dietVoP.getDietCal();	// proteinKcal에 랜덤 선택하여 담는다.
-				dietVoPMap.put("dietVoP", dietVoP);
-				proCollection.add((Map<String, Object>) dietVoPMap);
+				proteinKcal = dietVoF.getDietCal();	// proteinKcal에 랜덤 선택하여 담는다.
+				dietVoFMap.put("dietVoF", dietVoF);
+				proCollection.add((Map<String, Object>) dietVoFMap);
 				sumProKcal = sumProKcal + proteinKcal;						// 단백총합 = 단백총합(이전) + proteinKcal
 			}else if(sumProKcal == tdeeProtein) {						// 단백총 == T-5
 				
@@ -272,7 +280,7 @@ public class DietController {
 				}
 			}
 			
-			model.addAttribute("dietVoPMap", dietVoPMap);
+			model.addAttribute("dietVoFMap", dietVoFMap);
 		}
 			
 		log.debug("sumProKcal ================================================================={}", sumProKcal);
@@ -289,7 +297,7 @@ public class DietController {
 			for (int i = 0; i < proCollection.size(); i++) { //가챠 스타트
 				Map<String, Object> map = (Map<String, Object>)proCollection.get(i);
 								
-				tempDietVo = (DietVo)map.get("dietVoP");
+				tempDietVo = (DietVo)map.get("dietVoF");
 				if(dietVo2.getDietName().equals(tempDietVo.getDietName())) { // 
 					dietNameCnt = dietNameCnt + 1;
 					dietNameCal = dietVo2.getDietCal() + dietNameCal;
@@ -309,6 +317,69 @@ public class DietController {
 		model.addAttribute("proDietVoCalMap", proDietVoCalMap);
 		
 		model.addAttribute("proCollection", proCollection);
+
+		
+		// 지방
+		List<Map<String, Object>> fatCollection = new ArrayList<Map<String,Object>>();
+		
+		
+		while(true) { //다이어트 셀렉트원 만들자
+			DietVo dietVoF = dietService.selectProtein();
+			Map<String, Object> dietVoFMap = new HashMap<String, Object>();
+			if(sumFatKcal < tdeeFat) {							// 단백총합 < TDEE-500 이면
+				fatKcal = dietVoF.getDietCal();	// fatKcal에 랜덤 선택하여 담는다.
+				dietVoFMap.put("dietVoF", dietVoF);
+				fatCollection.add((Map<String, Object>) dietVoFMap);
+				sumFatKcal = sumFatKcal + fatKcal;						// 단백총합 = 단백총합(이전) + fatKcal
+			}else if(sumFatKcal == tdeeFat) {						// 단백총 == T-5
+				
+				break;
+			}else {
+				if((tdeeFat - sumFatKcal) <= 100) {	// (TDEE-500) - 단백총합 의 칼로리가 100 이하면 그대로 내보낸다  
+					break;
+				}else {							
+					sumFatKcal = sumFatKcal - fatKcal;		// 아니면 
+					break;
+				}
+			}
+			
+			model.addAttribute("dietVoFMap", dietVoFMap);
+		}
+		
+		log.debug("sumFatKcal ================================================================={}", sumFatKcal);
+		
+		
+		Map<String, Integer> fatDietVoCntMap = new HashMap();
+		Map<String, Integer> fatDietVoCalMap = new HashMap();
+		
+		for (DietVo dietVo2 : dietVoList) {
+			int dietNameCnt = 0;	//음식의 갯수를 저장할 변수 생성
+			int dietNameCal = 0;
+			
+			DietVo tempDietVo = null;
+			for (int i = 0; i < fatCollection.size(); i++) { //가챠 스타트
+				Map<String, Object> map = (Map<String, Object>)fatCollection.get(i);
+				
+				tempDietVo = (DietVo)map.get("dietVoF");
+				if(dietVo2.getDietName().equals(tempDietVo.getDietName())) { // 
+					dietNameCnt = dietNameCnt + 1;
+					dietNameCal = dietVo2.getDietCal() + dietNameCal;
+				}
+				
+			}
+			
+			if(dietNameCnt != 0) {
+				fatDietVoCntMap.put(dietVo2.getDietName(), dietNameCnt); // vo형식으로 ||
+				fatDietVoCalMap.put(dietVo2.getDietName(), dietNameCal); // vo형식으로 ||
+				
+			}
+			
+//			dietNameCntInfoList.add(newDietVoCMap);
+		}
+		model.addAttribute("fatDietVoCntMap", fatDietVoCntMap);
+		model.addAttribute("fatDietVoCalMap", fatDietVoCalMap);
+		
+		model.addAttribute("fatCollection", fatCollection);
 		
 		return viewUrl;
 	}

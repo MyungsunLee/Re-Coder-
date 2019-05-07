@@ -150,6 +150,18 @@ a {
 			<td style="text-align: center;">${_dietVoP.value} kcal</td>
 			</c:forEach>
 		</tr>
+		<tr>
+			<th>지방</th>
+			<c:forEach var="_dietVoF" items="${fatDietVoCntMap}" varStatus="status">
+			<td style="text-align: center;">${_dietVoF.key} ${_dietVoF.value}개</td>
+			</c:forEach>
+		</tr>
+		<tr>
+			<th>칼로리</th>
+			<c:forEach var="_dietVoF" items="${fatDietVoCalMap}" varStatus="status">
+			<td style="text-align: center;">${_dietVoF.value} kcal</td>
+			</c:forEach>
+		</tr>
 	</table>
 	<input type="submit" value="다시하기" class="submit-btn">
 </form>	

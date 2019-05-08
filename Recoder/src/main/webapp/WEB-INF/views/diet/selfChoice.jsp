@@ -18,16 +18,37 @@
 </script>
 
 <script type="text/javascript">
-	var pkcalSum = 0;
+	var pkcalSum = 0; //각각 선택한 식품군 합친 총 칼로리
+	var pkcalNeed = 0; //and 사용자가 하루동안 섭취해야 할 총 칼로리
+
+	//의 반복 탄/단/지
 	var ckcalSum = 0;
+	var ckcalNeed = 0;
+
 	var fkcalSum = 0;
+	var fkcalNeed = 0;
 
 	var pName = "<tr><th>단백질</th></tr>";
 	var cName = "<tr><th>탄수화물</th></tr>";
 	var fName = "<tr><th>지방</th></tr>";
-	;
+
 	$(document).ready(
 			function() {
+
+				var myKcal = $('.myKcal').html();
+				var addKcal = myKcal + " kcal";
+				$('.myKcal').html(addKcal);
+
+				var pkcalSumString = pkcalSum + " / "
+						+ Math.round(myKcal * 0.3);
+				var ckcalSumString = ckcalSum + " / "
+						+ Math.round(myKcal * 0.5);
+				var fkcalSumString = fkcalSum + " / "
+						+ Math.round(myKcal * 0.2);
+
+				$('#pSum').html(pkcalSumString);
+				$('#cSum').html(ckcalSumString);
+				$('#fSum').html(fkcalSumString);
 
 				//단백질부분
 				$('.pkcal').click(
@@ -36,7 +57,15 @@
 							var kcal = $(this).html();
 
 							pkcalSum = parseInt(pkcalSum) + parseInt(kcal);
-							$('#pSum').html(pkcalSum);
+
+							if (Math.round(myKcal * 0.3) <= pkcalSum) {
+								$('#pSum').css('color', 'red');
+							}
+
+							pkcalSumString = pkcalSum + " / "
+									+ Math.round(myKcal * 0.3);
+
+							$('#pSum').html(pkcalSumString);
 
 							var name = "<tr><td>"
 									+ $(this).closest('tr').children('td')
@@ -45,6 +74,7 @@
 							pName = pName + name;
 
 							$('#protein').html(pName);
+
 						})
 
 				//탄수화물부분
@@ -54,7 +84,15 @@
 							var kcal = $(this).html();
 
 							ckcalSum = parseInt(ckcalSum) + parseInt(kcal);
-							$('#cSum').html(ckcalSum);
+
+							if (Math.round(myKcal * 0.5) <= ckcalSum) {
+								$('#cSum').css('color', 'red');
+							}
+
+							ckcalSumString = ckcalSum + " / "
+									+ Math.round(myKcal * 0.5);
+
+							$('#cSum').html(ckcalSumString);
 
 							var name = "<tr><td>"
 									+ $(this).closest('tr').children('td')
@@ -65,14 +103,22 @@
 							// 			alert(name);
 							$('#carbohydrate').html(cName);
 						})
-						//지방부분
+				//지방부분
 				$('.fkcal').click(
 						function() {
 
 							var kcal = $(this).html();
 
 							fkcalSum = parseInt(fkcalSum) + parseInt(kcal);
-							$('#fSum').html(fkcalSum);
+
+							if (Math.round(myKcal * 0.2) <= fkcalSum) {
+								$('#fSum').css('color', 'red');
+							}
+
+							fkcalSumString = fkcalSum + " / "
+									+ Math.round(myKcal * 0.2);
+
+							$('#fSum').html(fkcalSumString);
 
 							var name = "<tr><td>"
 									+ $(this).closest('tr').children('td')
@@ -83,6 +129,12 @@
 							// 			alert(name);
 							$('#fat').html(fName);
 						})
+
+				$('#setZero').click(function() {
+
+					alert("미구현!");
+
+				})
 
 			})
 </script>
@@ -164,6 +216,48 @@ table {
 	<div>
 		<a>지방 칼로리 : </a> <a id="fSum">0</a> kcal<br>
 	</div>
+
+	<div>
+		<c:set var="_memberInfoActivity"
+			value="${_memberInfoVo.memberInfoActivity}" />
+		<!-- 기초대사량 -->
+		<c:set var="_memberInfoCal" value="${_memberInfoVo.memberInfoCal}" />
+
+		<table>
+			<tr>
+				<th>식단 처방 칼로리</th>
+				<c:choose>
+					<c:when test="${_memberInfoActivity == 1}">
+						<td class="myKcal"><fmt:formatNumber
+								value="${_memberInfoCal*1.2-500}" pattern="0" /></td>
+					</c:when>
+					<c:when test="${_memberInfoActivity == 2}">
+						<td class="myKcal"><fmt:formatNumber
+								value="${_memberInfoCal*1.375-500}" pattern="0" /></td>
+					</c:when>
+					<c:when test="${_memberInfoActivity == 3}">
+						<td class="myKcal"><fmt:formatNumber
+								value="${_memberInfoCal*1.55-500}" pattern="0" /></td>
+					</c:when>
+					<c:when test="${_memberInfoActivity == 4}">
+						<td class="myKcal"><fmt:formatNumber
+								value="${_memberInfoCal*1.725-500}" pattern="0" /></td>
+					</c:when>
+					<c:when test="${_memberInfoActivity == 5}">
+						<td class="myKcal"><fmt:formatNumber
+								value="${_memberInfoCal*1.9-500}" pattern="0" /></td>
+					</c:when>
+				</c:choose>
+			</tr>
+		</table>
+		<c:set var="dietTypeC" value="C" />
+		<c:set var="dietTypeP" value="P" />
+
+
+
+	</div>
+
+
 	<table>
 		<tr>
 			<td>
@@ -190,6 +284,7 @@ table {
 		</tr>
 	</table>
 
+	<a id="setZero">초기화</a>
 
 
 

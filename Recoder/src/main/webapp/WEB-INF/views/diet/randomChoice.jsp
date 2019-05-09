@@ -14,7 +14,17 @@
 	rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon"
 	rel="stylesheet">
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	
+</script>	
+	
+<script type="text/javascript">
+function selfFnc() {
+	location.href="../diet/selfChoice.do";
+}
 
+</script>
 <style type="text/css">
 .kcalForm {
 	margin-top: 80px;
@@ -90,11 +100,10 @@ a {
 </style>
 </head>
 <body>
-<<<<<<< HEAD
 <jsp:include page="../common/header.jsp"/>
 <c:set var="_memberInfoActivity" value="${_memberInfoVo.memberInfoActivity}"/><!-- 기초대사량 -->
 <c:set var="_memberInfoCal" value="${_memberInfoVo.memberInfoCal}"/>
-<input type="hidden" name="memberNo" value="${_memberInfoVo.memberNo}">
+<%-- <input type="hidden" name="memberNo" value="${_memberInfoVo.memberNo}"> --%>
 <div class="kcalForm">
 <form action="../diet/randomChoice.do?memberNo=${_memberInfoVo.memberNo}" method="post">
 	<table>
@@ -257,6 +266,7 @@ a {
 			</table>
 			<input type="submit" value="다시하기" class="submit-btn">
 		</form>
+			<button onclick="selfFnc();">직접선택</button>
 	</div>
 
 

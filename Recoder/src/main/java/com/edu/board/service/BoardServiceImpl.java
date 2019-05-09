@@ -72,7 +72,7 @@ public class BoardServiceImpl implements BoardService {
 			boardDao.insertFile(list.get(i)); // db에 넣음
 		}
 	}
-
+	@Transactional
 	@Override
 	public int boardUpdateOne(BoardVo boardVo, MultipartHttpServletRequest multipartHttpServletRequest, int fileIdx)
 			throws Exception {
@@ -85,17 +85,29 @@ public class BoardServiceImpl implements BoardService {
 			Map<String, Object> tempFileMap = boardDao.fileSelectStoredFileName(parentSeq);
 
 			List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(parentSeq, multipartHttpServletRequest);
-
+			
+			//업데이트 시
 			if (boardVo.getUpdl().equals("update")) {
+				
+				// 1. 파일이 있을경우
 				if (tempFileMap != null) {
+					
 					fileUtils.parseUpdateFileInfo(tempFileMap);
 					boardDao.fileDelete(parentSeq);
 				}
 
-				for (Map<String, Object> map : list) {
-					boardDao.insertFile(map);
-				}
+//				for (int i = 0; i < list.size(); i++) { // 한번만 돎
+					boardDao.insertFile(tempFileMap); // db에 넣음
+//				}
+//				for (Map<String, Object> map : list) {
+//					boardDao.insertFile(map);
+//					boardDao.insertFile(list.get(0));
+//				}
+				
+			//삭제 시
 			} else if (boardVo.getUpdl().equals("delete")) {
+				
+				//파일이 있으면 삭제함
 				if (tempFileMap != null) {
 					boardDao.fileDelete(parentSeq);
 					fileUtils.parseUpdateFileInfo(tempFileMap);

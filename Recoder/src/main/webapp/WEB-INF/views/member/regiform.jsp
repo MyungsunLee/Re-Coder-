@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,14 +18,24 @@
 	$(function() {
 		
 
-		$('#membercheck-form').submit(function() {
-			var email = $('#email').val();
-			if (email == '') {
-				alert('이메일을 입력해주세요.');
-				$('#email').focus();
-				return false;
-			}
-			$('#emailcheck').val(email);
+// 					 $.post('../member/membercheck.do',
+// 					function($data){
+// 					var result= $data;console.log(result);
+// 					if(result.indexOf('이미')!=-1){alert('사용중인 이메일')}
+// 					else{alert('클린한 이메일')}
+		 		
+// 					});
+		
+		
+
+// 		$('#membercheck-form').submit(function() {
+// 			var email = $('#email').val();
+// 			if (email == '') {
+// 				alert('이메일을 입력해주세요.');
+// 				$('#email').focus();
+// 				return false;
+// 			}
+// 			$('#emailcheck').val(email);
 			
 		});
 		
@@ -88,32 +98,29 @@
 
 	<div class="regi-form">
 		<form id="reg-form" name="reg-form" action="../member/add.do"
-			method="post"  >
+			method="post">
 
 			<input type="text" id="email" name="memberEmail" class="text-field"
 				placeholder="이메일" value="${memberEmail}">
 			
+	
 			<br> <input type="text" id="name" name="memberName"
-				class="text-field" placeholder="이름">
-				<br> 
-				<input type="password" id="password" name="memberPassword"
-				class="text-field" placeholder="비밀번호">
-				<br> 
-				<input type="password" id="passwordConfirm" name="memberPasswordConfirm"
-				class="text-field" placeholder="비밀번호 확인">
-				<br>
-				<a href="#">
-					<input type="submit" value="회원가입" class="submit-btn">
-				</a>
+				class="text-field" placeholder="이름"> <br> <input
+				type="password" id="password" name="memberPassword"
+				class="text-field" placeholder="비밀번호"> <br> <input
+				type="password" id="passwordConfirm" name="memberPasswordConfirm"
+				class="text-field" placeholder="비밀번호 확인"> <br> <a
+				href="#"> <input type="submit" value="회원가입" class="submit-btn">
+			</a>
 		</form>
-		<form id="membercheck-form"
-			action="../member/membercheck.do?memberEmail=" method="get"
-			target="popup_window">
-			<input id="emailcheck" name="memberEmail" type="hidden" value="">
-			<input type="submit" value="중복체크">
-		</form>
-		
-	</div>
+		<!-- 		<form id="membercheck-form" -->
+		<!-- 			action="../member/membercheck.do" method="post"> -->
+		<!-- 			<input id="emailcheck" name="memberEmail" type="hidden" value=""> -->
+		<!-- 			<input type="submit" value="중복체크"> -->
+		<!-- 		</form> -->
+		<button type="button" id="emailCheck">이메일 확인</button>
 
+	</div>
+	
 </body>
 </html>

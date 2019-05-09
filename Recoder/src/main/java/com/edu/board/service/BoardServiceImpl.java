@@ -79,43 +79,50 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		int resultNum = 0;
 		try {
+			
+			//게시글 먼저 update
 			resultNum = boardDao.boardUpdateOne(boardVo);
 
+			//게시글 번호 뽑아내기
 			int parentSeq = boardVo.getBoardNo();
-			Map<String, Object> tempFileMap = boardDao.fileSelectStoredFileName(parentSeq);
-
-			List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(parentSeq, multipartHttpServletRequest);
 			
 			//업데이트 시
 			if (boardVo.getUpdl().equals("update")) {
 				
-				// 1. 파일이 있을경우
+				
+				//게시글 번호로 있는 이미지 있는거 담음(없으면 안담음)
+				Map<String, Object> tempFileMap = boardDao.fileSelectStoredFileName(parentSeq);
+				
+				
+				List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(parentSeq, multipartHttpServletRequest);
+				
+				// 1. 게시글에 이미 파일이 있을경우
 				if (tempFileMap != null) {
 					
 					fileUtils.parseUpdateFileInfo(tempFileMap);
 					boardDao.fileDelete(parentSeq);
 				}
-
-//				for (int i = 0; i < list.size(); i++) { // 한번만 돎
-					boardDao.insertFile(tempFileMap); // db에 넣음
-//				}
-//				for (Map<String, Object> map : list) {
-//					boardDao.insertFile(map);
-//					boardDao.insertFile(list.get(0));
-//				}
+				
+				
+				
+				for (int i = 0; i < list.size(); i++) { // 한번만 돎
+					boardDao.insertFile(list.get(i));
+				}
 				
 			//삭제 시
 			} else if (boardVo.getUpdl().equals("delete")) {
+				Map<String, Object> tempFileMap = boardDao.fileSelectStoredFileName(parentSeq);
 				
-				//파일이 있으면 삭제함
-				if (tempFileMap != null) {
+				List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(parentSeq, multipartHttpServletRequest);
+				
 					boardDao.fileDelete(parentSeq);
 					fileUtils.parseUpdateFileInfo(tempFileMap);
-				}
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			log.debug("=================================");
+			e.printStackTrace();
+ 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 		}
 
 		return resultNum;

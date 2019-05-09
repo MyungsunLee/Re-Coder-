@@ -97,7 +97,15 @@
    parameterType="boardVo" resultType="int"
    resultMap="boardResultMap">
 
-   SELECT RNUM,
+SELECT BM.RNUM, 
+	   BM.BOARD_NO,
+	   BM.BOARD_TITLE, 
+	   BM.BOARD_CONTENT, 
+	   BM.MEMBER_NO, 
+	   BM.MEMBER_NAME, 
+	   BM.BOARD_CRE_DATE
+FROM(
+ 	SELECT ROWNUM AS RNUM,
    		  B.BOARD_NO,
    		  B.BOARD_TITLE,
    		  B.BOARD_CONTENT,
@@ -105,16 +113,16 @@
    		  B.MEMBER_NAME,
    		  B.BOARD_CRE_DATE
     FROM
-    	(SELECT ROWNUM AS RNUM,
-    			B.BOARD_NO,
+    	(SELECT B.BOARD_NO,
     			B.BOARD_TITLE,
     			B.BOARD_CONTENT,
     			M.MEMBER_NO,
     			M.MEMBER_NAME,
     			B.BOARD_CRE_DATE
    					FROM BOARD B, MEMBERS M
-   		 WHERE M.MEMBER_NO = B.MEMBER_NO)B
-   WHERE B.BOARD_NO = #{no}
+   		 WHERE M.MEMBER_NO = B.MEMBER_NO
+   		 ORDER BY B.BOARD_NO)B)BM
+   WHERE BM.BOARD_NO = #{no}
 
 </select>
 
@@ -122,11 +130,24 @@
    parameterType="boardVo" resultType="int"
    resultMap="boardResultMap">
    
-   SELECT RNUM, B.BOARD_NO, B.BOARD_TITLE, B.MEMBER_NAME, B.BOARD_CRE_DATE
+SELECT BM.RNUM, 
+       BM.BOARD_NO,
+       BM.BOARD_TITLE,
+       BM.MEMBER_NAME,
+       BM.BOARD_CRE_DATE
+       FROM
+(SELECT ROWNUM AS RNUM,
+       B.BOARD_NO,
+       B.BOARD_TITLE,
+       B.MEMBER_NAME,
+       B.BOARD_CRE_DATE
    		FROM
-   		(SELECT ROWNUM AS RNUM, B.BOARD_NO, B.BOARD_TITLE, M.MEMBER_NAME, B.BOARD_CRE_DATE
+   		(SELECT B.BOARD_NO, B.BOARD_TITLE,
+                M.MEMBER_NAME,
+                B.BOARD_CRE_DATE
    			FROM BOARD B, MEMBERS M
-   			WHERE M.MEMBER_NO = B.MEMBER_NO)B
+   			WHERE M.MEMBER_NO = B.MEMBER_NO
+            ORDER BY B.BOARD_NO)B)BM
    WHERE RNUM = #{rNum}
    
    </select>

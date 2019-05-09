@@ -52,11 +52,15 @@ a {
 // 			$("#imgDiv").remove();
 // 		}
 		
+// 		var updl = $("#updl").html();
 		$("#outFormDel").click(function(){
 			$("#imgDiv").remove();
 			var del = 'delete';
-			$("updl").val(del);
+			$("#updl").val(del);
+			
 		})
+		
+		
 		
 		 $('textarea').keyup(function() {
 	         var inputLength = $(this).val().length;
@@ -67,7 +71,9 @@ a {
 	         } else {
 	            $('#textLength').css('color', 'red');
 	         }
-	      });
+	      })
+	      
+	      
 		
 	})
 	
@@ -101,7 +107,7 @@ a {
          </tr>
          <tr>
          	<td>
-         		<input type="file" name="file" value='/img/${row.STORED_FILE_NAME}'>
+         		<input type="file" name="file" id="file">
          	</td>
          </tr>
          

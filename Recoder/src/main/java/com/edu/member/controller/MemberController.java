@@ -35,9 +35,28 @@ public class MemberController {
 	@Autowired
 	private MemberInfoService memberInfoService;
 	
+//	@RequestMapping(value = "/member/membercheck.do", method = RequestMethod.POST)
+//	public int memberCheck(MemberVo memberVo1, Model model) {
+//		log.debug("Welcome membermembercheck enter! - {}", memberVo1);
+//
+//		MemberVo memberVo = memberService.memberExistCheck(memberVo1);
+//		
+//		model.addAttribute("memberVo1", memberVo1);
+//		model.addAttribute("memberVo", memberVo);
+//		
+//		int result = 0;
+//		
+//		if(memberVo == null) {
+//			result = 1;
+//		}
+//		
+//
+//		return result;
+//	}
 	
 	
-	@RequestMapping(value = "/member/membercheck.do", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/member/membercheck.do", method = RequestMethod.POST)
 	public String memberCheck(MemberVo memberVo1, Model model) {
 		log.debug("Welcome membermembercheck enter! - {}", memberVo1);
 

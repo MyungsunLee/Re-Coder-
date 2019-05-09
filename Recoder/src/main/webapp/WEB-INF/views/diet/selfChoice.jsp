@@ -16,7 +16,28 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
 	
 </script>
+<style type="text/css">
+a {
+ 	text-decoration: none;
+	color: #198556;
+}
 
+th {
+	background-color: #59d393;
+	color: black;
+}
+
+table {
+	margin: auto;
+	padding: 15px;
+}
+#div {
+	padding-top: 30px;
+	margin: auto;
+ 	text-align: center;
+	background-color: #EEEFF1;
+}
+</style>
 <script type="text/javascript">
 	var pkcalSum = 0; //각각 선택한 식품군 합친 총 칼로리
 	var pkcalNeed = 0; //and 사용자가 하루동안 섭취해야 할 총 칼로리
@@ -138,33 +159,19 @@
 
 			})
 </script>
-<style type="text/css">
-a {
-	text-decoration: none;
-	color: #198556;
-}
 
-th {
-	background-color: #59d393;
-	color: black;
-}
-
-table {
-	margin: 15px;
-	padding: 15px;
-}
-</style>
 <title>식단 고르기</title>
 </head>
 <body>
 
 	<jsp:include page="../common/header.jsp" />
+	<div id="div">
 	<table>
 		<tr>
 			<td>
 				<table>
 					<tr>
-						<td>단백질</td>
+						<th>단백질</th>
 					</tr>
 					<c:forEach var="pList" items="${pList}">
 						<tr>
@@ -179,7 +186,7 @@ table {
 			<td>
 				<table>
 					<tr>
-						<td>탄수화물</td>
+						<th>탄수화물</th>
 					</tr>
 					<c:forEach var="cList" items="${cList}">
 						<tr>
@@ -193,7 +200,7 @@ table {
 			<td>
 				<table>
 					<tr>
-						<td>지방</td>
+						<th>지방</th>
 					</tr>
 					<c:forEach var="fList" items="${fList}">
 						<tr>
@@ -286,7 +293,7 @@ table {
 
 	<a id="setZero">초기화</a>
 
-
+</div>
 
 </body>
 </html>

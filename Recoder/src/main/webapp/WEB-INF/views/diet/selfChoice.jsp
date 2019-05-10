@@ -95,6 +95,8 @@ table {
 							pName = pName + name;
 
 							$('#protein').html(pName);
+							
+						return false;
 
 						})
 
@@ -175,9 +177,11 @@ table {
 					</tr>
 					<c:forEach var="pList" items="${pList}">
 						<tr>
+						
 							<td>${pList.dietName}</td>
-							<td style="text-align: right;"><a class="pkcal">${pList.dietCal}</a>
+							<td style="text-align: right;"><a href="#" class="pkcal">${pList.dietCal}</a>
 								kcal</td>
+	
 
 						</tr>
 					</c:forEach>
@@ -215,7 +219,7 @@ table {
 		</tr>
 	</table>
 	<div>
-		<a>단백질 칼로리 : </a> <a id="pSum">0</a> kcal</br>
+		<a>단백질 칼로리 : </a> <a id="pSum">0</a> kcal<br>
 	</div>
 	<div>
 		<a>탄수화물 칼로리 : </a> <a id="cSum">0</a> kcal<br>

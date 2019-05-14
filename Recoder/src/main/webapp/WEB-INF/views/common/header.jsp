@@ -10,7 +10,7 @@
 <!-- 	</div> -->
 	
 	<div id="logo">
-		<a href="../common/index.do"><img src="/Recoder/resources/images/recoder_logo_proto_1.png"></a>
+		<a href="../common/index.do"><img src="/Recoder/resources/images/fatDiet2.png"></a>
 	</div>
 	
 

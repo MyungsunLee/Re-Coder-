@@ -39,7 +39,8 @@
 		SELECT B.RNUM, B.BOARD_NO, B.BOARD_TITLE, B.MEMBER_NAME,
 		B.BOARD_CRE_DATE
 		FROM
-		(SELECT B.BOARD_NO, ROWNUM RNUM, B.BOARD_TITLE, B.MEMBER_NAME,
+		(SELECT B.BOARD_NO, ROWNUM RNUM, B.BOARD_TITLE,
+		B.MEMBER_NAME,
 		B.BOARD_CRE_DATE
 		FROM
 		(SELECT B.BOARD_NO,
@@ -47,7 +48,8 @@
 		M.MEMBER_NAME,
 		B.BOARD_CRE_DATE
 		FROM MEMBERS M, BOARD B
-		WHERE M.MEMBER_NO = B.MEMBER_NO
+		WHERE M.MEMBER_NO
+		= B.MEMBER_NO
 
 		<choose>
 			<when test="searchOption == 'title'">
@@ -95,63 +97,57 @@
 
 	</select>
 
-	<select id="boardSelectOne" 
-   parameterType="boardVo" resultType="int"
-   resultMap="boardResultMap">
+	<select id="boardSelectOne" parameterType="boardVo"
+		resultType="int" resultMap="boardResultMap">
 
-SELECT BM.RNUM, 
-      BM.BOARD_NO,
-      BM.BOARD_TITLE, 
-      BM.BOARD_CONTENT, 
-      BM.MEMBER_NO, 
-      BM.MEMBER_NAME, 
-      BM.BOARD_CRE_DATE
-FROM(
-    SELECT ROWNUM AS RNUM,
-           B.BOARD_NO,
-           B.BOARD_TITLE,
-           B.BOARD_CONTENT,
-           B.MEMBER_NO,
-           B.MEMBER_NAME,
-           B.BOARD_CRE_DATE
-    FROM
-       (SELECT B.BOARD_NO,
-             B.BOARD_TITLE,
-             B.BOARD_CONTENT,
-             M.MEMBER_NO,
-             M.MEMBER_NAME,
-             B.BOARD_CRE_DATE
-                  FROM BOARD B, MEMBERS M
-          WHERE M.MEMBER_NO = B.MEMBER_NO
-          ORDER BY B.BOARD_NO)B)BM
-   WHERE BM.BOARD_NO = #{no}
+		SELECT BM.RNUM,
+		BM.BOARD_NO,
+		BM.BOARD_TITLE,
+		BM.BOARD_CONTENT,
+		BM.MEMBER_NO,
+		BM.MEMBER_NAME,
+		BM.BOARD_CRE_DATE
+		FROM(
+		SELECT ROWNUM AS RNUM,
+		B.BOARD_NO,
+		B.BOARD_TITLE,
+		B.BOARD_CONTENT,
+		B.MEMBER_NO,
+		B.MEMBER_NAME,
+		B.BOARD_CRE_DATE
+		FROM (SELECT B.BOARD_NO,
+		B.BOARD_TITLE,
+		B.BOARD_CONTENT,
+		M.MEMBER_NO,
+		M.MEMBER_NAME,
+		B.BOARD_CRE_DATE
+		FROM BOARD B, MEMBERS M
+		WHERE M.MEMBER_NO = B.MEMBER_NO
+		ORDER BY B.BOARD_NO)B)BM WHERE BM.BOARD_NO = #{no}
 
-</select>
+	</select>
 
-	<select id="boardSelectOneRestTwo"
-   parameterType="boardVo" resultType="int"
-   resultMap="boardResultMap">
-   
-SELECT BM.RNUM, 
-       BM.BOARD_NO,
-       BM.BOARD_TITLE,
-       BM.MEMBER_NAME,
-       BM.BOARD_CRE_DATE
-       FROM
-(SELECT ROWNUM AS RNUM,
-       B.BOARD_NO,
-       B.BOARD_TITLE,
-       B.MEMBER_NAME,
-       B.BOARD_CRE_DATE
-         FROM
-         (SELECT B.BOARD_NO, B.BOARD_TITLE,
-                M.MEMBER_NAME,
-                B.BOARD_CRE_DATE
-            FROM BOARD B, MEMBERS M
-            WHERE M.MEMBER_NO = B.MEMBER_NO
-            ORDER BY B.BOARD_NO)B)BM
-   WHERE RNUM = #{rNum}
-   </select>
+	<select id="boardSelectOneRestTwo" parameterType="boardVo"
+		resultType="int" resultMap="boardResultMap">
+
+		SELECT BM.RNUM,
+		BM.BOARD_NO,
+		BM.BOARD_TITLE,
+		BM.MEMBER_NAME,
+		BM.BOARD_CRE_DATE
+		FROM
+		(SELECT ROWNUM AS RNUM,
+		B.BOARD_NO,
+		B.BOARD_TITLE,
+		B.MEMBER_NAME,
+		B.BOARD_CRE_DATE FROM
+		(SELECT B.BOARD_NO, B.BOARD_TITLE,
+		M.MEMBER_NAME,
+		B.BOARD_CRE_DATE
+		FROM BOARD B, MEMBERS M
+		WHERE M.MEMBER_NO = B.MEMBER_NO ORDER BY B.BOARD_NO)B)BM
+		WHERE RNUM = #{rNum}
+	</select>
 
 
 
@@ -176,7 +172,8 @@ SELECT BM.RNUM,
 
 		DELETE
 		FROM BOARD
-		WHERE BOARD_NO = #{boardNo}
+		WHERE
+		BOARD_NO = #{boardNo}
 
 	</delete>
 
@@ -202,7 +199,8 @@ SELECT BM.RNUM,
 		(IDX, PARENT_SEQ,
 		ORIGINAL_FILE_NAME,
 		STORED_FILE_NAME,
-		FILE_SIZE, CRE_DATE)
+		FILE_SIZE,
+		CRE_DATE)
 		VALUES
 		(BOARD_FILE_IDX_SEQ.NEXTVAL,
 		#{parentSeq},
@@ -234,7 +232,8 @@ SELECT BM.RNUM,
 
 		SELECT IDX, STORED_FILE_NAME
 		FROM BOARD_FILE
-		WHERE PARENT_SEQ = #{no}
+		WHERE PARENT_SEQ
+		= #{no}
 
 	</select>
 
@@ -246,11 +245,13 @@ SELECT BM.RNUM,
 	<select id="commentSelectList" parameterType="int"
 		resultMap="commentResultMap">
 
-		SELECT C.COMMENT_NO, C.BOARD_NO, C.MEMBER_NO, M.MEMBER_NAME, C.COMMENTS,
+		SELECT C.COMMENT_NO, C.BOARD_NO, C.MEMBER_NO, M.MEMBER_NAME,
+		C.COMMENTS,
 		C.CRE_DATE
 		FROM COMMENTS C, BOARD B, MEMBERS M
 
-		WHERE B.BOARD_NO = C.BOARD_NO
+		WHERE
+		B.BOARD_NO = C.BOARD_NO
 		AND C.MEMBER_NO = M.MEMBER_NO
 		AND B.BOARD_NO =
 		#{boardNo}
@@ -273,9 +274,11 @@ SELECT BM.RNUM,
 		parameterType="com.edu.board.vo.CommentVo">
 
 		INSERT INTO COMMENTS
-		(COMMENT_NO, MEMBER_NO, BOARD_NO, COMMENTS, CRE_DATE)
+		(COMMENT_NO, MEMBER_NO, BOARD_NO,
+		COMMENTS, CRE_DATE)
 		VALUES
-		(COMMENT_NO_SEQ.NEXTVAL,#{memberNo}, #{boardNo}, #{comments},
+		(COMMENT_NO_SEQ.NEXTVAL,#{memberNo},
+		#{boardNo}, #{comments},
 		SYSDATE)
 
 	</insert>
@@ -306,7 +309,8 @@ SELECT BM.RNUM,
 
 	<delete id="commentDeleteList" parameterType="int">
 
-		DELETE FROM COMMENTS
+		DELETE FROM
+		COMMENTS
 		WHERE BOARD_NO = #{boardNo}
 
 	</delete>

@@ -23,7 +23,7 @@ a {
 }
 
 th {
-	background-color: #59d393;
+background-color: #59d393;
 	color: black;
 }
 
@@ -98,11 +98,16 @@ border: 3px solid grey;
 							pName = pName + name;
 
 							$('#protein').html(pName);
+
 							}
 
 							if (Math.round(myKcal * 0.3) <= pkcalSum) {
 								$('#pSum').css('color', 'red');
 							}
+
+
+							
+						return false;
 
 
 						})
@@ -128,12 +133,17 @@ border: 3px solid grey;
 							cName = cName + name;
 
 							$('#carbohydrate').html(cName);
+
 							}
 
 
 							if (Math.round(myKcal * 0.5) <= ckcalSum) {
 								$('#cSum').css('color', 'red');
 							}
+
+
+							
+							return false;
 
 						})
 				//지방부분
@@ -157,19 +167,19 @@ border: 3px solid grey;
 							fName = fName + name;
 
 							$('#fat').html(fName);
+
 							}
 
 							if (Math.round(myKcal * 0.2) <= fkcalSum) {
 								$('#fSum').css('color', 'red');
 							}
 
+
+							
+							return false;
+
 						})
 
-				$('#setZero').click(function() {
-
-					alert("미구현!");
-
-				})
 
 			})
 </script>
@@ -189,9 +199,11 @@ border: 3px solid grey;
 					</tr>
 					<c:forEach var="pList" items="${pList}">
 						<tr>
+						
 							<td>${pList.dietName}</td>
-							<td style="text-align: right;"><a class="pkcal">${pList.dietCal}</a>
+							<td style="text-align: right;"><a href="#" class="pkcal">${pList.dietCal}</a>
 								kcal</td>
+	
 
 						</tr>
 					</c:forEach>
@@ -205,7 +217,7 @@ border: 3px solid grey;
 					<c:forEach var="cList" items="${cList}">
 						<tr>
 							<td>${cList.dietName}</td>
-							<td style="text-align: right;"><a class="ckcal">${cList.dietCal}</a>
+							<td style="text-align: right;"><a href="#" class="ckcal">${cList.dietCal}</a>
 								kcal</td>
 						</tr>
 					</c:forEach>
@@ -219,7 +231,7 @@ border: 3px solid grey;
 					<c:forEach var="fList" items="${fList}">
 						<tr>
 							<td>${fList.dietName}</td>
-							<td style="text-align: right;"><a class="fkcal">${fList.dietCal}</a>
+							<td style="text-align: right;"><a href="#" class="fkcal">${fList.dietCal}</a>
 								kcal</td>
 
 						</tr>
@@ -229,7 +241,7 @@ border: 3px solid grey;
 		</tr>
 	</table>
 	<div>
-		<a>단백질 칼로리 : </a> <a id="pSum">0</a> kcal</br>
+		<a>단백질 칼로리 : </a> <a id="pSum">0</a> kcal<br>
 	</div>
 	<div>
 		<a>탄수화물 칼로리 : </a> <a id="cSum">0</a> kcal<br>
@@ -305,7 +317,7 @@ border: 3px solid grey;
 		</tr>
 	</table>
 
-	<a id="setZero">초기화</a>
+	<a href="../diet/selfChoice.do" id="setZero">초기화</a>
 
 </div>
 

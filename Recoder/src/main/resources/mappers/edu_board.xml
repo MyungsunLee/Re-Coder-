@@ -115,28 +115,88 @@ FROM(
    		  B.BOARD_CRE_DATE
     FROM
    WHERE BM.BOARD_NO = #{no}
-
-</select>
-<select id="boardSelectOneRestTwo"
-   parameterType="boardVo" resultType="int"
-   resultMap="boardResultMap">
-   
-SELECT BM.RNUM, 
-       BM.BOARD_NO,
-       BM.BOARD_TITLE,
-       BM.MEMBER_NAME,
-       BM.BOARD_CRE_DATE
-       FROM
-(SELECT ROWNUM AS RNUM,
-       B.BOARD_NO,
-       B.BOARD_TITLE,
-       B.MEMBER_NAME,
-       B.BOARD_CRE_DATE
-       ORDER BY B.BOARD_NO)B)BM
-   WHERE RNUM = #{rNum}
-   
    </select>
-<insert id="boardInsertOne" parameterType="boardVo"
+
+
+
+	<select id="boardSelectTotalCount" parameterType="map"
+		resultType="int">
+
+		SELECT COUNT(*)
+		FROM BOARD B, MEMBERS M
+		WHERE B.MEMBER_NO = M.MEMBER_NO
+		<choose>
+			<when test="searchOption == 'title'">
+				AND B.BOARD_TITLE LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="searchOption == 'content'">
+				AND B.BOARD_CONTENT LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="searchOption == 'name'">
+				AND M.MEMBER_NAME LIKE '%'||#{keyword}||'%'
+			</when>
+			<otherwise>
+				ORDER BY B.BOARD_NO DESC
+			</otherwise>
+		</choose>
+
+	</select>
+
+	<select id="boardSelectOne" parameterType="boardVo"
+		resultType="int" resultMap="boardResultMap">
+
+		SELECT BM.RNUM,
+		BM.BOARD_NO,
+		BM.BOARD_TITLE,
+		BM.BOARD_CONTENT,
+		BM.MEMBER_NO,
+		BM.MEMBER_NAME,
+		BM.BOARD_CRE_DATE
+		FROM(
+		SELECT ROWNUM AS RNUM,
+		B.BOARD_NO,
+		B.BOARD_TITLE,
+		B.BOARD_CONTENT,
+		B.MEMBER_NO,
+		B.MEMBER_NAME,
+		B.BOARD_CRE_DATE
+		FROM (SELECT B.BOARD_NO,
+		B.BOARD_TITLE,
+		B.BOARD_CONTENT,
+		M.MEMBER_NO,
+		M.MEMBER_NAME,
+		B.BOARD_CRE_DATE
+		FROM BOARD B, MEMBERS M
+		WHERE M.MEMBER_NO = B.MEMBER_NO
+		ORDER BY B.BOARD_NO)B)BM WHERE BM.BOARD_NO = #{no}
+
+	</select>
+
+	<select id="boardSelectOneRestTwo" parameterType="boardVo"
+		resultType="int" resultMap="boardResultMap">
+
+		SELECT BM.RNUM,
+		BM.BOARD_NO,
+		BM.BOARD_TITLE,
+		BM.MEMBER_NAME,
+		BM.BOARD_CRE_DATE
+		FROM
+		(SELECT ROWNUM AS RNUM,
+		B.BOARD_NO,
+		B.BOARD_TITLE,
+		B.MEMBER_NAME,
+		B.BOARD_CRE_DATE FROM
+		(SELECT B.BOARD_NO, B.BOARD_TITLE,
+		M.MEMBER_NAME,
+		B.BOARD_CRE_DATE
+		FROM BOARD B, MEMBERS M
+		WHERE M.MEMBER_NO = B.MEMBER_NO ORDER BY B.BOARD_NO)B)BM
+		WHERE RNUM = #{rNum}
+	</select>
+
+
+
+	<insert id="boardInsertOne" parameterType="boardVo"
 		useGeneratedKeys="true" keyProperty="boardNo">
 		
       <selectKey keyProperty="boardNo" resultType="int" order="BEFORE">

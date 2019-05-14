@@ -19,12 +19,6 @@
 	
 </script>	
 	
-<script type="text/javascript">
-function selfFnc() {
-	location.href="../diet/selfChoice.do";
-}
-
-</script>
 <style type="text/css">
 .kcalForm {
 	margin-top: 80px;
@@ -44,6 +38,7 @@ table {
 	margin: auto;
 	color: #198556;
 	border-collapse: collapse;
+	
 }
 
 th {
@@ -53,6 +48,7 @@ th {
 
 td {
 	border-bottom: 1px solid #eee;
+	
 }
 
 a {
@@ -150,6 +146,7 @@ a {
 		<c:set var="dietTypeP" value="P" />
 		
 				<tr>
+
 					<table>
 						<tr>
 							<td>
@@ -264,8 +261,10 @@ a {
 					</table>
 				</tr>
 			</table>
+			<div style="margin: auto; width: 600px; padding-left: 45px; padding-top: 50px;">
 			<input type="submit" value="다시하기" class="submit-btn">
-			<button onclick="selfFnc();" class="submit-btn">직접선택</button>
+			<button type="button" onclick="location.href='../diet/selfChoice.do'" class="submit-btn">직접선택</button>
+			</div>
 		</form>
 	</div>
 

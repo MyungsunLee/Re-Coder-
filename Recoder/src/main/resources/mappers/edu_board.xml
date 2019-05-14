@@ -3,79 +3,84 @@
 <mapper namespace="com.edu.board">
 
 
-<resultMap type="com.edu.board.vo.BoardVo"
-         id="boardResultMap">
-         
-         
-   <id column="BOARD_NO" property="boardNo" />
-    <result column="RNUM" property="rowNum" /> 
-   <result column="BOARD_TITLE" property="boardTitle" />
-   <result column="MEMBER_NO" property="memberNo"/>
-   <result column="MEMBER_NAME" property="name" />
-   <result column="BOARD_CONTENT" property="boardContent" />
-   <result column="COUNT" property="commentTotCount" />
-   <result column="BOARD_CRE_DATE" property="boardCreDate" 
-         javaType="java.util.Date"/>
-   <result column="BOARD_MOD_DATE" property="boardModDate" 
-         javaType="java.util.Date"/>
-</resultMap>
-
-<resultMap type="com.edu.board.vo.CommentVo"
-			id="commentResultMap">
-			<id column="COMMENT_NO" property="commentNo" />
-			<result column="BOARD_NO" property="boardNo"/>
-			<result column="MEMBER_NO" property="memberNo" />
-			<result column="MEMBER_NAME" property="memberName" />
-			<result column="COMMENTS" property="comments" />
-			<result column="CRE_DATE" property="creDate"
-			javaType="java.util.Date" />
-			</resultMap>
+   <resultMap type="com.edu.board.vo.BoardVo"
+      id="boardResultMap">
 
 
+      <id column="BOARD_NO" property="boardNo" />
+      <result column="RNUM" property="rowNum" />
+      <result column="BOARD_TITLE" property="boardTitle" />
+      <result column="MEMBER_NO" property="memberNo" />
+      <result column="MEMBER_NAME" property="name" />
+      <result column="BOARD_CONTENT" property="boardContent" />
+      <result column="COUNT" property="commentTotCount" />
+      <result column="BOARD_CRE_DATE" property="boardCreDate"
+         javaType="java.util.Date" />
+      <result column="BOARD_MOD_DATE" property="boardModDate"
+         javaType="java.util.Date" />
+   </resultMap>
 
-<select id="boardSelectList" parameterType="map"
+   <resultMap type="com.edu.board.vo.CommentVo"
+      id="commentResultMap">
+      <id column="COMMENT_NO" property="commentNo" />
+      <result column="BOARD_NO" property="boardNo" />
+      <result column="MEMBER_NO" property="memberNo" />
+      <result column="MEMBER_NAME" property="memberName" />
+      <result column="COMMENTS" property="comments" />
+      <result column="CRE_DATE" property="creDate"
+         javaType="java.util.Date" />
+   </resultMap>
+
+
+
+   <select id="boardSelectList" parameterType="map"
       resultMap="boardResultMap">
-      
-      SELECT B.RNUM, B.BOARD_NO, B.BOARD_TITLE, B.MEMBER_NAME, B.BOARD_CRE_DATE
-         FROM
-             (SELECT B.BOARD_NO, ROWNUM RNUM, B.BOARD_TITLE, B.MEMBER_NAME, B.BOARD_CRE_DATE
-              FROM
-                 (SELECT B.BOARD_NO,
-                         B.BOARD_TITLE, 
-                         M.MEMBER_NAME, 
-                         B.BOARD_CRE_DATE
-                 FROM MEMBERS M, BOARD B
-                 WHERE M.MEMBER_NO = B.MEMBER_NO
-                 
-                 <choose>
-                    <when test="searchOption == 'title'">
-                       AND  B.BOARD_TITLE LIKE '%'||#{keyword}||'%'
-                    </when>
-                    
-                    <when test="searchOption == 'content'">
-                       AND  B.BOARD_CONTENT LIKE '%'||#{keyword}||'%'
-                    </when>
-                    <when test="searchOption == 'name'">
-                       AND M.MEMBER_NAME LIKE '%'||#{keyword}||'%'
-                    </when>
-                    
-                    
-                 </choose>
-                       ORDER BY BOARD_NO DESC      
-             )B
+
+      SELECT B.RNUM, B.BOARD_NO, B.BOARD_TITLE, B.MEMBER_NAME,
+      B.BOARD_CRE_DATE
+      FROM
+      (SELECT B.BOARD_NO, ROWNUM RNUM, B.BOARD_TITLE,
+      B.MEMBER_NAME,
+      B.BOARD_CRE_DATE
+      FROM
+      (SELECT B.BOARD_NO,
+      B.BOARD_TITLE,
+      M.MEMBER_NAME,
+      B.BOARD_CRE_DATE
+      FROM MEMBERS M, BOARD B
+      WHERE M.MEMBER_NO
+      = B.MEMBER_NO
+
+      <choose>
+         <when test="searchOption == 'title'">
+            AND B.BOARD_TITLE LIKE '%'||#{keyword}||'%'
+         </when>
+
+         <when test="searchOption == 'content'">
+            AND B.BOARD_CONTENT LIKE '%'||#{keyword}||'%'
+         </when>
+         <when test="searchOption == 'name'">
+            AND M.MEMBER_NAME LIKE '%'||#{keyword}||'%'
+         </when>
+
+
+      </choose>
+      ORDER BY BOARD_NO DESC
+      )B
       ) B
       WHERE RNUM BETWEEN #{start} AND #{end}
-      
-      </select>
+
+
+   </select>
 
 
 
-<select id="boardSelectTotalCount" parameterType="map"
+   <select id="boardSelectTotalCount" parameterType="map"
       resultType="int">
-      
-   SELECT COUNT(*)
-   FROM BOARD B, MEMBERS M
-   WHERE B.MEMBER_NO = M.MEMBER_NO
+
+      SELECT COUNT(*)
+      FROM BOARD B, MEMBERS M
+      WHERE B.MEMBER_NO = M.MEMBER_NO
       <choose>
          <when test="searchOption == 'title'">
             AND B.BOARD_TITLE LIKE '%'||#{keyword}||'%'
@@ -90,263 +95,228 @@
             ORDER BY B.BOARD_NO DESC
          </otherwise>
       </choose>
-      
-</select>
 
-<select id="boardSelectOne" 
-   parameterType="boardVo" resultType="int"
-   resultMap="boardResultMap">
+   </select>
 
-SELECT BM.RNUM, 
+   <select id="boardSelectOne" parameterType="boardVo"
+      resultType="int" resultMap="boardResultMap">
 
-	   BM.BOARD_NO,
-	   BM.BOARD_TITLE, 
-	   BM.BOARD_CONTENT, 
-	   BM.MEMBER_NO, 
-	   BM.MEMBER_NAME, 
-	   BM.BOARD_CRE_DATE
-FROM(
- 	SELECT ROWNUM AS RNUM,
-   		  B.BOARD_NO,
-   		  B.BOARD_TITLE,
-   		  B.BOARD_CONTENT,
-   		  B.MEMBER_NO,
-   		  B.MEMBER_NAME,
-   		  B.BOARD_CRE_DATE
-    FROM
-   WHERE BM.BOARD_NO = #{no}
+      SELECT BM.RNUM,
+      BM.BOARD_NO,
+      BM.BOARD_TITLE,
+      BM.BOARD_CONTENT,
+      BM.MEMBER_NO,
+      BM.MEMBER_NAME,
+      BM.BOARD_CRE_DATE
+      FROM(
+      SELECT ROWNUM AS RNUM,
+      B.BOARD_NO,
+      B.BOARD_TITLE,
+      B.BOARD_CONTENT,
+      B.MEMBER_NO,
+      B.MEMBER_NAME,
+      B.BOARD_CRE_DATE
+      FROM (SELECT B.BOARD_NO,
+      B.BOARD_TITLE,
+      B.BOARD_CONTENT,
+      M.MEMBER_NO,
+      M.MEMBER_NAME,
+      B.BOARD_CRE_DATE
+      FROM BOARD B, MEMBERS M
+      WHERE M.MEMBER_NO = B.MEMBER_NO
+      ORDER BY B.BOARD_NO)B)BM WHERE BM.BOARD_NO = #{no}
+
+   </select>
+
+   <select id="boardSelectOneRestTwo" parameterType="boardVo"
+      resultType="int" resultMap="boardResultMap">
+
+      SELECT BM.RNUM,
+      BM.BOARD_NO,
+      BM.BOARD_TITLE,
+      BM.MEMBER_NAME,
+      BM.BOARD_CRE_DATE
+      FROM
+      (SELECT ROWNUM AS RNUM,
+      B.BOARD_NO,
+      B.BOARD_TITLE,
+      B.MEMBER_NAME,
+      B.BOARD_CRE_DATE FROM
+      (SELECT B.BOARD_NO, B.BOARD_TITLE,
+      M.MEMBER_NAME,
+      B.BOARD_CRE_DATE
+      FROM BOARD B, MEMBERS M
+      WHERE M.MEMBER_NO = B.MEMBER_NO ORDER BY B.BOARD_NO)B)BM
+      WHERE RNUM = #{rNum}
    </select>
 
 
 
-	<select id="boardSelectTotalCount" parameterType="map"
-		resultType="int">
+   <insert id="boardInsertOne" parameterType="boardVo"
+      useGeneratedKeys="true" keyProperty="boardNo">
 
-		SELECT COUNT(*)
-		FROM BOARD B, MEMBERS M
-		WHERE B.MEMBER_NO = M.MEMBER_NO
-		<choose>
-			<when test="searchOption == 'title'">
-				AND B.BOARD_TITLE LIKE '%'||#{keyword}||'%'
-			</when>
-			<when test="searchOption == 'content'">
-				AND B.BOARD_CONTENT LIKE '%'||#{keyword}||'%'
-			</when>
-			<when test="searchOption == 'name'">
-				AND M.MEMBER_NAME LIKE '%'||#{keyword}||'%'
-			</when>
-			<otherwise>
-				ORDER BY B.BOARD_NO DESC
-			</otherwise>
-		</choose>
-
-	</select>
-
-	<select id="boardSelectOne" parameterType="boardVo"
-		resultType="int" resultMap="boardResultMap">
-
-		SELECT BM.RNUM,
-		BM.BOARD_NO,
-		BM.BOARD_TITLE,
-		BM.BOARD_CONTENT,
-		BM.MEMBER_NO,
-		BM.MEMBER_NAME,
-		BM.BOARD_CRE_DATE
-		FROM(
-		SELECT ROWNUM AS RNUM,
-		B.BOARD_NO,
-		B.BOARD_TITLE,
-		B.BOARD_CONTENT,
-		B.MEMBER_NO,
-		B.MEMBER_NAME,
-		B.BOARD_CRE_DATE
-		FROM (SELECT B.BOARD_NO,
-		B.BOARD_TITLE,
-		B.BOARD_CONTENT,
-		M.MEMBER_NO,
-		M.MEMBER_NAME,
-		B.BOARD_CRE_DATE
-		FROM BOARD B, MEMBERS M
-		WHERE M.MEMBER_NO = B.MEMBER_NO
-		ORDER BY B.BOARD_NO)B)BM WHERE BM.BOARD_NO = #{no}
-
-	</select>
-
-	<select id="boardSelectOneRestTwo" parameterType="boardVo"
-		resultType="int" resultMap="boardResultMap">
-
-		SELECT BM.RNUM,
-		BM.BOARD_NO,
-		BM.BOARD_TITLE,
-		BM.MEMBER_NAME,
-		BM.BOARD_CRE_DATE
-		FROM
-		(SELECT ROWNUM AS RNUM,
-		B.BOARD_NO,
-		B.BOARD_TITLE,
-		B.MEMBER_NAME,
-		B.BOARD_CRE_DATE FROM
-		(SELECT B.BOARD_NO, B.BOARD_TITLE,
-		M.MEMBER_NAME,
-		B.BOARD_CRE_DATE
-		FROM BOARD B, MEMBERS M
-		WHERE M.MEMBER_NO = B.MEMBER_NO ORDER BY B.BOARD_NO)B)BM
-		WHERE RNUM = #{rNum}
-	</select>
-
-
-
-	<insert id="boardInsertOne" parameterType="boardVo"
-		useGeneratedKeys="true" keyProperty="boardNo">
-		
-      <selectKey keyProperty="boardNo" resultType="int" order="BEFORE">
-      	SELECT BOARD_NO_SEQ.NEXTVAL FROM DUAL
+      <selectKey keyProperty="boardNo" resultType="int"
+         order="BEFORE">
+         SELECT BOARD_NO_SEQ.NEXTVAL FROM DUAL
       </selectKey>
-      
+
       INSERT INTO BOARD
       (BOARD_NO, BOARD_TITLE, BOARD_CONTENT, MEMBER_NO,
-       BOARD_CRE_DATE, BOARD_MOD_DATE)
+      BOARD_CRE_DATE, BOARD_MOD_DATE)
       VALUES
       (#{boardNo}, #{boardTitle},
       #{boardContent}, #{memberNo}, SYSDATE, SYSDATE)
-      
-</insert>
 
-<delete id="boardDeleteOne" parameterType="int">
+   </insert>
+
+   <delete id="boardDeleteOne" parameterType="int">
 
       DELETE
       FROM BOARD
-      WHERE BOARD_NO = #{boardNo}
-      
-</delete>
+      WHERE
+      BOARD_NO = #{boardNo}
 
-<update id="boardUpdateOne" parameterType="boardVo">
-   
-   UPDATE BOARD
+   </delete>
+
+   <update id="boardUpdateOne" parameterType="boardVo">
+
+      UPDATE BOARD
       <set>
          <if test="boardTitle != ''">BOARD_TITLE = #{boardTitle},</if>
          <if test="boardContent != ''">BOARD_CONTENT= #{boardContent},</if>
-         
+
          BOARD_MOD_DATE = SYSDATE
       </set>
-      
-      WHERE    BOARD_NO = #{boardNo}
-</update>
+
+      WHERE BOARD_NO = #{boardNo}
+   </update>
 
 
 
-<!-- 파일 관리 -->
+   <!-- 파일 관리 -->
 
-<insert id="insertFile" parameterType="map">
-		INSERT INTO BOARD_FILE
-			(IDX, PARENT_SEQ,
-			ORIGINAL_FILE_NAME, 
-			STORED_FILE_NAME,
-			FILE_SIZE, CRE_DATE)
-		VALUES
-			(BOARD_FILE_IDX_SEQ.NEXTVAL,
-			#{parentSeq},
-			#{original_file_name},
-			#{stored_file_name},
-			#{file_size}, SYSDATE)
-			
-	</insert>
-	
-	<select id="fileSelectList" parameterType="int"
-		resultType="map">
-		
-		SELECT IDX, ORIGINAL_FILE_NAME, STORED_FILE_NAME,
-			ROUND(FILE_SIZE/1024, 1) AS FILE_SIZE
-		FROM BOARD_FILE
-		WHERE PARENT_SEQ = #{parentSeq}
-		
-	</select>
-	
-	<delete id="fileDelete" parameterType="int">
-	
-		DELETE FROM BOARD_FILE
-		WHERE PARENT_SEQ = #{no}
-		
-	</delete>
+   <insert id="insertFile" parameterType="map">
+      INSERT INTO BOARD_FILE
+      (IDX, PARENT_SEQ,
+      ORIGINAL_FILE_NAME,
+      STORED_FILE_NAME,
+      FILE_SIZE,
+      CRE_DATE)
+      VALUES
+      (BOARD_FILE_IDX_SEQ.NEXTVAL,
+      #{parentSeq},
+      #{original_file_name},
+      #{stored_file_name},
+      #{file_size}, SYSDATE)
 
-	<select id="fileSelectStoredFileName" parameterType="int"
-		resultType="map">
-		
-		SELECT IDX, STORED_FILE_NAME
-		FROM BOARD_FILE
-		WHERE PARENT_SEQ = #{no}
-		
-	</select>
+   </insert>
 
-<!-- 덧글관리 -->
+   <select id="fileSelectList" parameterType="int" resultType="map">
+
+      SELECT IDX, ORIGINAL_FILE_NAME, STORED_FILE_NAME,
+      ROUND(FILE_SIZE/1024, 1) AS FILE_SIZE
+      FROM BOARD_FILE
+      WHERE PARENT_SEQ =
+      #{parentSeq}
+
+   </select>
+
+   <delete id="fileDelete" parameterType="int">
+
+      DELETE FROM BOARD_FILE
+      WHERE PARENT_SEQ = #{no}
+
+   </delete>
+
+   <select id="fileSelectStoredFileName" parameterType="int"
+      resultType="map">
+
+      SELECT IDX, STORED_FILE_NAME
+      FROM BOARD_FILE
+      WHERE PARENT_SEQ
+      = #{no}
+
+   </select>
+
+   <!-- 덧글관리 -->
 
 
 
-<!-- 	r -->
-	<select id="commentSelectList" parameterType="int"
-		resultMap="commentResultMap">
-		
-		SELECT C.COMMENT_NO, C.BOARD_NO, C.MEMBER_NO, M.MEMBER_NAME, C.COMMENTS, C.CRE_DATE
-		FROM COMMENTS C, BOARD B, MEMBERS M
-		
-		WHERE B.BOARD_NO = C.BOARD_NO
-		AND C.MEMBER_NO = M.MEMBER_NO
-		AND B.BOARD_NO = #{boardNo}
-		ORDER BY C.COMMENT_NO
-	
-	</select>
-	
-	
-<!-- 	덧글갯수 -->
-	<select id="commentTotalList" parameterType="int"
-		resultType="int">
-		SELECT COUNT(*)
-		FROM COMMENTS
-		WHERE BOARD_NO = #{boardNo}
-	
-	</select>
-	
-<!-- 	c -->
-	<insert id="commentInsertOne" parameterType="com.edu.board.vo.CommentVo">
-	
-		INSERT INTO COMMENTS
-		(COMMENT_NO, MEMBER_NO, BOARD_NO, COMMENTS, CRE_DATE)
-		VALUES
-		(COMMENT_NO_SEQ.NEXTVAL,#{memberNo}, #{boardNo}, #{comments}, SYSDATE)
-		
-	</insert>
-	
-<!-- 	u -->
-	<update id="commentUpdateOne" parameterType="com.edu.board.vo.CommentVo">
-	
-		UPDATE COMMENTS
-		<set>
-			COMMENTS = #{comments}
-		</set>
-		
-		WHERE COMMENT_NO = #{commentNo}
-	</update>
+   <!-- r -->
+   <select id="commentSelectList" parameterType="int"
+      resultMap="commentResultMap">
 
-<!-- 	d -->
+      SELECT C.COMMENT_NO, C.BOARD_NO, C.MEMBER_NO, M.MEMBER_NAME,
+      C.COMMENTS,
+      C.CRE_DATE
+      FROM COMMENTS C, BOARD B, MEMBERS M
 
-<!-- 	덧글 하나만 지웠을 때 -->
-	<delete id="commentDeleteOne" parameterType="int" >
-	
-		DELETE FROM COMMENTS
-		WHERE COMMENT_NO = #{commentNo}
-		
-	</delete>
-	
-<!-- 	게시글 삭제시 관련 덧글이 모두 지워질 때 -->
-	
-	<delete id="commentDeleteList" parameterType="int">
-	
-		DELETE FROM COMMENTS
-		WHERE BOARD_NO = #{boardNo}
-		
-	</delete>
-	
-	
-	
+      WHERE
+      B.BOARD_NO = C.BOARD_NO
+      AND C.MEMBER_NO = M.MEMBER_NO
+      AND B.BOARD_NO =
+      #{boardNo}
+      ORDER BY C.COMMENT_NO
+
+   </select>
+
+
+   <!-- 덧글갯수 -->
+   <select id="commentTotalList" parameterType="int"
+      resultType="int">
+      SELECT COUNT(*)
+      FROM COMMENTS
+      WHERE BOARD_NO = #{boardNo}
+
+   </select>
+
+   <!-- c -->
+   <insert id="commentInsertOne"
+      parameterType="com.edu.board.vo.CommentVo">
+
+      INSERT INTO COMMENTS
+      (COMMENT_NO, MEMBER_NO, BOARD_NO,
+      COMMENTS, CRE_DATE)
+      VALUES
+      (COMMENT_NO_SEQ.NEXTVAL,#{memberNo},
+      #{boardNo}, #{comments},
+      SYSDATE)
+
+   </insert>
+
+   <!-- u -->
+   <update id="commentUpdateOne"
+      parameterType="com.edu.board.vo.CommentVo">
+
+      UPDATE COMMENTS
+      <set>
+         COMMENTS = #{comments}
+      </set>
+
+      WHERE COMMENT_NO = #{commentNo}
+   </update>
+
+   <!-- d -->
+
+   <!-- 덧글 하나만 지웠을 때 -->
+   <delete id="commentDeleteOne" parameterType="int">
+
+      DELETE FROM COMMENTS
+      WHERE COMMENT_NO = #{commentNo}
+
+   </delete>
+
+   <!-- 게시글 삭제시 관련 덧글이 모두 지워질 때 -->
+
+   <delete id="commentDeleteList" parameterType="int">
+
+      DELETE FROM
+      COMMENTS
+      WHERE BOARD_NO = #{boardNo}
+
+   </delete>
+
+
+
 
 </mapper>

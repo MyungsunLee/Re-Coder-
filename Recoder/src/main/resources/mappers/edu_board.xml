@@ -98,22 +98,7 @@
    resultMap="boardResultMap">
 
 SELECT BM.RNUM, 
-<<<<<<< HEAD
-      BM.BOARD_NO,
-      BM.BOARD_TITLE, 
-      BM.BOARD_CONTENT, 
-      BM.MEMBER_NO, 
-      BM.MEMBER_NAME, 
-      BM.BOARD_CRE_DATE
-FROM(
-    SELECT ROWNUM AS RNUM,
-           B.BOARD_NO,
-           B.BOARD_TITLE,
-           B.BOARD_CONTENT,
-           B.MEMBER_NO,
-           B.MEMBER_NAME,
-           B.BOARD_CRE_DATE
-=======
+
 	   BM.BOARD_NO,
 	   BM.BOARD_TITLE, 
 	   BM.BOARD_CONTENT, 
@@ -128,29 +113,7 @@ FROM(
    		  B.MEMBER_NO,
    		  B.MEMBER_NAME,
    		  B.BOARD_CRE_DATE
->>>>>>> branch 'master' of https://github.com/MyungsunLee/Re-Coder-.git
     FROM
-<<<<<<< HEAD
-       (SELECT B.BOARD_NO,
-             B.BOARD_TITLE,
-             B.BOARD_CONTENT,
-             M.MEMBER_NO,
-             M.MEMBER_NAME,
-             B.BOARD_CRE_DATE
-                  FROM BOARD B, MEMBERS M
-          WHERE M.MEMBER_NO = B.MEMBER_NO
-          ORDER BY B.BOARD_NO)B)BM
-=======
-    	(SELECT B.BOARD_NO,
-    			B.BOARD_TITLE,
-    			B.BOARD_CONTENT,
-    			M.MEMBER_NO,
-    			M.MEMBER_NAME,
-    			B.BOARD_CRE_DATE
-   					FROM BOARD B, MEMBERS M
-   		 WHERE M.MEMBER_NO = B.MEMBER_NO
-   		 ORDER BY B.BOARD_NO)B)BM
->>>>>>> branch 'master' of https://github.com/MyungsunLee/Re-Coder-.git
    WHERE BM.BOARD_NO = #{no}
 
 </select>

@@ -146,6 +146,7 @@ a {
 		<c:set var="dietTypeP" value="P" />
 		
 				<tr>
+
 					<table>
 						<tr>
 							<td>

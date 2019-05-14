@@ -131,6 +131,8 @@ border: 3px solid grey;
 							cName = cName + name;
 
 							$('#carbohydrate').html(cName);
+							
+							return false;
 						})
 				//지방부분
 				$('.fkcal').click(
@@ -156,6 +158,8 @@ border: 3px solid grey;
 							fName = fName + name;
 
 							$('#fat').html(fName);
+							
+							return false;
 						})
 
 
@@ -195,7 +199,7 @@ border: 3px solid grey;
 					<c:forEach var="cList" items="${cList}">
 						<tr>
 							<td>${cList.dietName}</td>
-							<td style="text-align: right;"><a class="ckcal">${cList.dietCal}</a>
+							<td style="text-align: right;"><a href="#" class="ckcal">${cList.dietCal}</a>
 								kcal</td>
 						</tr>
 					</c:forEach>
@@ -209,7 +213,7 @@ border: 3px solid grey;
 					<c:forEach var="fList" items="${fList}">
 						<tr>
 							<td>${fList.dietName}</td>
-							<td style="text-align: right;"><a class="fkcal">${fList.dietCal}</a>
+							<td style="text-align: right;"><a href="#" class="fkcal">${fList.dietCal}</a>
 								kcal</td>
 
 						</tr>

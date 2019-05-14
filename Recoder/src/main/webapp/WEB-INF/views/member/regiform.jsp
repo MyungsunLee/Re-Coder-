@@ -97,12 +97,12 @@
 				href="#"> <input type="submit" value="회원가입" class="submit-btn">
 			</a>
 		</form>
-		<!-- 		<form id="membercheck-form" -->
-		<!-- 			action="../member/membercheck.do" method="post"> -->
-		<!-- 			<input id="emailcheck" name="memberEmail" type="hidden" value=""> -->
-		<!-- 			<input type="submit" value="중복체크"> -->
-		<!-- 		</form> -->
-		<button type="button" id="emailCheck">이메일 확인</button>
+				<form id="membercheck-form"
+					action="../member/membercheck.do" method="post">
+					<input id="emailcheck" name="memberEmail" type="hidden" value="">
+					<input type="submit" value="중복체크">
+				</form>
+<!-- 		<button type="button" id="emailCheck">이메일 확인</button> -->
 
 	</div>
 	

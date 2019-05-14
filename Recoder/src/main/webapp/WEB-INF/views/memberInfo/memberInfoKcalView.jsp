@@ -31,6 +31,10 @@
 		text-align: center;
 		font
 	}
+	
+	table, tr, td {
+		border-collapse: collapse;
+	}
 	table{
 		border: 2px solid black;
 		margin: auto;

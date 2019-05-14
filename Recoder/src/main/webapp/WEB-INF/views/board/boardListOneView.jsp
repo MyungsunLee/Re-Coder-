@@ -179,14 +179,23 @@ a {
       <table>
          <tr>
 
-            <td><c:if
-                  test="${selectedBoard.memberNo == login_memberVo.memberNo}">
+            <td>
+            
+<!--           	로그인 회원이 게시글 작성자와 동일할 경우 -->
+               <c:if test="${selectedBoard.memberNo == login_memberVo.memberNo}">
                   <button onclick="boardOneUpdate();">수정</button>
                   <button id="deleteBtn" onclick="boardOneDelete();">삭제</button>
-               </c:if> <c:if test="${login_memberVo.memberAuth == 'A'.charAt(0)}">
+               </c:if>
+               
+<!--        	로그인한 회원이 게시글 작성자와 동일하지 않을 경우         -->
+               <c:if test="${selelctedBoard.memberNo != login_memberVo.memberNo}">
+               
+<!--            게시글 작성자와 일치하지 않은 로그인한 회원이 관리자일 경우  -->
+               		<c:if test="${login_memberVo.memberAuth == 'A'.charAt(0)}">
 
-                  <button id="deleteBtn" onclick="boardOneDelete();">삭제</button>
+                  		<button id="deleteBtn" onclick="boardOneDelete();">삭제</button>
 
+               		</c:if>
                </c:if>
                <button onclick="list();">글 목록</button></td>
 

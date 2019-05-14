@@ -226,6 +226,9 @@ public class BoardController {
 //		}
 //      }
 //      }
+      
+      model.addAttribute("selectedBoard", boardVo);
+      model.addAttribute("fileIdx", fileIdx);
       return "board/boardUpdateSuccess";
    }
    

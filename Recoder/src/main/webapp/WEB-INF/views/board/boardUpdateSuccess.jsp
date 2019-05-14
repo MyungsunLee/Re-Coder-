@@ -8,7 +8,7 @@
 <script type="text/javascript">
 	window.onload=function(){
 		alert("수정이 완료되었습니다");
-		location.href='./list.do';
+		location.href='./listOne.do?boardNo=' + ${selectedBoard.boardNo};
 		
 	}
 </script>

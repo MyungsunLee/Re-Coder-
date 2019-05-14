@@ -6,7 +6,7 @@
 	<jsp:include page="../common/slider_ad.jsp"/>
 	
 	<div id="logo">
-		<a href="../common/index.do"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Diet_Coke_logo.svg/200px-Diet_Coke_logo.svg.png"></a>
+		<a href="../common/index.do"><img src="/Recoder/resources/images/fatDiet2.png"></a>
 	</div>
 
 <c:if test="${sessionScope.login_memberVo == null }">

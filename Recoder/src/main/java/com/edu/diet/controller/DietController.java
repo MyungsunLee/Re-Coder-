@@ -233,8 +233,8 @@ public class DietController {
 		List<DietVo> dietVoList =  dietService.dietSelectList();
 		
 		
-		Map<String, Integer> carbDietVoCntMap = new HashMap();
-		Map<String, Integer> carbDietVoCalMap = new HashMap();
+		Map<String, Integer> carbDietVoCntMap = new HashMap<>();
+		Map<String, Integer> carbDietVoCalMap = new HashMap<>();
 		for (DietVo dietVo2 : dietVoList) {
 			int dietNameCnt = 0;	//음식의 갯수를 저장할 변수 생성
 			int dietNameCal = 0;
@@ -296,8 +296,8 @@ public class DietController {
 		log.debug("sumProKcal ================================================================={}", sumProKcal);
 		
 		
-		Map<String, Integer> proDietVoCntMap = new HashMap();
-		Map<String, Integer> proDietVoCalMap = new HashMap();
+		Map<String, Integer> proDietVoCntMap = new HashMap<>();
+		Map<String, Integer> proDietVoCalMap = new HashMap<>();
 		
 		for (DietVo dietVo2 : dietVoList) {
 			int dietNameCnt = 0;	//음식의 갯수를 저장할 변수 생성
@@ -359,8 +359,8 @@ public class DietController {
 		log.debug("sumFatKcal ================================================================={}", sumFatKcal);
 		
 		
-		Map<String, Integer> fatDietVoCntMap = new HashMap();
-		Map<String, Integer> fatDietVoCalMap = new HashMap();
+		Map<String, Integer> fatDietVoCntMap = new HashMap<>();
+		Map<String, Integer> fatDietVoCalMap = new HashMap<>();
 		
 		for (DietVo dietVo2 : dietVoList) {
 			int dietNameCnt = 0;	//음식의 갯수를 저장할 변수 생성

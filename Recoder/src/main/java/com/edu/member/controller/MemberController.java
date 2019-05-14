@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edu.member.service.MemberService;
 import com.edu.member.vo.MemberVo;
@@ -36,31 +34,27 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private MemberInfoService memberInfoService;
-	
-	
-	
+
 	@RequestMapping(value = "/member/membercheck.do", method = RequestMethod.GET)
 	public String memberCheck(MemberVo memberVo1, Model model) {
 		log.debug("Welcome membermembercheck enter! - {}", memberVo1);
 
 		MemberVo memberVo = memberService.memberExistCheck(memberVo1);
-		
+
 		model.addAttribute("memberVo1", memberVo1);
 		model.addAttribute("memberVo", memberVo);
-		
+
 		String viewUrl;
-		if(memberVo == null) {
+		if (memberVo == null) {
 			viewUrl = "member/memberchecksuccess";
-		}else {
+		} else {
 
 			viewUrl = "member/membercheckfail";
 		}
-		
-		
 
 		return viewUrl;
 	}
-	
+
 //	@ResponseBody
 //	@RequestMapping(value = "/member/membercheck.do")
 //	public int memberCheck(MemberVo memberVo1, Model model) {
@@ -84,41 +78,31 @@ public class MemberController {
 //	}
 
 	// 조회
-	@RequestMapping(value = "/member/list.do", 
-			method = { RequestMethod.GET, RequestMethod.POST })
-	public String memberList(
-			@RequestParam(defaultValue="1")int curPage,
-			@RequestParam(defaultValue="")String searchOption,
-			@RequestParam(defaultValue="")String keyword,
-			@RequestParam(defaultValue="noAscending")String order,
-			Model model) {
+	@RequestMapping(value = "/member/list.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String memberList(@RequestParam(defaultValue = "1") int curPage,
+			@RequestParam(defaultValue = "") String searchOption, @RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "noAscending") String order, Model model) {
 
 		log.debug("Welcome MemberController memberList for Admisistrator !");
-		
-		
+
 		int totalCount = memberService.memberCountTotal(searchOption, keyword);
-		
-		
+
 		Paging memberPaging = new Paging(totalCount, curPage);
-		
+
 		int start = memberPaging.getPageBegin();
 		int end = memberPaging.getPageEnd();
-		
-		List<MemberVo> memberList = 
-				memberService.memberSelectList(searchOption, keyword, start, end, order);
+
+		List<MemberVo> memberList = memberService.memberSelectList(searchOption, keyword, start, end, order);
 
 		Map<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", totalCount);
 		pagingMap.put("memberPaging", memberPaging);
-		
-		
-		
+
 		model.addAttribute("memberList", memberList);
-		model.addAttribute("paging",pagingMap);
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("searchOption",searchOption);
-		
-		
+		model.addAttribute("paging", pagingMap);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("searchOption", searchOption);
+
 		return "admin/memberListView";
 	}
 
@@ -157,9 +141,7 @@ public class MemberController {
 
 		MemberVo memberVo = memberService.memberExist(memberVo1);
 //		MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberVo.getMemberNo());
-	
-		
-		
+
 		String viewUrl = "";
 		if (memberVo != null && memberVo.getMemberAuth() == 'U') {
 			MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberVo.getMemberNo());
@@ -168,15 +150,15 @@ public class MemberController {
 			// 회원 전체 조회 페이지로 이동
 			session.setAttribute("login_memberVo", memberVo);
 			session.setAttribute("_memberInfoVo", memberInfoVo);
-			
+
 			viewUrl = "redirect:/common/index.do";
 		} else if (memberVo != null && memberVo.getMemberAuth() == 'A') {
 			MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberVo.getMemberNo());
-			
+
 			// 회원이 존재한다면 세션에 담고 // 회원 전체 조회 페이지로 이동
 			session.setAttribute("login_memberVo", memberVo);
 			session.setAttribute("_memberInfoVo", memberInfoVo);
-			
+
 			viewUrl = "redirect:/diet/list.do";
 		} else {
 			viewUrl = "/auth/loginfail";
@@ -198,13 +180,11 @@ public class MemberController {
 
 	// 회원가입 페이지로
 	@RequestMapping(value = "/member/add.do", method = RequestMethod.GET)
-	public String memberAdd(
-			@RequestParam(defaultValue="")String memberEmail,
-			Model model) {
+	public String memberAdd(@RequestParam(defaultValue = "") String memberEmail, Model model) {
 		log.debug("Welcome MemberController memberAdd 페이지 이동! ");
-		
+
 		model.addAttribute("memberEmail", memberEmail);
-		
+
 		return "member/regiform";
 	}
 
@@ -307,10 +287,10 @@ public class MemberController {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//실패시 처리 페이지로 이동
+			// 실패시 처리 페이지로 이동
 		}
-		
-		//메인페이지
+
+		// 메인페이지
 		return "redirect:/member/list.do";
 	}
 

@@ -86,25 +86,29 @@ border: 3px solid grey;
 							if (Math.round(myKcal * 0.3) > pkcalSum) {
 								
 							pkcalSum = parseInt(pkcalSum) + parseInt(kcal);
+								if(Math.round(myKcal * 0.3) <= pkcalSum){
+									$('#pSum').css('color', 'red');
+									alert('더 이상 추가할 수 없습니다.')
+									return;
+									
+								}
 							pkcalSumString = pkcalSum + " / "
 									+ Math.round(myKcal * 0.3);
-
-							$('#pSum').html(pkcalSumString);
-
-							var name = "<tr><td>"
-									+ $(this).closest('tr').children('td')
-											.html() + "</td></tr>";
-
-							pName = pName + name;
-
-							$('#protein').html(pName);
+							
+								
+									
+									$('#pSum').html(pkcalSumString);
+		
+									var name = "<tr><td>"
+											+ $(this).closest('tr').children('td')
+													.html() + "</td></tr>";
+		
+									pName = pName + name;
+		
+									$('#protein').html(pName);
+							
 
 							}
-
-							if (Math.round(myKcal * 0.3) <= pkcalSum) {
-								$('#pSum').css('color', 'red');
-							}
-
 
 							
 						return false;
@@ -121,8 +125,14 @@ border: 3px solid grey;
 							if (Math.round(myKcal * 0.5) > ckcalSum) {
 							ckcalSum = parseInt(ckcalSum) + parseInt(kcal);
 								
+							if (Math.round(myKcal * 0.5) <= ckcalSum) {
+								$('#cSum').css('color', 'red');
+								alert('더 이상 추가할 수 없습니다.');
+								return;
+							}
 							ckcalSumString = ckcalSum + " / "
 									+ Math.round(myKcal * 0.5);
+							
 
 							$('#cSum').html(ckcalSumString);
 
@@ -137,9 +147,7 @@ border: 3px solid grey;
 							}
 
 
-							if (Math.round(myKcal * 0.5) <= ckcalSum) {
-								$('#cSum').css('color', 'red');
-							}
+							
 
 
 							
@@ -155,9 +163,15 @@ border: 3px solid grey;
 							if (Math.round(myKcal * 0.2) > fkcalSum) {
 							fkcalSum = parseInt(fkcalSum) + parseInt(kcal);
 								
+							if (Math.round(myKcal * 0.2) <= fkcalSum) {
+								$('#cSum').css('color', 'red');
+								alert('더 이상 추가할 수 없습니다.');
+								return;
+							}
 							fkcalSumString = fkcalSum + " / "
 									+ Math.round(myKcal * 0.2);
 
+							
 							$('#fSum').html(fkcalSumString);
 
 							var name = "<tr><td>"
@@ -170,9 +184,6 @@ border: 3px solid grey;
 
 							}
 
-							if (Math.round(myKcal * 0.2) <= fkcalSum) {
-								$('#fSum').css('color', 'red');
-							}
 
 
 							

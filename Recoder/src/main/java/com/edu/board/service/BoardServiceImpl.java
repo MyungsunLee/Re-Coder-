@@ -113,7 +113,7 @@ public class BoardServiceImpl implements BoardService {
 			} else if (boardVo.getUpdl().equals("delete")) {
 				Map<String, Object> tempFileMap = boardDao.fileSelectStoredFileName(parentSeq);
 				
-				List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(parentSeq, multipartHttpServletRequest);
+//				List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(parentSeq, multipartHttpServletRequest);
 				
 					boardDao.fileDelete(parentSeq);
 					fileUtils.parseUpdateFileInfo(tempFileMap);

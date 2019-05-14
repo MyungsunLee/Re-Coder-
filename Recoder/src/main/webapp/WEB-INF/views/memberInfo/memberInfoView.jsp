@@ -26,6 +26,65 @@
 	    border: 0;
 	}
 </style>
+
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script>
+      $(function() {
+        $('.kcalForm').submit(function() {
+          var gender = $('#gender').val();
+          var age = $('#age').val();
+          var height = $('#height').val();
+          var weight = $('#weight').val();
+          var activity = $('#activity').val();
+          
+          
+          
+          if (gender == '') {
+            alert('성별을 선택해주세요.');
+            $('#gender').focus();
+            return false;
+          }
+
+          if (age == '') {
+            alert('나이를 입력해주세요.');
+            $('#age').focus();
+            return false;
+          }
+          
+           if(isNaN($('#age').val())){
+        	 alert("나이를 정확히 입력해 주세요");
+        	 $('#age').select();
+        	return false;
+          }
+          if (height == '') {
+              alert('신장을 입력해주세요.');
+              $('#height').focus();
+              return false;
+            }
+           if(isNaN($('#height').val())){
+           alert("키를 정확히 입력해 주세요");
+           $('#height').select();
+			return false;
+          }
+          if (weight == '') {
+              alert('몸무게를 입력해주세요.');
+              $('#weight').focus();
+              return false;
+            }
+          if(isNaN($('#weight').val())){
+             alert("몸무게를 정확히 입력해 주세요");
+             $('#weight').select();
+  			return false;
+            }
+          
+          if (activity == '') {
+              alert('활동량을 선택해주세요.');
+              $('#activity').focus();
+              return false;
+            }
+        });
+      });
+    </script>
 </head>
 <body>
 <jsp:include page="../common/header.jsp"></jsp:include>

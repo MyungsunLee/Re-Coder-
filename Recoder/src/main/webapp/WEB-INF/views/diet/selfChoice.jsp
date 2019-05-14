@@ -83,13 +83,9 @@ border: 3px solid grey;
 						function() {
 
 							var kcal = $(this).html();
-
+							if (Math.round(myKcal * 0.3) > pkcalSum) {
+								
 							pkcalSum = parseInt(pkcalSum) + parseInt(kcal);
-
-							if (Math.round(myKcal * 0.3) <= pkcalSum) {
-								$('#pSum').css('color', 'red');
-							}
-
 							pkcalSumString = pkcalSum + " / "
 									+ Math.round(myKcal * 0.3);
 
@@ -102,6 +98,12 @@ border: 3px solid grey;
 							pName = pName + name;
 
 							$('#protein').html(pName);
+							}
+
+							if (Math.round(myKcal * 0.3) <= pkcalSum) {
+								$('#pSum').css('color', 'red');
+							}
+
 
 						})
 
@@ -110,13 +112,10 @@ border: 3px solid grey;
 						function() {
 
 							var kcal = $(this).html();
-
+							
+							if (Math.round(myKcal * 0.5) > ckcalSum) {
 							ckcalSum = parseInt(ckcalSum) + parseInt(kcal);
-
-							if (Math.round(myKcal * 0.5) <= ckcalSum) {
-								$('#cSum').css('color', 'red');
-							}
-
+								
 							ckcalSumString = ckcalSum + " / "
 									+ Math.round(myKcal * 0.5);
 
@@ -129,6 +128,13 @@ border: 3px solid grey;
 							cName = cName + name;
 
 							$('#carbohydrate').html(cName);
+							}
+
+
+							if (Math.round(myKcal * 0.5) <= ckcalSum) {
+								$('#cSum').css('color', 'red');
+							}
+
 						})
 				//지방부분
 				$('.fkcal').click(
@@ -136,12 +142,9 @@ border: 3px solid grey;
 
 							var kcal = $(this).html();
 
+							if (Math.round(myKcal * 0.2) > fkcalSum) {
 							fkcalSum = parseInt(fkcalSum) + parseInt(kcal);
-
-							if (Math.round(myKcal * 0.2) <= fkcalSum) {
-								$('#fSum').css('color', 'red');
-							}
-
+								
 							fkcalSumString = fkcalSum + " / "
 									+ Math.round(myKcal * 0.2);
 
@@ -154,6 +157,12 @@ border: 3px solid grey;
 							fName = fName + name;
 
 							$('#fat').html(fName);
+							}
+
+							if (Math.round(myKcal * 0.2) <= fkcalSum) {
+								$('#fSum').css('color', 'red');
+							}
+
 						})
 
 				$('#setZero').click(function() {

@@ -23,7 +23,7 @@ a {
 }
 
 th {
-	background-color: #59d393;
+background-color: #59d393;
 	color: black;
 }
 
@@ -158,11 +158,6 @@ border: 3px solid grey;
 							$('#fat').html(fName);
 						})
 
-				$('#setZero').click(function() {
-
-					alert("미구현!");
-
-				})
 
 			})
 </script>
@@ -300,7 +295,7 @@ border: 3px solid grey;
 		</tr>
 	</table>
 
-	<a id="setZero">초기화</a>
+	<a href="../diet/selfChoice.do" id="setZero">초기화</a>
 
 </div>
 

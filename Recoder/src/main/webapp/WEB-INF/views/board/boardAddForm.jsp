@@ -84,8 +84,7 @@ a {
 
          <tr>
             <td><textarea name="boardContent" rows="20" cols="100"
-                  placeholder="내용을 입력해 주세요" ></textarea> <!--                <input type="text" name="boardContent"> -->
-               <!--                <textarea name="boardContent" rows="30" cols="50" --> <!--                ></textarea> -->
+                  placeholder="내용을 입력해 주세요" style="resize: none;" ></textarea> 
             </td>
          </tr>
          <tr>
@@ -101,7 +100,6 @@ a {
          <tr>
             <td style="text-align: right;"><input type="submit" value="글쓰기"></td>
             <td><a id="textLength">2000</a></td>
-<%--             <td><button onclick= "location='../board/listOne.do?boardNo=${selectedBoard.boardNo}'"> 뒤로가기</button></td> --%>
       </table>
    </form>
 </body>

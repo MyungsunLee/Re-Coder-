@@ -24,14 +24,5 @@
 
 
 <body>
-
-  <div class="login-form">
-
-<!--     <div style="text-align: left;" class="links"> -->
-<%--      입력하신 이메일 ${memberVo1.memberEmail }은 사용할 수 없습니다 --%>
-<!--     </div> -->
-    
-<%--     <a hidden="hidden">${memberVo1.memberEmail}</a> --%>
-  </div>
 </body>
 </html>

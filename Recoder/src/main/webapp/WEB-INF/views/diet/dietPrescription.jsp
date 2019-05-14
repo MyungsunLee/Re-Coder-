@@ -10,29 +10,6 @@
 <link rel="stylesheet" type="text/css" href="/Recoder/resources/css/styles.css">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
-<!-- <style> -->
-
-<!-- /* .kcalForm{ */ -->
-<!-- /* 		margin-top: 80px; */ -->
-<!-- /* 	    width: 800px; */ -->
-<!-- /* 	    padding: 20px; */ -->
-<!-- /* 	    margin-left: auto; */ -->
-<!-- /* 	    margin-right: auto; */ -->
-	
-<!-- /* 	    background-color: #EEEFF1; */ -->
-<!-- /* 	    border-radius: 5px; */ -->
-<!-- /* 	    border: 0; */ -->
-<!-- /* 	} */ -->
-<!-- /* table { */ -->
-<!-- /* 	margin-left: auto; */ -->
-<!-- /* 	margin-right: auto; */ -->
-<!-- /* } */ -->
-<!-- /* table, th, tr, td{ */ -->
-	
-<!-- /* 	border: 1px solid black; */ -->
-<!-- /* 	border-collapse: collapse; */ -->
-<!-- /* } */ -->
-<!-- </style> -->
 <style type="text/css">
 .kcalForm{
 		margin-top: 80px;

@@ -30,6 +30,7 @@ th {
 table {
 	margin: auto;
 	padding: 15px;
+	
 }
 #div {
 	padding-top: 30px;
@@ -37,6 +38,12 @@ table {
  	text-align: center;
 	background-color: #EEEFF1;
 }
+
+#protein tr td, #carbohydrate tr td, #fat tr td{
+	
+border: 3px solid grey;
+}
+
 </style>
 <script type="text/javascript">
 	var pkcalSum = 0; //각각 선택한 식품군 합친 총 칼로리
@@ -121,7 +128,6 @@ table {
 
 							cName = cName + name;
 
-							// 			alert(name);
 							$('#carbohydrate').html(cName);
 						})
 				//지방부분
@@ -147,7 +153,6 @@ table {
 
 							fName = fName + name;
 
-							// 			alert(name);
 							$('#fat').html(fName);
 						})
 

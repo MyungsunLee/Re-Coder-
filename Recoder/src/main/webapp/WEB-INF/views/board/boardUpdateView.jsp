@@ -101,8 +101,7 @@ a {
          </tr>
          
          <tr>
-            <td><textarea style="width: 100%;" rows="20" cols="100" name="boardContent" id="boardContent">${selectedBoard.boardContent}</textarea>
-<%--             <input type="text" name="boardContent" value="${selectedBoard.boardContent}"> --%>
+            <td><textarea style="width: 100%; resize: none" rows="20" cols="100" name="boardContent" id="boardContent" >${selectedBoard.boardContent}</textarea>
             </td>
          </tr>
          <tr>
@@ -116,23 +115,16 @@ a {
                <input type="submit" value="수정">
              </td>
                <td><a id="textLength">2000</a></td>
-<!--                <input type="button" id="outFormDel" value="전송 버튼"> -->
-<!-- 				버튼을 이렇게 만들어 놓으면 click function 이벤트 수행 시 submit되지 않음? -->
             
          </tr>
       </table>
    </form>
    <table>
    <tr>
-<!--    	<td> -->
-<!-- 		파일 &nbsp; -->
-<!--    	</td> -->
    	<td>
    		<a style="color: red;">사진은 한장만 선택 가능합니다</a><br>
          	 <c:choose> 
-			<c:when test="${empty fileList}"><!-- 배열은 반드시 반복문과 힘을 합쳐야 제 기능을 함! -->
-<!-- 				<a>첨부파일이 없습니다.</a> -->
-							<!-- 왼만해선 if도 안들어감 -->
+			<c:when test="${empty fileList}">
 			</c:when>
 			<c:otherwise>
 				<div id="imgDiv">
@@ -140,7 +132,7 @@ a {
 					<a>${row.ORIGINAL_FILE_NAME}</a><br>
 					<img alt="image not found" height="70px" width="100px"  
 					src="<c:url value='/img/${row.STORED_FILE_NAME}'/>"/><br>
-					</c:forEach>										<!-- 난수화되어 저장된 파일 -->
+					</c:forEach>
 				</div>
 			</c:otherwise>
 		</c:choose>

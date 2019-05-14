@@ -18,24 +18,16 @@
 	$(function() {
 		
 
-// 					 $.post('../member/membercheck.do',
-// 					function($data){
-// 					var result= $data;console.log(result);
-// 					if(result.indexOf('이미')!=-1){alert('사용중인 이메일')}
-// 					else{alert('클린한 이메일')}
-		 		
-// 					});
-		
-		
 
-// 		$('#membercheck-form').submit(function() {
-// 			var email = $('#email').val();
-// 			if (email == '') {
-// 				alert('이메일을 입력해주세요.');
-// 				$('#email').focus();
-// 				return false;
-// 			}
-// 			$('#emailcheck').val(email);
+
+		$('#membercheck-form').submit(function() {
+			var email = $('#email').val();
+			if (email == '') {
+				alert('이메일을 입력해주세요.');
+				$('#email').focus();
+				return false;
+			}
+			$('#emailcheck').val(email);
 			
 		});
 		
@@ -79,14 +71,6 @@
 			}
 		});
 
-		//         	$("#btn_submit").on("click", function(){
-		//         	    window.open("../member/membercheck.do?memberEmail=", "popup_window", "width=200, height=300, scrollbars=no");
-		//         	    $('#membercheck-form').submit(function() {
-		//         			var email = $('#email').val();
-		//   	       		$('#emailcheck').val(email);
-
-		//         });
-		//         	  });
 
 	});
 </script>

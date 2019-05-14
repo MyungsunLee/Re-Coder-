@@ -83,30 +83,6 @@ a {
       
       });
       
-//       $('#updateBtn').click(function(){
-//          var htmlInStr = $(this).closest('td').html();
-         
-//          alert(htmlInStr);
-         
-//       });
-      
-      
-//       function updateBtn(commentNo){
-//          alert(commentNo);
-//          $("#hiddenDiv"[id*=commentNo]).show();
-//       }
-      
-//    $('#update').click(function(){
-      
-//       if (condition) {
-         
-//       }
-      
-//       $('.hideTag').show();
-//       $('#updateForm').show();
-//    })
-   
-   
    });
    
 
@@ -203,15 +179,6 @@ a {
 
       </table>
    </div>
-
-   <!--    데이터확인 -->
-   <div>
-      <%--    <a>작성자 회원번호 : ${selectedBoard.memberNo} </a> --%>
-      <%--    <a>로그인 회원번호 : ${login_memberVo.memberNo}</a> --%>
-      <%--    <a>게시글 글 번호 : ${selectedBoard.boardNo}</a> --%>
-      <!-- 데이터가 미심쩍을때 확인 바로바로 -->
-   </div>
-
 
    <div style="width: 750px; margin: auto;">
      <span>덧글 [${commentTotCount}]</span>

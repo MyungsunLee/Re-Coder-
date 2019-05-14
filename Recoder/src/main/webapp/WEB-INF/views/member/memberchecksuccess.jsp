@@ -25,13 +25,5 @@
 
 <body>
 
-
-<!--   <div id="emailcheckinfo" class="login-form"> -->
-
-
-<!--     <div style="text-align: left;" class="links"> -->
-<%--       입력하신 이메일 ${memberVo1.memberEmail}은 사용할 수 있습니다 --%>
-<!--     </div> -->
-<!--   </div> -->
 </body>
 </html>

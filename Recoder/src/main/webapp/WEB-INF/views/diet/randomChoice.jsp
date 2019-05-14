@@ -265,8 +265,8 @@ a {
 				</tr>
 			</table>
 			<input type="submit" value="다시하기" class="submit-btn">
+			<button onclick="selfFnc();" class="submit-btn">직접선택</button>
 		</form>
-			<button onclick="selfFnc();">직접선택</button>
 	</div>
 
 

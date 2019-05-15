@@ -274,7 +274,7 @@ a {
 			</table>
 			<div style="margin: auto; width: 600px; padding-left: 45px; padding-top: 50px;">
 			<input type="submit" value="다시하기" class="submit-btn">
-			<button type="button" onclick="location.href='../diet/selfChoice.do'" class="submit-btn">직접선택</button>
+			<button type="button" onclick="location.href='../diet/selfChoice.do?memberNo=${_memberInfoVo.memberNo}'" class="submit-btn">직접선택</button>
 			</div>
 		</form>
 	</div>

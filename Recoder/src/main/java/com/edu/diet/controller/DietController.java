@@ -148,11 +148,11 @@ public class DietController {
 		
 //		boolean exist = memberInfoService.memberInfoExist(memberInfoVo);
 		
-		if (memberInfoVo == null) {
+		if (memberInfoVo.getMemberNo() == 0) {
 			
 			viewUrl = "/diet/go_to_member_Info_Form";
 			
-		}else if (memberInfoVo != null) {
+		}else if (memberInfoVo.getMemberNo() != 0) {
 			
 		
 		
@@ -194,17 +194,19 @@ public class DietController {
 		
 		MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberNo);
 		
-		if (memberInfoVo1.getMemberInfoCal() == 0) {
+//		boolean exist = memberInfoService.memberInfoExist(memberInfoVo);
+		
+		if (memberInfoVo.getMemberNo() == 0) {
 			
 			viewUrl = "/diet/go_to_member_Info_Form";
 			
-		}
+		
 //		tdeeCarbohydrate = (int)((memberInfoVo.getMemberInfoCal() - 500) * 0.5); // 탄수화물 = (유지칼로리-500) * 0.5
 //		tdeeProtein = (int)((memberInfoVo.getMemberInfoCal() - 500) * 0.3);		 //	단백질 = (유지칼로리 - 500) *0.3
 		
 //		log.debug("memberInfoVo1.getMemberInfoActivity()-{}", memberInfoVo.getMemberInfoActivity());
 		
-		else if (memberInfoVo1.getMemberInfoCal() != 0) {
+		}else if (memberInfoVo.getMemberNo() != 0) {
 			switch (memberInfoVo.getMemberInfoActivity()) {										// 유지칼로리 계산
 			case 1:  
 				tdeeCarbohydrate = (int)(((memberInfoVo.getMemberInfoCal()*1.2) - 500) * 0.5); // 탄수화물 = (유지칼로리-500) * 0.5

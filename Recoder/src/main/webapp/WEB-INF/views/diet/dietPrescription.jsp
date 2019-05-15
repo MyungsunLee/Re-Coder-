@@ -127,7 +127,9 @@ a {
 		</tr>
 		</c:forEach>
 	</table>
-	
+	<jsp:include page="/WEB-INF/views/common/paging.jsp">
+		<jsp:param value="${paging}" name="paging"/>
+	</jsp:include>
 	
 	
 	<div style="margin: auto; width: 600px; padding-left: 45px; padding-top: 50px;">

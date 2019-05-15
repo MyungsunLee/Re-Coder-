@@ -61,7 +61,7 @@ a {
 <script type="text/javascript">
 
 	function selfFnc() {
-		location.href="../diet/selfChoice.do";
+		location.href="../diet/selfChoice.do?memberNo=${login_memberVo.memberNo}";
 	}
 
 	function randomFnc() {

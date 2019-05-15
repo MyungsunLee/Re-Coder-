@@ -75,8 +75,15 @@ a {
 <c:set var="_memberInfoCal" value="${_memberInfoVo.memberInfoCal}"/>
 <div class="kcalForm">
 	<table>
+		<c:if test="${empty memberInfoVo}">
+			<tr>
+				<td style='text-align: center;'><h3>칼로리 처방을 먼저 받아주세요</h3></td>
+			</tr>	
+			</c:if>
+		<c:if test="${!empty memberInfoVo}">
 		<tr>
 			<th>유지 칼로리</th>
+			
 			<c:choose>
 				<c:when test="${_memberInfoActivity == 1}">
 					<td><fmt:formatNumber value="${_memberInfoCal*1.2}" pattern="0"/> kcal</td>
@@ -94,6 +101,8 @@ a {
 					<td><fmt:formatNumber value="${_memberInfoCal*1.9}" pattern="0"/> kcal</td>
 				</c:when>
 			</c:choose>
+			
+			
 			<th>식단 처방 칼로리</th>
 			<c:choose>
 				<c:when test="${_memberInfoActivity == 1}">
@@ -113,6 +122,7 @@ a {
 				</c:when>
 			</c:choose>
 		</tr>
+		</c:if>
 	</table>
 
 
@@ -127,6 +137,15 @@ a {
 		</tr>
 		</c:forEach>
 	</table>
+	
+		<jsp:include page="/WEB-INF/views/diet/dietPaging.jsp">
+		<jsp:param value="${paging}" name="paging" />
+	</jsp:include>
+	
+	
+		<form action="./dietPrescription.do" id="pagingForm" method="get">
+		<input type="hidden" id="curPage" name="curPage" value="${paging.dietPaging.curPage}">
+	</form>
 	
 	
 	

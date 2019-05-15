@@ -16,11 +16,17 @@ public class DietServiceImpl implements DietService {
 	
 	
 	@Override
-	public List<DietVo> dietSelectList() {
+	public List<DietVo> dietSelectList(int start, int end) {
 		// TODO Auto-generated method stub
-		return dietDao.dietSelectList();
+		return dietDao.dietSelectList(start, end);
 	}
-	
+
+	@Override
+	public List<DietVo> dietSelectListAll() {
+		// TODO Auto-generated method stub
+		return dietDao.dietSelectListAll();
+	}
+
 	@Override
 	public int dietInsertOne(DietVo dietVo) {
 		// TODO Auto-generated method stub
@@ -71,6 +77,12 @@ public class DietServiceImpl implements DietService {
 	public List<DietVo> selectFatList() {
 		// TODO Auto-generated method stub
 		return dietDao.selectFatList();
+	}
+
+	@Override
+	public int dietCountTotal() {
+		// TODO Auto-generated method stub
+		return dietDao.dietCountTotal();
 	}
 
 	

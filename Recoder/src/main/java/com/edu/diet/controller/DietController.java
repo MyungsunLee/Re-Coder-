@@ -14,13 +14,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.edu.diet.service.DietService;
 import com.edu.diet.vo.DietVo;
-import com.edu.member.service.MemberService;
-import com.edu.member.vo.MemberVo;
 import com.edu.memberInfo.service.MemberInfoService;
 import com.edu.memberInfo.vo.MemberInfoVo;
+import com.edu.util.Paging;
 
 @Controller
 public class DietController {
@@ -31,14 +31,12 @@ public class DietController {
 	private DietService dietService;
 	@Autowired
 	private MemberInfoService memberInfoService;
-	@Autowired
-	private MemberService memberService;
 	
 	@RequestMapping(value = "/diet/list.do", method = RequestMethod.GET)
 	public String dietList(Model model) {
 		log.debug("Welcome DietController dietList 페이지 이동! ");
 
-		List<DietVo> dietList = dietService.dietSelectList();
+		List<DietVo> dietList = dietService.dietSelectListAll();
 
 		model.addAttribute("dietList", dietList);
 
@@ -106,14 +104,31 @@ public class DietController {
 	
 	// 일반 사용자 식단처방페이지 이동 
 	@RequestMapping(value = "/diet/dietPrescription.do", method = RequestMethod.GET)
-	public String dietPrescription(HttpSession session, Model model) {
+	public String dietPrescription(HttpSession session,
+									@RequestParam(defaultValue="1")int curPage,
+									Model model) {
 		log.debug("Welcome DietController dietPrescription 페이지 이동! ");
 		
 		String viewUrl = "diet/dietPrescription";
 		
-		List<DietVo> dietList = dietService.dietSelectList();
+		int totalCount = 0;
+		totalCount = dietService.dietCountTotal();
+		Paging dietPaging = new Paging(totalCount, curPage);
+		
+		
+		int start = dietPaging.getPageBegin();
+		int end = dietPaging.getPageEnd();
+		
+		log.debug("start : {}, end : {}", start, end);
+		List<DietVo> dietList = dietService.dietSelectList(start, end);
 
-		model.addAttribute("dietList", dietList);
+		 Map<String, Object> pagingMap = new HashMap<>();
+	     pagingMap.put("totalCount", totalCount);
+	     pagingMap.put("dietPaging", dietPaging);
+	     model.addAttribute("paging", pagingMap);
+		
+		 model.addAttribute("dietList", dietList);
+		
 		
 		return viewUrl;
 	}
@@ -253,7 +268,7 @@ public class DietController {
 			}
 			
 			// DB에서 식단목록 가져오기
-			List<DietVo> dietVoList =  dietService.dietSelectList();
+			List<DietVo> dietVoList =  dietService.dietSelectListAll();
 			
 			
 			Map<String, Integer> carbDietVoCntMap = new HashMap<>();

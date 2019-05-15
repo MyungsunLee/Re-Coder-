@@ -6,19 +6,20 @@ public class DietVo {
 	private String dietType;
 	private String dietName;
 	private int dietCal;
-	
+	private int rowNum;
 	
 	public DietVo() {
 		super();
 	}
 
 
-	public DietVo(int dietNo, String dietType, String dietName, int dietCal) {
+	public DietVo(int dietNo, String dietType, String dietName, int dietCal, int rowNum) {
 		super();
 		this.dietNo = dietNo;
 		this.dietType = dietType;
 		this.dietName = dietName;
 		this.dietCal = dietCal;
+		this.rowNum = rowNum;
 	}
 
 
@@ -59,6 +60,16 @@ public class DietVo {
 
 	public void setDietCal(int dietCal) {
 		this.dietCal = dietCal;
+	}
+
+	
+	public int getRowNum() {
+		return rowNum;
+	}
+
+
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
 	}
 
 

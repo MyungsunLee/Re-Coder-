@@ -1,6 +1,8 @@
 package com.edu.diet.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +19,20 @@ public class DietDaoImpl implements DietDao {
 	String namespace = "com.edu.diet.";
 	
 	@Override
-	public List<DietVo> dietSelectList() {
+	public List<DietVo> dietSelectList(int start, int end) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace + "dietSelectList");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("start", start);
+		map.put("end", end);
+		
+		return sqlSession.selectList(namespace + "dietSelectList", map);
+	}
+	
+	@Override
+	public List<DietVo> dietSelectListAll() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + "dietSelectListAll");
 	}
 	
 	@Override
@@ -75,4 +88,11 @@ public class DietDaoImpl implements DietDao {
 		return sqlSession.selectList(namespace+"selectFatList");
 	}
 
+	@Override
+	public int dietCountTotal() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"dietSelectTotalCount");
+	}
+
+	
 }

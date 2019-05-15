@@ -61,11 +61,11 @@ a {
 <script type="text/javascript">
 
 	function selfFnc() {
-		location.href="../diet/selfChoice.do?memberNo=${login_memberVo.memberNo}";
+		location.href="../diet/selfChoice.do?memberNo=" + ${login_memberVo.memberNo};
 	}
 
 	function randomFnc() {
-		location.href="../diet/randomChoice.do?memberNo=${login_memberVo.memberNo}";
+		location.href="../diet/randomChoice.do?memberNo=" + ${login_memberVo.memberNo};
 	}
 </script>
 </head>
@@ -75,12 +75,12 @@ a {
 <c:set var="_memberInfoCal" value="${_memberInfoVo.memberInfoCal}"/>
 <div class="kcalForm">
 	<table>
-		<c:if test="${empty memberInfoVo}">
+		<c:if test="${empty _memberInfoVo}">
 			<tr>
 				<td style='text-align: center;'><h3>칼로리 처방을 먼저 받아주세요</h3></td>
 			</tr>	
 			</c:if>
-		<c:if test="${!empty memberInfoVo}">
+		<c:if test="${!empty _memberInfoVo}">
 		<tr>
 			<th>유지 칼로리</th>
 			

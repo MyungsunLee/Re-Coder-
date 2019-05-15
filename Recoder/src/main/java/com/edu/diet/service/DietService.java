@@ -6,7 +6,9 @@ import com.edu.diet.vo.DietVo;
 
 public interface DietService {
 	
-	public List<DietVo> dietSelectList();
+	public List<DietVo> dietSelectList(int start, int end);
+	public List<DietVo> dietSelectListAll();
+	public int dietCountTotal();
 	public int dietInsertOne(DietVo dietVo);
 	public int dietUpdateOne(DietVo dietVo);
 	public int dietDelete(int dietNo);

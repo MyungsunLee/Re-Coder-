@@ -40,7 +40,13 @@ table {
 }
 
 #protein tr td, #carbohydrate tr td, #fat tr td {
-	border: 3px solid grey;
+/* 	border: 3px solid grey; */
+}
+
+#protein, #carbohydrate, #fat{
+	border: 3px solid green;
+	border-collapse: collapse;
+	width: 150px;
 }
 </style>
 <script type="text/javascript">
@@ -361,7 +367,7 @@ table {
 			</tr>
 		</table>
 
-		<a href="../diet/selfChoice.do" id="setZero">초기화</a>
+		<a href="../diet/selfChoice.do" id="setZero" class="submit-btn">초기화</a>
 
 	</div>
 

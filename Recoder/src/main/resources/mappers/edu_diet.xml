@@ -5,17 +5,41 @@
 
 	<resultMap type="dietVo" id="dietResultMap">
 		<id column="DIET_NO" property="dietNo" />
+		<result column="RNUM" property="rowNum" />
 		<result column="DIET_TYPE" property="dietType" javaType="java.lang.String" />
 		<result column="DIET_NAME" property="dietName" />
 		<result column="DIET_CAL" property="dietCal" />
 	</resultMap>
 
 	<select id="dietSelectList" parameterType="map" resultMap="dietResultMap">
-		SELECT *
-		FROM DIET
-		ORDER BY DIET_NO
-		
+		SELECT D.RNUM,
+			   D.DIET_NO,
+			   D.DIET_CAL,
+			   D.DIET_NAME,
+			   D.DIET_TYPE
+			FROM(
+				SELECT ROWNUM AS RNUM,
+					   DIET_NO, DIET_CAL,
+					   DIET_NAME,
+					   DIET_TYPE
+					FROM DIET)D
+		WHERE D.RNUM BETWEEN #{start} AND #{end}
+
 	</select>
+	
+	<select id="dietSelectListAll" resultMap="dietResultMap">
+		
+		SELECT * FROM DIET
+	
+	</select>
+	
+	<select id="dietSelectTotalCount" resultType="int">
+
+      SELECT COUNT(*)
+      FROM DIET
+      ORDER BY DIET_NO DESC
+   </select>
+	
 	
 	<insert id="dietInsertOne" parameterType="dietVo">
 		INSERT INTO DIET

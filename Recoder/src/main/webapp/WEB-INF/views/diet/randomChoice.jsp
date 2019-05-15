@@ -34,12 +34,23 @@
 }
 
 table {
-	/*  	width: 650px; */
-	margin: auto;
+	margin:auto;
 	color: #198556;
 	border-collapse: collapse;
 	
 }
+.cpfTable{
+	margin: 7px;
+	border: 2px solid #22741C;
+	width: 200px;
+}
+
+.cpfTable tr td th{
+	border: 2px solid #22741C;
+	border-collapse: collapse;
+	
+}
+
 
 th {
 	background-color: #59d393;
@@ -153,9 +164,9 @@ a {
 								<table>
 									<tr>
 										<td>
-											<table>
+											<table class="cpfTable">
 												<tr>
-													<th>탄수화물</th>
+													<th colspan="2">탄수화물</th>
 												</tr>
 												<tr>
 													<td>
@@ -189,9 +200,9 @@ a {
 								<table>
 									<tr>
 										<td>
-											<table>
+											<table class="cpfTable">
 												<tr>
-													<th>단백질</th>
+													<th colspan="2">단백질</th>
 												</tr>
 												<tr>
 													<td>
@@ -225,9 +236,9 @@ a {
 								<table>
 									<tr>
 										<td>
-											<table>
+											<table class="cpfTable">
 												<tr>
-													<th>지방</th>
+													<th colspan="2">지방</th>
 												</tr>
 												<tr>
 													<td>

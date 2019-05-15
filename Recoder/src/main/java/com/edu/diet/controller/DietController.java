@@ -255,11 +255,13 @@ public class DietController {
                                  
                break;
             }else {
-               if((tdeeCarbohydrate - sumCarbKcal) <= 100) {   // (TDEE-500) - 탄수총합 의 칼로리가 100 이하면 그대로 내보낸다  
+               if((tdeeCarbohydrate - sumCarbKcal) >= 50 && (tdeeCarbohydrate - sumCarbKcal) <= 100) {   // (TDEE-500) - 탄수총합 의 칼로리가 100 이하면 그대로 내보낸다  
                   break;
                }else {                     
-                  sumCarbKcal = sumCarbKcal - carbKcal;      // 아니면 
-                  break;
+                  sumCarbKcal = sumCarbKcal - carbKcal;      // 아니면
+                  if((sumCarbKcal - tdeeCarbohydrate) >=50 && (sumCarbKcal - tdeeCarbohydrate) <=100) {
+                	  break;
+                  }
                }
             }
             

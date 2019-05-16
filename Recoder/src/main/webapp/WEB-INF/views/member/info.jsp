@@ -5,9 +5,6 @@
 <head>
   <title>회원가입</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="../resources/css/styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="../common/header.jsp"></jsp:include>

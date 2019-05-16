@@ -31,9 +31,7 @@ nav>ul>li>a:hover {
 	
 }
 </style>
-
-<script type="text/javascript"
-	src="/Recoder/resources/js/jquery-3.3.1.js"></script>
+<script src="/Recoder/resources/js/jquery-3.3.1.js"></script>
 
 <script type="text/javascript">
    $(document).ready(function(){
@@ -66,19 +64,17 @@ nav>ul>li>a:hover {
 <nav>
 	<ul>
 		<!--ㄷ 한자 적용  -->
-		<li><c:if test="${paging.memberPaging.prevPage == paging.memberPaging.curPage}">
-		<a href="#" >
-				<span>≪</span>
-		</a>
-		
-		</c:if>
-		<c:if test="${paging.memberPaging.prevPage != paging.memberPaging.curPage}">
-		<a href="#" onclick="goPage(${paging.memberPaging.prevPage});">
-				<span>≪</span>
-		</a>
-		</c:if>
-		
-		</li>
+		<li><c:if
+				test="${paging.memberPaging.prevPage == paging.memberPaging.curPage}">
+				<a href="#"> <span>≪</span>
+				</a>
+
+			</c:if> <c:if
+				test="${paging.memberPaging.prevPage != paging.memberPaging.curPage}">
+				<a href="#" onclick="goPage(${paging.memberPaging.prevPage});">
+					<span>≪</span>
+				</a>
+			</c:if></li>
 
 		<c:forEach var="num" begin="${paging.memberPaging.blockBegin}"
 			end="${paging.memberPaging.blockEnd}">
@@ -86,16 +82,18 @@ nav>ul>li>a:hover {
 			<li id="pageButton${num}"><a href="#" onclick="goPage(${num});">
 					<c:out value="${num}" />
 			</a></li>
-			
+
 
 		</c:forEach>
 
 		<li><c:if
 				test="${paging.memberPaging.nextPage == paging.memberPaging.curPage}">
 				<a href="#"> <span>≫</span></a>
-			</c:if> <c:if test="${paging.memberPaging.nextPage != paging.memberPaging.curPage}">
-				<a href="#" onclick="goPage(${paging.memberPaging.nextPage});"> <span>≫</span></a>
-			</c:if>
-		</li>
+			</c:if> <c:if
+				test="${paging.memberPaging.nextPage != paging.memberPaging.curPage}">
+				<a href="#" onclick="goPage(${paging.memberPaging.nextPage});">
+					<span>≫</span>
+				</a>
+			</c:if></li>
 	</ul>
 </nav>

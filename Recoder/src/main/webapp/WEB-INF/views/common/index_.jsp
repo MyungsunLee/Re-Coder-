@@ -6,8 +6,6 @@
 <head>
 <title>인덱스</title>
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css"
-	href="/Recoder/resources/css/styles.css">
 <style>
 #wrap {
 	position: relative;
@@ -47,11 +45,7 @@
 /* 	text-align: center; */
 /* } */
 </style>
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR"
-	rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Do+Hyeon"
-	rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+<script src="/Recoder/resources/js/jquery-3.3.1.js"></script>
 <script>
 $(document).ready(function () {
 

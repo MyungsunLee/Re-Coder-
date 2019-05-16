@@ -6,10 +6,6 @@
 <head>
 <title></title>
 <meta charset="UTF-8">
-  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
-</head>
-
 <script type="text/javascript"
    src="/Recoder/resources/js/jquery-3.3.1.js"></script>
 
@@ -21,6 +17,8 @@
 		})
 
 </script>
+</head>
+
 
 <body>
 

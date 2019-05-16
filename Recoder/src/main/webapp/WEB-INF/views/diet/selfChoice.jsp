@@ -6,16 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css"
-	href="/Recoder/resources/css/styles.css">
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR"
-	rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Do+Hyeon"
-	rel="stylesheet">
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-	
-</script>
 <style type="text/css">
 a {
 	text-decoration: none;
@@ -65,6 +55,7 @@ opacity: 1;
 
 
 </style>
+<script src="/Recoder/resources/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 	var pkcalSum = 0; //각각 선택한 식품군 합친 총 칼로리
 	var pkcalNeed = 0; //and 사용자가 하루동안 섭취해야 할 총 칼로리

@@ -8,12 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-   href="/Recoder/resources/css/styles.css">
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR"
-   rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Do+Hyeon"
-   rel="stylesheet">
 <style>
 table {
    width: 750px;
@@ -52,10 +46,7 @@ a {
    border: 1px solid white;
 }
 </style>
-<script type="text/javascript"
-   src="/Recoder/resources/js/jquery-3.3.1.js"></script>
-
-
+<script src="/Recoder/resources/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 
    

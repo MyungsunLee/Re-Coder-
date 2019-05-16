@@ -10,9 +10,9 @@
 
 #wrap {
 	position: absolute;
-	top: 0;
-	left: 145px;
-	width: 100px;
+	top: 5px;
+	left: 50px;
+	width: 300px;
 	height: 100px;
 	border: 1px solid black;
 	overflow: hidden;
@@ -22,24 +22,24 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 600px;
+	width: 1800px;
 }
 
 #slider img{
-	width: 100px;
+	width: 300px;
 	height: 100px;
 }
 
 #control {
 position: absolute;
-top: 100px;
-left: 117px;
+top: 105px;
+left: 135px;
 text-align: center;
 
 }
 
 #control a {
-color: #198556;
+	color: #9440e8;
 font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -59,13 +59,13 @@ $(document).ready(function() {
 	    if (currentPosition > 5) {
 	      currentPosition = 0;
 	    }
-	    $('#slider').animate({ left: -100 * currentPosition });
+	    $('#slider').animate({ left: -300 * currentPosition });
 	  }, 3000);
 
   $('#buttons a').click(function() {
     var index = $(this).index();
     currentPosition = index;
-    $('#slider').animate({ left: -100 * currentPosition });
+    $('#slider').animate({ left: -300 * currentPosition });
     return false;
   });
 
@@ -74,7 +74,7 @@ $(document).ready(function() {
     if (currentPosition < 0) {
       currentPosition = 5;
     }
-    $('#slider').animate({ left: -100 * currentPosition });
+    $('#slider').animate({ left: -300 * currentPosition });
 
     return false;
   });
@@ -84,7 +84,7 @@ $(document).ready(function() {
     if (currentPosition > 5) {
       currentPosition = 0;
     }
-    $('#slider').animate({ left: -100 * currentPosition });
+    $('#slider').animate({ left: -300 * currentPosition });
 
     return false;
   });
@@ -100,7 +100,7 @@ $(document).ready(function() {
 			</span>
 		</div>
 		<div id="control">
-			<a href="#" id="left">이전</a>
+			<a href="#" id="left">◀</a>
 			<span id="buttons">
 				<a href="#">1</a>
 				<a href="#">2</a>
@@ -109,7 +109,7 @@ $(document).ready(function() {
 				<a href="#">5</a>
 				<a href="#">6</a>
 			</span>
-			<a href="#" id="right">다음</a>
+			<a href="#" id="right">▶</a>
 		</div>
 <!-- 	</div> -->
 

@@ -6,12 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-   href="/Recoder/resources/css/styles.css">
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR"
-   rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Do+Hyeon"
-   rel="stylesheet">
 <style type="text/css">
 table {
    width: 750px;
@@ -42,9 +36,7 @@ a {
    color: grey;
 }
 </style>
-<script type="text/javascript"
-   src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-</script>
+<script src="/Recoder/resources/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 	
 	$(document).ready(function(){

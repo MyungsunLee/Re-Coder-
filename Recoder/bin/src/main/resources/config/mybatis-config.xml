@@ -5,10 +5,10 @@
 <configuration>
   
   <typeAliases>
-  	<typeAlias type="com.edu.member.vo.MemberVo" alias="memberVo"/>
-  	<typeAlias type="com.edu.board.vo.BoardVo" alias="boardVo"/>
-  	<typeAlias type="com.edu.diet.vo.DietVo" alias="dietVo"/>
-  	<typeAlias type="com.edu.memberInfo.vo.MemberInfoVo" alias="memberInfoVo"/>
+  	<typeAlias type="com.recoder.fatda.member.vo.MemberVo" alias="memberVo"/>
+  	<typeAlias type="com.recoder.fatda.board.vo.BoardVo" alias="boardVo"/>
+  	<typeAlias type="com.recoder.fatda.diet.vo.DietVo" alias="dietVo"/>
+  	<typeAlias type="com.recoder.fatda.memberInfo.vo.MemberInfoVo" alias="memberInfoVo"/>
   </typeAliases>
   
 </configuration>

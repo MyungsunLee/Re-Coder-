@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.edu.member">
+<mapper namespace="com.recoder.fatda.member">
 
 
-	<resultMap type="com.edu.member.vo.MemberVo"
+	<resultMap type="com.recoder.fatda.member.vo.MemberVo"
 		id="memberResultMap">
 		<id column="MEMBER_NO" property="memberNo" />
 		<result column="MEMBER_AUTH" property="memberAuth" />
@@ -103,7 +103,7 @@
 	
 	
 	<insert id="memberInsertOne" 
-		parameterType="com.edu.member.vo.MemberVo">
+		parameterType="com.recoder.fatda.member.vo.MemberVo">
 		
 		INSERT INTO MEMBERS
 			(MEMBER_NO, MEMBER_AUTH, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_DATE)

@@ -4,7 +4,7 @@
 <mapper namespace="com.edu.member">
 
 
-	<resultMap type="com.edu.member.vo.MemberVo"
+	<resultMap type="com.recoder.fatda.member.vo.MemberVo"
 		id="memberResultMap">
 		<id column="MEMBER_NO" property="memberNo" />
 		<result column="MEMBER_AUTH" property="memberAuth" />
@@ -25,7 +25,7 @@
 	
 	
 	<insert id="memberInsertOne" 
-		parameterType="com.edu.member.vo.MemberVo">
+		parameterType="com.recoder.fatda.member.vo.MemberVo">
 		
 		INSERT INTO MEMBERS
 			(MEMBER_NO, MEMBER_AUTH, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_NAME, CRE_DATE)

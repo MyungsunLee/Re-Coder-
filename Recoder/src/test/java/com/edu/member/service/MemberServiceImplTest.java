@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.edu.member.dao.MemberDao;
-import com.edu.member.vo.MemberVo;
+import com.recoder.fatda.member.dao.MemberDao;
+import com.recoder.fatda.member.service.MemberServiceImpl;
+import com.recoder.fatda.member.vo.MemberVo;
 
 
 

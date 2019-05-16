@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.edu.memberInfo">
+<mapper namespace="com.recoder.fatda.memberInfo">
 
 
-	<resultMap type="com.edu.memberInfo.vo.MemberInfoVo"
+	<resultMap type="com.recoder.fatda.memberInfo.vo.MemberInfoVo"
 		id="memberResultMap">
 		<id column="MEMBER_NO" property="memberNo" />
 		<result column="MEMBER_GENDER" property="memberInfoGender" />

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.edu.board">
+<mapper namespace="com.recoder.fatda.board">
 
 
-   <resultMap type="com.edu.board.vo.BoardVo"
+   <resultMap type="com.recoder.fatda.board.vo.BoardVo"
       id="boardResultMap">
 
 
@@ -20,7 +20,7 @@
          javaType="java.util.Date" />
    </resultMap>
 
-   <resultMap type="com.edu.board.vo.CommentVo"
+   <resultMap type="com.recoder.fatda.board.vo.CommentVo"
       id="commentResultMap">
       <id column="COMMENT_NO" property="commentNo" />
       <result column="BOARD_NO" property="boardNo" />
@@ -272,7 +272,7 @@
 
    <!-- c -->
    <insert id="commentInsertOne"
-      parameterType="com.edu.board.vo.CommentVo">
+      parameterType="com.recoder.fatda.board.vo.CommentVo">
 
       INSERT INTO COMMENTS
       (COMMENT_NO, MEMBER_NO, BOARD_NO,
@@ -286,7 +286,7 @@
 
    <!-- u -->
    <update id="commentUpdateOne"
-      parameterType="com.edu.board.vo.CommentVo">
+      parameterType="com.recoder.fatda.board.vo.CommentVo">
 
       UPDATE COMMENTS
       <set>

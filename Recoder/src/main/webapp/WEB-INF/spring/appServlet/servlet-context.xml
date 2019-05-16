@@ -13,7 +13,7 @@
 		infrastructure -->
 
 
-	<context:component-scan	base-package="com.edu"/>
+	<context:component-scan	base-package="com.recoder.fatda"/>
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />

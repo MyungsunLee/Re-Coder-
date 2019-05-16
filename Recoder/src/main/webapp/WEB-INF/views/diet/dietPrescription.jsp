@@ -57,6 +57,9 @@ a {
 #dietName tr td{
 	border: 3px solid lightgrey;
 }
+a:hover{
+opacity: 1;
+}
 </style>
 <script type="text/javascript">
 
@@ -146,9 +149,9 @@ a {
 		<form action="./dietPrescription.do" id="pagingForm" method="get">
 		<input type="hidden" id="curPage" name="curPage" value="${paging.dietPaging.curPage}">
 	</form>
-	
-	
-	
+	<div style="width: 700px; text-align: right;">
+		<a style="font-size: 7px; color:black; ">견과류를 제외한 모든 식품은 100g 기준입니다</a>
+	</div>
 	<div style="margin: auto; width: 600px; padding-left: 45px; padding-top: 50px;">
 	<input type="button"  value="직접 선택" class="submit-btn" onclick="selfFnc();">
 	<input type="button" value="랜덤 선택" class="submit-btn" onclick="randomFnc();">

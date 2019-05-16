@@ -135,7 +135,8 @@ public class DietController {
 	
 	// 식단처방페이지에서 직접 선택을 했을 경우 
 	@RequestMapping(value = "/diet/selfChoice.do", method = RequestMethod.GET)
-	public String dietSelfChoice(HttpSession session,int memberNo, Model model) {
+	public String dietSelfChoice(HttpSession session,
+								@RequestParam(defaultValue="0")int memberNo, Model model) {
 		log.debug("Welcome DietController dietselfChoice 페이지 이동! ");
 		
 		String viewUrl = "diet/selfChoice";
@@ -148,11 +149,11 @@ public class DietController {
 		
 //		boolean exist = memberInfoService.memberInfoExist(memberInfoVo);
 		
-		if (memberInfoVo.getMemberNo() == 0) {
+		if (memberInfoVo == null) {
 			
 			viewUrl = "/diet/go_to_member_Info_Form";
 			
-		}else if (memberInfoVo.getMemberNo() != 0) {
+		}else if (memberInfoVo != null) {
 			
 		
 		
@@ -196,7 +197,7 @@ public class DietController {
 		
 //		boolean exist = memberInfoService.memberInfoExist(memberInfoVo);
 		
-		if (memberInfoVo.getMemberNo() == 0) {
+		if (memberInfoVo == null) {
 			
 			viewUrl = "/diet/go_to_member_Info_Form";
 			
@@ -206,7 +207,7 @@ public class DietController {
 		
 //		log.debug("memberInfoVo1.getMemberInfoActivity()-{}", memberInfoVo.getMemberInfoActivity());
 		
-		}else if (memberInfoVo.getMemberNo() != 0) {
+		}else if (memberInfoVo!= null) {
 			switch (memberInfoVo.getMemberInfoActivity()) {										// 유지칼로리 계산
 			case 1:  
 				tdeeCarbohydrate = (int)(((memberInfoVo.getMemberInfoCal()*1.2) - 500) * 0.5); // 탄수화물 = (유지칼로리-500) * 0.5

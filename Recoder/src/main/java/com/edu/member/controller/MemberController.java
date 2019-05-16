@@ -35,7 +35,7 @@ public class MemberController {
 	@Autowired
 	private MemberInfoService memberInfoService;
 
-	@RequestMapping(value = "/member/membercheck.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/membercheck.do", method = RequestMethod.POST)
 	public String memberCheck(MemberVo memberVo1, Model model) {
 		log.debug("Welcome membermembercheck enter! - {}", memberVo1);
 

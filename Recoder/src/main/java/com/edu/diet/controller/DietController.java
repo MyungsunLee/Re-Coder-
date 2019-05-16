@@ -134,42 +134,44 @@ public class DietController {
    }
    
    // 식단처방페이지에서 직접 선택을 했을 경우 
-   @RequestMapping(value = "/diet/selfChoice.do", method = RequestMethod.GET)
-   public String dietSelfChoice(HttpSession session,int memberNo, Model model) {
-      log.debug("Welcome DietController dietselfChoice 페이지 이동! ");
-      
-      String viewUrl = "diet/selfChoice";
-//      List<DietVo> dietList = dietService.dietSelectList();
-      
-      
-      MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberNo);
-      
-      
-      
-//      boolean exist = memberInfoService.memberInfoExist(memberInfoVo);
-      
-      if (memberInfoVo == null) {
-         
-         viewUrl = "/diet/go_to_member_Info_Form";
-         
-      }else if (memberInfoVo != null) {
-         
-      
-      
-      //carbohydrate List
-      List<DietVo> cList = dietService.selectCarbohydrateList();
-      model.addAttribute("cList", cList);
-      
-      //protein List
-      List<DietVo> pList = dietService.selectProteinList();
-      model.addAttribute("pList", pList);
-      
-      List<DietVo> fList = dietService.selectFatList();
-      model.addAttribute("fList", fList);
-      
-      }
-      return viewUrl;
-   }
+	@RequestMapping(value = "/diet/selfChoice.do", method = RequestMethod.GET)
+	public String dietSelfChoice(HttpSession session,
+								@RequestParam(defaultValue="0")int memberNo, Model model) {
+		log.debug("Welcome DietController dietselfChoice 페이지 이동! ");
+		
+		String viewUrl = "diet/selfChoice";
+//		List<DietVo> dietList = dietService.dietSelectList();
+		
+		
+		MemberInfoVo memberInfoVo = memberInfoService.memberInfoSelectOne(memberNo);
+		
+		
+		
+//		boolean exist = memberInfoService.memberInfoExist(memberInfoVo);
+		
+		if (memberInfoVo == null) {
+			
+			viewUrl = "/diet/go_to_member_Info_Form";
+			
+		}else if (memberInfoVo != null) {
+			
+		
+		
+		//carbohydrate List
+		List<DietVo> cList = dietService.selectCarbohydrateList();
+		model.addAttribute("cList", cList);
+		
+		//protein List
+		List<DietVo> pList = dietService.selectProteinList();
+		model.addAttribute("pList", pList);
+		
+		List<DietVo> fList = dietService.selectFatList();
+		model.addAttribute("fList", fList);
+		
+		}
+		return viewUrl;
+	}
+
 	// 식단처방페이지에서 랜덤 선택을 했을 경우 
 	@RequestMapping(value = "/diet/randomChoice.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String randomChoice(DietVo dietVo, HttpSession session, MemberInfoVo memberInfoVo1, Model model) {

@@ -30,8 +30,30 @@ table {
 }
 
 #protein tr td, #carbohydrate tr td, #fat tr td {
-	border: 3px solid grey;
+/* 	border: 3px solid grey; */
 }
+
+#protein, #carbohydrate, #fat{
+	border: 3px solid green;
+	border-collapse: collapse;
+	width: 150px;
+}
+.pcf{
+	width: 300px;
+}
+
+.pfood, .cfood, .ffood{
+	width:200px;
+}
+
+a.pkcal, a.ckcal, a.fkcal {
+color: black;}
+
+a.pkcal:hover, a.ckcal:hover, a.fkcal:hover {
+opacity: 1;
+}
+
+
 </style>
 <script src="/Recoder/resources/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
@@ -68,10 +90,10 @@ table {
 				$('#fSum').html(fkcalSumString);
 
 				//단백질부분
-				$('.pkcal').click(
+				$('.pfood').click(
 						function() {
 
-							var kcal = $(this).html();
+							var kcal = $(this).closest('tr').children('.pkcaltd').children('.pkcal').html();
 							if (Math.round(myKcal * 0.3) > pkcalSum) {
 
 								pkcalSum = parseInt(pkcalSum) + parseInt(kcal);
@@ -82,7 +104,7 @@ table {
 									+ Math.round(myKcal * 0.3);
 
 							$('#pSum').html(pkcalSumString);
-									alert('더 이상 추가할 수 없습니다.')
+									alert('더 이상 추가할 수 없습니다.');
 
 									
 									return false;
@@ -90,7 +112,7 @@ table {
 								
 								if (Math.round(myKcal * 0.3) < pkcalSum) {
 									$('#pSum').css('color', 'red');
-									alert('더 이상 추가할 수 없습니다.')
+									alert('더 이상 추가할 수 없습니다.');
 
 									pkcalSum = parseInt(pkcalSum)
 											- parseInt(kcal);
@@ -115,11 +137,9 @@ table {
 						})
 
 				//탄수화물부분
-				$('.ckcal').click(
+				$('.cfood').click(
 						function() {
-
-							var kcal = $(this).html();
-
+							var kcal = $(this).closest('tr').children('.ckcaltd').children('.ckcal').html();
 							if (Math.round(myKcal * 0.5) > ckcalSum) {
 								ckcalSum = parseInt(ckcalSum) + parseInt(kcal);
 
@@ -165,10 +185,9 @@ table {
 							return false;
 						})
 				//지방부분
-				$('.fkcal').click(
+				$('.ffood').click(
 						function() {
-
-							var kcal = $(this).html();
+							var kcal = $(this).closest('tr').children('.fkcaltd').children('.fkcal').html();
 
 							if (Math.round(myKcal * 0.2) > fkcalSum) {
 								fkcalSum = parseInt(fkcalSum) + parseInt(kcal);
@@ -228,50 +247,56 @@ table {
 		<table>
 			<tr>
 				<td>
-					<table>
+					<div style="height: 250px; overflow: scroll;">
+					<table class="pcf">
 						<tr>
-							<th>단백질</th>
+							<th colspan="2">단백질</th>
 						</tr>
 						<c:forEach var="pList" items="${pList}">
 							<tr>
 
-								<td>${pList.dietName}</td>
-								<td style="text-align: right;"><a href="#" class="pkcal">${pList.dietCal}</a>
+								<td class="pfood" ><a href="#">${pList.dietName}</a></td>
+								<td style="text-align: right;" class="pkcaltd"><a class="pkcal">${pList.dietCal}</a>
 									kcal</td>
 
 
 							</tr>
 						</c:forEach>
 					</table>
+					</div>
 				</td>
 				<td>
-					<table>
+					<div style="height: 250px; overflow: scroll;">
+					<table class="pcf">
 						<tr>
-							<th>탄수화물</th>
+							<th colspan="2">탄수화물</th>
 						</tr>
 						<c:forEach var="cList" items="${cList}">
 							<tr>
-								<td>${cList.dietName}</td>
-								<td style="text-align: right;"><a href="#" class="ckcal">${cList.dietCal}</a>
+								<td class="cfood"><a href="#">${cList.dietName}</a></td>
+								<td style="text-align: right;" class="ckcaltd"><a class="ckcal">${cList.dietCal}</a>
 									kcal</td>
 							</tr>
 						</c:forEach>
 					</table>
+					</div>
 				</td>
 				<td>
-					<table>
+					<div style="height: 250px; overflow: scroll;">
+					<table class="pcf">
 						<tr>
-							<th>지방</th>
+							<th colspan="2">지방</th>
 						</tr>
 						<c:forEach var="fList" items="${fList}">
 							<tr>
-								<td>${fList.dietName}</td>
-								<td style="text-align: right;"><a href="#" class="fkcal">${fList.dietCal}</a>
+								<td class="ffood"><a href="#">${fList.dietName}</a></td>
+								<td style="text-align: right;" class="fkcaltd"><a class="fkcal">${fList.dietCal}</a>
 									kcal</td>
 
 							</tr>
 						</c:forEach>
 					</table>
+					</div>
 				</td>
 			</tr>
 		</table>
@@ -351,8 +376,9 @@ table {
 				</td>
 			</tr>
 		</table>
-
-		<a href="../diet/selfChoice.do" id="setZero">초기화</a>
+		<div style="padding: 20px;">
+			<a href="../diet/selfChoice.do?memberNo=${login_memberVo.memberNo}" id="setZero" class="submit-btn">초기화</a>
+		</div>
 
 	</div>
 

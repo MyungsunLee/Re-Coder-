@@ -37,10 +37,13 @@ a {
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
-
+	
+	
+	
+	
 	<table>
 		<tr>
-			<th style="width: 70px;">번호</th>
+		<th style="width: 70px;">번호</th>
          <th style="width: 380px;">제목</th>
          <th style="width: 100px;">작성자</th>
          <th style="width: 130px;">작성일</th>
@@ -48,30 +51,42 @@ a {
 		<c:forEach var="boardVo" items="${boardList}">
 			<tr>
 				<td style="text-align: center;">${boardVo.boardNo}</td>
-				<td><a href="./listOne.do?boardNo=${boardVo.boardNo}">
-						${boardVo.boardTitle} <c:if test="${boardVo.commentTotCount != 0}">
-           [${boardVo.commentTotCount}]
-            </c:if>
-				</a></td>
+				<td>
+					<a href="./listOne.do?boardNo=${boardVo.boardNo}">
+						
+						${boardVo.boardTitle}
+						<c:if test="${boardVo.commentTotCount != 0}">
+           					[${boardVo.commentTotCount}]
+            			</c:if>
+					</a>
+				</td>
 				<td style="text-align: center;">${boardVo.name}</td>
-				<td style="text-align: center;"><fmt:formatDate
-						value="${boardVo.boardCreDate}" pattern="yyyy-MM-dd"/></td>
+				<td style="text-align: center;">
+					<fmt:formatDate value="${boardVo.boardCreDate}" pattern="yyyy-MM-dd"/>
+				</td>
 			</tr>
 
 		</c:forEach>
+		<tr>
+			<td colspan="4" style="text-align: center;">
+				<c:if test="${baordList eq null}">
+					<span>등록된 게시글이 없습니다. 첫번째 게시글의 주인공이 되어주세요!</span>
+				</c:if>
+			</td>
+		</tr>
 	</table>
-
-
+	
+	
+				
 	<jsp:include page="/WEB-INF/views/common/paging.jsp">
 		<jsp:param value="${paging}" name="paging" />
 	</jsp:include>
 
 
 	<form action="./list.do" id="pagingForm" method="post">
-		<input type="hidden" id="curPage" name="curPage"
-			value="${paging.boardPaging.curPage}"> <input type="hidden"
-			name="searchOption" value="${searchOption}"> <input
-			type="hidden" name="keyword" value="${keyword}">
+		<input type="hidden" id="curPage" name="curPage" value="${paging.boardPaging.curPage}">
+		<input type="hidden" name="searchOption" value="${searchOption}">
+		<input type="hidden" name="keyword" value="${keyword}">
 	</form>
 
 	<div style="text-align: center; margin-top: 30px;">
@@ -114,13 +129,14 @@ a {
 							type="submit" value="검색">
 					</form>
 				</td>
-				<td style="border-bottom: 1px solid white;"><c:if
-						test="${sessionScope.login_memberVo != null}">
-						<button
-							onclick="location.href='/Recoder/board/addOne.do?memberNo=${login_memberVo.memberNo}'">글쓰기</button>
-					</c:if></td>
-				<td><input type="hidden" id="searchOptionVal"
-					value="${searchOption}"></td>
+				<td style="border-bottom: 1px solid white;">
+					<c:if test="${sessionScope.login_memberVo != null}">
+						<button onclick="location.href='/Recoder/board/addOne.do?memberNo=${login_memberVo.memberNo}'">글쓰기</button>
+					</c:if>
+				</td>
+				<td>
+					<input type="hidden" id="searchOptionVal" value="${searchOption}">
+				</td>
 			</tr>
 		</table>
 	</div>

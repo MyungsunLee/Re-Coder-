@@ -54,15 +54,18 @@ a {
 #dietName tr td{
 	border: 3px solid lightgrey;
 }
+a:hover{
+opacity: 1;
+}
 </style>
 <script type="text/javascript">
 
 	function selfFnc() {
-		location.href="../diet/selfChoice.do";
+		location.href="../diet/selfChoice.do?memberNo=" + ${login_memberVo.memberNo};
 	}
 
 	function randomFnc() {
-		location.href="../diet/randomChoice.do?memberNo=${login_memberVo.memberNo}";
+		location.href="../diet/randomChoice.do?memberNo=" + ${login_memberVo.memberNo};
 	}
 </script>
 </head>
@@ -72,8 +75,15 @@ a {
 <c:set var="_memberInfoCal" value="${_memberInfoVo.memberInfoCal}"/>
 <div class="kcalForm">
 	<table>
+		<c:if test="${empty _memberInfoVo}">
+			<tr>
+				<td style='text-align: center;'><h3>칼로리 처방을 먼저 받아주세요</h3></td>
+			</tr>	
+			</c:if>
+		<c:if test="${!empty _memberInfoVo}">
 		<tr>
 			<th>유지 칼로리</th>
+			
 			<c:choose>
 				<c:when test="${_memberInfoActivity == 1}">
 					<td><fmt:formatNumber value="${_memberInfoCal*1.2}" pattern="0"/> kcal</td>
@@ -91,6 +101,8 @@ a {
 					<td><fmt:formatNumber value="${_memberInfoCal*1.9}" pattern="0"/> kcal</td>
 				</c:when>
 			</c:choose>
+			
+			
 			<th>식단 처방 칼로리</th>
 			<c:choose>
 				<c:when test="${_memberInfoActivity == 1}">
@@ -110,6 +122,7 @@ a {
 				</c:when>
 			</c:choose>
 		</tr>
+		</c:if>
 	</table>
 
 
@@ -125,8 +138,17 @@ a {
 		</c:forEach>
 	</table>
 	
+		<jsp:include page="/WEB-INF/views/diet/dietPaging.jsp">
+		<jsp:param value="${paging}" name="paging" />
+	</jsp:include>
 	
 	
+		<form action="./dietPrescription.do" id="pagingForm" method="get">
+		<input type="hidden" id="curPage" name="curPage" value="${paging.dietPaging.curPage}">
+	</form>
+	<div style="width: 700px; text-align: right;">
+		<a style="font-size: 7px; color:black; ">견과류를 제외한 모든 식품은 100g 기준입니다</a>
+	</div>
 	<div style="margin: auto; width: 600px; padding-left: 45px; padding-top: 50px;">
 	<input type="button"  value="직접 선택" class="submit-btn" onclick="selfFnc();">
 	<input type="button" value="랜덤 선택" class="submit-btn" onclick="randomFnc();">

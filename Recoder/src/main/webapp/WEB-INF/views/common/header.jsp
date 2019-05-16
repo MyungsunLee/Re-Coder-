@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/Recoder/resources/css/styles.css">
+<script src="/Recoder/resources/js/jquery-3.3.1.js"></script>
 <div id = "header">
 	<jsp:include page="../common/slider_ad.jsp"/>
 	

@@ -8,17 +8,6 @@
 <head>
 <title>식단 처방</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css"
-	href="/Recoder/resources/css/styles.css">
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR"
-	rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Do+Hyeon"
-	rel="stylesheet">
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-	
-</script>	
-	
 <style type="text/css">
 .kcalForm {
 	margin-top: 80px;
@@ -94,7 +83,6 @@ a {
 }
 
 </style>
-</head>
 <body>
 <jsp:include page="../common/header.jsp"/>
 <c:set var="_memberInfoActivity" value="${_memberInfoVo.memberInfoActivity}"/><!-- 기초대사량 -->

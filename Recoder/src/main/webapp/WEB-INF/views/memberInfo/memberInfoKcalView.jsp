@@ -7,12 +7,6 @@
 <head>
 <title>칼로리 처방</title>
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css"
-	href="/Recoder//resources/css/styles.css">
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR"
-	rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Do+Hyeon"
-	rel="stylesheet">
 <style type="text/css">
 	.kcalForm{
 		margin-top: 80px;

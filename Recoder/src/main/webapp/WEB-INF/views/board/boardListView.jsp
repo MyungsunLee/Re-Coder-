@@ -77,13 +77,13 @@ a {
 			</tr>
 
 		</c:forEach>
+				<c:if test="${empty boardList}">
 		<tr>
 			<td colspan="4" style="text-align: center;">
-				<c:if test="${baordList eq null}">
 					<span>등록된 게시글이 없습니다. 첫번째 게시글의 주인공이 되어주세요!</span>
-				</c:if>
 			</td>
 		</tr>
+				</c:if>
 	</table>
 	
 	

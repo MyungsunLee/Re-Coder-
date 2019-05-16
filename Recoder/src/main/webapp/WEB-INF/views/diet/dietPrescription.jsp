@@ -137,7 +137,6 @@ opacity: 1;
 		</tr>
 		</c:forEach>
 	</table>
-	
 		<jsp:include page="/WEB-INF/views/diet/dietPaging.jsp">
 		<jsp:param value="${paging}" name="paging" />
 	</jsp:include>

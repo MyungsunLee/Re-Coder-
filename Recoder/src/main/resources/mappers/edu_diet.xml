@@ -134,5 +134,7 @@
 		      ORDER BY DBMS_RANDOM.VALUE) R
 
 	</select>
+	
+	  
 
 </mapper>
